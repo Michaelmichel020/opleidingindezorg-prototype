@@ -221,6 +221,43 @@
   min-height: 64px;
 }
 
+/* ---------- Media placeholder (photo / illustration) ---------- */
+.media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  aspect-ratio: 4 / 3;
+  background: var(--teal-bg);
+  border: 1.5px dashed var(--teal-border);
+  border-radius: var(--radius-lg);
+  color: var(--teal-dark);
+  text-align: center;
+  padding: 24px;
+}
+.media-placeholder svg { width: 32px; height: 32px; opacity: 0.65; }
+.media-placeholder span { font-size: 13px; font-weight: 600; }
+.media-placeholder small { font-size: 12px; color: var(--mid); }
+
+/* Two-column text + media row. The media is hidden on mobile;
+   add .media-row--keep-mobile to keep it, and .media-row--media-right
+   to place the media on the right at desktop sizes. */
+.media-row {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+.media-row__media { min-width: 0; }
+@media (min-width: 768px) {
+  .media-row { grid-template-columns: 1fr 1fr; }
+  .media-row--media-right .media-row__media { order: 2; }
+}
+@media (max-width: 767px) {
+  .media-row__media { display: none; }
+}
+.media-row--keep-mobile .media-row__media { display: block; }
+
 /* ---------- Cards (generic) ---------- */
 .card {
   background: var(--white);
