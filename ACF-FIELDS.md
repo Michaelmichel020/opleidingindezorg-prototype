@@ -64,14 +64,16 @@ and on the home page organisation grid.
 | `org_naam` | Text | Organisation name. |
 | `org_logo` | Image | Organisation logo. Falls back to a text placeholder if empty. |
 | `org_tagline` | Text | Short tagline / one-line positioning of the organisation. |
-| `org_video_url` | URL | Link to the organisation-specific video. Optional; falls back to the video placeholder. |
-| `org_beschrijving` | WYSIWYG | "Wie zijn wij?" description. Keep it short, max ~100 words. |
+| `org_hero_media_type` | Select | Hero media beside the title: `foto` or `video`. Decides which of the two fields below is shown/used. |
+| `org_hero_foto` | Image | Hero photo, used when `org_hero_media_type` is `foto`. |
+| `org_hero_video_url` | URL | Hero video link, used when `org_hero_media_type` is `video`. Falls back to the placeholder if empty. |
+| `org_beschrijving` | WYSIWYG | "Wie zijn wij?" description. Shown full-width (no image beside it). Keep it short, max ~100 words. |
 | `org_type` | Select | Organisation size. One of: `klein`, `middelgroot`, `groot`. Also drives the `org_type` taxonomy term. |
 | `org_niveaus` | Checkbox | BBL levels the organisation offers. Choices: `niveau_2`, `niveau_3`, `niveau_4`. |
 | `org_werkplek` | Checkbox | Workplace types. Choices: `verpleeghuis`, `thuiszorg`, `revalidatie`. |
 | `org_adres` | Text | Main address of the organisation. |
 | `org_telefoon` | Text | Phone number of the organisation. |
-| `org_locaties` | Repeater | Work locations. Sub-fields: `naam` (Text), `adres` (Text), `lat` (Text/Number), `lng` (Text/Number). Drives the location list and the map placeholder. |
+| `org_locaties` | Repeater | Work locations. Sub-fields: `naam` (Text), `adres` (Text). Rendered as a plain list (no map); show the section only when there are 2+ rows. |
 | `org_arbeidsvoorwaarden` | Repeater | Employment benefits, 3-4 rows. Sub-fields: `icoon` (Text or Select, icon key), `tekst` (Text, the benefit description). |
 | `org_url` | URL | Permalink to the organisation detail page. In WordPress this is the post permalink (`get_permalink()`), not a stored ACF field; it appears in loop annotations for clarity. |
 

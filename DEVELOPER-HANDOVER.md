@@ -88,6 +88,9 @@ python3 -m http.server 8000
 ├── _partials/                      build sources, NOT part of the WP theme
 │   ├── header.html                 canonical header markup -> header.php / nav.php
 │   ├── footer.html                 canonical footer markup -> footer.php
+│   ├── widget.html                 floating help widget -> widget.php
+│   ├── cookie.html                 cookie notice -> cookie.php
+│   ├── rotate-notice.html          mobile landscape notice -> rotate-notice.php
 │   └── BOUWINSTRUCTIE.md            page skeleton used during the build
 ├── README.md                       Dutch project readme (for OMA)
 ├── DEVELOPER-HANDOVER.md            this file
@@ -297,6 +300,18 @@ Load order matters. Enqueue in `functions.php` in this order:
 Class naming is BEM-like (`block__element--modifier`). Class names are in a
 mix of English and Dutch; **do not rename them** — the JS depends on several of
 them.
+
+### Responsive behaviour
+
+- The layout is mobile-first; tablet and desktop add columns through
+  `min-width` media queries. Tablets render the desktop layout.
+- On phone-sized screens held in **landscape**, a full-screen overlay
+  (`.rotate-notice`, the `rotate-notice.php` template part) asks the visitor
+  to rotate to portrait. It is pure CSS: an `orientation: landscape` media
+  query bounded by `max-height` so tablets are not affected. No JavaScript.
+- Section backgrounds use soft gradients; the mega menu columns cascade in,
+  and buttons and cards have hover and press transitions. All motion is
+  disabled under `prefers-reduced-motion`.
 
 ---
 
