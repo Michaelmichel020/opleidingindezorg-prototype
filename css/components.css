@@ -264,6 +264,8 @@
 .media-row--stretch .media-placeholder { aspect-ratio: auto; height: 100%; }
 @media (min-width: 768px) {
   .media-row--stretch { grid-template-columns: 0.85fr 1.15fr; }
+  /* media on the right: keep the text column the wide one */
+  .media-row--media-right.media-row--stretch { grid-template-columns: 1.15fr 0.85fr; }
 }
 
 /* ---------- Hero with a side element (callout or video) ----------
