@@ -620,9 +620,9 @@
   padding: var(--space-md);
   color: #fff;
 }
-.salaris-card--n2 { background: linear-gradient(140deg, var(--teal-light), var(--teal)); }
-.salaris-card--n3 { background: linear-gradient(140deg, var(--teal), var(--teal-dark)); }
-.salaris-card--n4 { background: linear-gradient(140deg, var(--teal-dark), var(--charcoal)); }
+.salaris-card--n2 { background: var(--teal); }
+.salaris-card--n3 { background: var(--teal-dark); }
+.salaris-card--n4 { background: var(--charcoal); }
 .salaris-card__level { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
 .salaris-card__amount { font-family: var(--serif); font-size: 38px; margin: 6px 0; }
 .salaris-card__note { font-size: 13px; opacity: .85; }
