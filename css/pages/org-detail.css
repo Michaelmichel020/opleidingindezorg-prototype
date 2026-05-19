@@ -9,6 +9,11 @@
   margin-bottom: 18px;
 }
 
+/* "Wie zijn wij?" intro and the employment-benefits grid keep a readable
+   width but stay left-aligned with the rest of the page (no centred
+   narrow container). */
+.org-detail__intro { max-width: var(--max-w-content); }
+
 /* Niveau row offered by the org */
 .org-niveaus { display: grid; gap: var(--space-sm); }
 .org-niveau-item {
@@ -36,7 +41,7 @@
 .org-niveau-item__text { font-size: 13px; color: var(--mid); }
 
 /* Employment terms */
-.voorwaarden-grid { display: grid; gap: var(--space-sm); }
+.voorwaarden-grid { display: grid; gap: var(--space-sm); max-width: var(--max-w-content); }
 .voorwaarde {
   display: flex;
   gap: 12px;
