@@ -115,9 +115,11 @@ h1, h2, h3, h4 { font-weight: 400; }
 .section {
   padding-block: 56px;
 }
-.section--warm   { background: var(--warm); }
+/* Soft, barely-there gradients keep the section backgrounds from
+   reading as flat blocks. */
+.section--warm   { background: linear-gradient(180deg, #FBFAF7 0%, var(--warm) 58%); }
 .section--white  { background: var(--white); }
-.section--teal   { background: var(--teal-bg); }
+.section--teal   { background: linear-gradient(165deg, #EFFAF8 0%, var(--teal-bg) 72%); }
 .section--dark   { background: var(--charcoal); color: var(--white); }
 .section--dark .text-lead { color: rgba(255,255,255,0.78); }
 /* Less space above a section that follows a hero text block closely. */
