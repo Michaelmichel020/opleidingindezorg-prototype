@@ -476,21 +476,21 @@
       <!-- TODO: connect filters to WP_Query (tax_query org_type / bbl_niveau / werkplek) -->
       <div class="filterbar reveal">
         <!-- WP_QUERY_FILTER: taxonomy org_type -->
-        <select class="filterbar__select" aria-label="Filter op type organisatie">
+        <select class="filterbar__select" data-filter="type" aria-label="Filter op type organisatie">
           <option value="">Type organisatie</option>
           <option value="klein">Klein</option>
           <option value="middelgroot">Middelgroot</option>
           <option value="groot">Groot</option>
         </select>
         <!-- WP_QUERY_FILTER: taxonomy bbl_niveau -->
-        <select class="filterbar__select" aria-label="Filter op BBL-niveau">
+        <select class="filterbar__select" data-filter="niveau" aria-label="Filter op BBL-niveau">
           <option value="">BBL-niveau</option>
           <option value="niveau-2">Niveau 2 - Helpende</option>
           <option value="niveau-3">Niveau 3 - Verzorgende IG</option>
           <option value="niveau-4">Niveau 4 - Verpleegkundige</option>
         </select>
         <!-- WP_QUERY_FILTER: taxonomy werkplek -->
-        <select class="filterbar__select" aria-label="Filter op werkplek">
+        <select class="filterbar__select" data-filter="werkplek" aria-label="Filter op werkplek">
           <option value="">Werkplek</option>
           <option value="verpleeghuis">Verpleeghuis</option>
           <option value="thuiszorg">Thuiszorg</option>
@@ -500,7 +500,7 @@
       <!-- WP_LOOP: start — organisaties, exclude the current organisation -->
       <!-- TEMPLATE_PART: components/org-card.php -->
       <div class="org-grid reveal--stagger">
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="groot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="verpleeghuis thuiszorg">
           <a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">Zonnehuisgroep<br>Amstelland</div>
             <h3 class="org-card__name">Zonnehuisgroep Amstelland</h3>
@@ -516,7 +516,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="middelgroot" data-org-niveaus="niveau-2 niveau-3" data-org-werkplek="verpleeghuis thuiszorg">
           <a href="/zorgorganisaties/zorggroep-aelsmeer/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">Zorggroep<br>Aelsmeer</div>
             <h3 class="org-card__name">Zorggroep Aelsmeer</h3>
@@ -531,7 +531,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="middelgroot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="thuiszorg verpleeghuis">
           <a href="/zorgorganisaties/pcsoh/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">PCSOH</div>
             <h3 class="org-card__name">PCSOH</h3>
@@ -547,7 +547,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="middelgroot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="verpleeghuis revalidatie">
           <a href="/zorgorganisaties/brentano/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">Brentano</div>
             <h3 class="org-card__name">Brentano</h3>
@@ -563,7 +563,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="groot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="thuiszorg verpleeghuis revalidatie">
           <a href="/zorgorganisaties/cordaan/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">Cordaan</div>
             <h3 class="org-card__name">Cordaan</h3>
@@ -580,7 +580,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="groot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="verpleeghuis thuiszorg revalidatie">
           <a href="/zorgorganisaties/amstelring/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">Amstelring</div>
             <h3 class="org-card__name">Amstelring</h3>
@@ -597,7 +597,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal">
+        <article class="org-card reveal" data-org-type="samenwerkingsverband" data-org-niveaus="niveau-2 niveau-3" data-org-werkplek="verpleeghuis">
           <a href="/zorgorganisaties/sigra/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">Sigra</div>
             <h3 class="org-card__name">Sigra</h3>

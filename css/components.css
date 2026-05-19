@@ -314,6 +314,14 @@
 .agenda-toolbar { display: flex; justify-content: flex-end; margin-bottom: var(--space-md); }
 #agenda-grid.org-grid--list { grid-template-columns: 1fr; }
 
+/* Organisation filters (js/filter.js): hidden cards + empty state. */
+.org-card[hidden] { display: none; }
+.org-grid-empty {
+  color: var(--mid);
+  font-size: 15px;
+  padding: var(--space-md) 4px;
+}
+
 /* ---------- Mobile landscape: ask the visitor to rotate to portrait ----------
    Shown only on phone-sized screens held in landscape. Tablets (taller
    landscape viewports) are not affected. */

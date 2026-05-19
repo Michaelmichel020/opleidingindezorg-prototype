@@ -1,19 +1,23 @@
 /* ============================================================
-   filter.js — Org overview: view toggle + filter placeholder
+   filter.js — Organisation overview & "andere organisaties" block
    opleidingindezorg.nl
-   NOTE: in this prototype the filters are visual only, not functional.
-         The grid/list toggle does work.
+   - grid / list view toggle (org overview + open-dagen agenda)
+   - organisation filters: work client-side here.
+   WORDPRESS: replace the filtering with a WP_Query tax_query on the
+   org_type / bbl_niveau / werkplek taxonomies; the result count then
+   comes from $query->found_posts.
    ============================================================ */
 (function () {
   'use strict';
 
-  /* The org overview uses #org-grid; the open-dagen agenda uses #agenda-grid.
-     Both share the grid / list view toggle below. */
-  var grid = document.getElementById('org-grid') || document.getElementById('agenda-grid');
+  /* ---------- Grid / list view toggle ----------
+     The org overview uses #org-grid, the open-dagen agenda #agenda-grid. */
+  var viewGrid = document.getElementById('org-grid') ||
+                 document.getElementById('agenda-grid');
+  var viewButtons = Array.prototype.slice.call(
+    document.querySelectorAll('.filterbar__view button'));
 
-  /* ---------- Grid / list view toggle ---------- */
-  var viewButtons = Array.prototype.slice.call(document.querySelectorAll('.filterbar__view button'));
-  if (grid && viewButtons.length) {
+  if (viewGrid && viewButtons.length) {
     viewButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         viewButtons.forEach(function (b) {
@@ -22,34 +26,67 @@
         });
         btn.classList.add('is-active');
         btn.setAttribute('aria-pressed', 'true');
-        var view = btn.getAttribute('data-view');
-        grid.classList.toggle('org-grid--list', view === 'list');
+        viewGrid.classList.toggle('org-grid--list',
+          btn.getAttribute('data-view') === 'list');
       });
     });
   }
 
-  /* ---------- Result count + filter dropdowns (placeholder) ---------- */
-  /* The result count is derived from the organisations actually rendered, so
-     it never hardcodes a total: adding an organisation updates it on its own.
-     In WordPress this value is $query->found_posts. The dropdowns are visual
-     only; the PHP developer connects them to a WP_Query with a tax_query. */
-  var countEl = document.getElementById('org-count');
-
-  function orgCount() {
-    return grid ? grid.querySelectorAll('.org-card').length : 0;
+  /* ---------- Organisation filters ----------
+     Each .filterbar filters the .org-grid inside the same <section>. */
+  function has(list, value) {
+    return (' ' + (list || '') + ' ').indexOf(' ' + value + ' ') > -1;
   }
-  function renderCount(suffix) {
-    if (countEl) {
-      countEl.textContent = orgCount() + ' organisaties' + (suffix || '');
-    }
-  }
-  renderCount();
 
-  var selects = Array.prototype.slice.call(document.querySelectorAll('.filterbar__select'));
-  selects.forEach(function (sel) {
-    sel.addEventListener('change', function () {
-      renderCount(', filter wordt actief in de WordPress-versie');
-      /* TODO: connect filter to WP_Query (tax_query org_type / bbl_niveau / werkplek) */
+  Array.prototype.slice.call(document.querySelectorAll('.filterbar'))
+    .forEach(function (bar) {
+      var section = bar.closest('section');
+      var grid = section && section.querySelector('.org-grid');
+      if (!grid) { return; }
+
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.org-card'));
+      var selects = Array.prototype.slice.call(
+        bar.querySelectorAll('.filterbar__select[data-filter]'));
+      if (!cards.length || !selects.length) { return; }
+
+      var countEl = document.getElementById('org-count');
+
+      /* Empty-state message, created once and kept just after the grid. */
+      var emptyEl = document.createElement('p');
+      emptyEl.className = 'org-grid-empty';
+      emptyEl.setAttribute('role', 'status');
+      emptyEl.hidden = true;
+      emptyEl.textContent =
+        'Geen organisaties gevonden met deze filters. Pas je selectie aan.';
+      grid.parentNode.insertBefore(emptyEl, grid.nextSibling);
+
+      function apply() {
+        var type = '', niveau = '', werkplek = '';
+        selects.forEach(function (sel) {
+          var f = sel.getAttribute('data-filter');
+          if (f === 'type') { type = sel.value; }
+          else if (f === 'niveau') { niveau = sel.value; }
+          else if (f === 'werkplek') { werkplek = sel.value; }
+        });
+
+        var visible = 0;
+        cards.forEach(function (card) {
+          var show =
+            (!type     || card.getAttribute('data-org-type') === type) &&
+            (!niveau   || has(card.getAttribute('data-org-niveaus'), niveau)) &&
+            (!werkplek || has(card.getAttribute('data-org-werkplek'), werkplek));
+          card.hidden = !show;
+          if (show) { visible++; }
+        });
+
+        if (countEl) {
+          countEl.textContent = visible +
+            (visible === 1 ? ' organisatie' : ' organisaties');
+        }
+        emptyEl.hidden = visible !== 0;
+      }
+
+      selects.forEach(function (sel) { sel.addEventListener('change', apply); });
+      apply(); /* sets the initial result count */
     });
-  });
 })();
