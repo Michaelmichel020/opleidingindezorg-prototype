@@ -1,0 +1,213 @@
+/* ============================================================
+   review.css — temporary review tool for the clickable wireframe
+   Not part of the website / WordPress theme.
+   ============================================================ */
+
+.review-page { background: var(--warm); }
+
+/* ---------- Header ---------- */
+.review-head {
+  background: linear-gradient(180deg, var(--teal-bg) 0%, var(--warm) 100%);
+  padding-block: var(--space-lg) var(--space-md);
+}
+.review-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 10px;
+}
+.review-head .text-lead { margin-top: 14px; max-width: 60ch; }
+
+.review-deadline {
+  display: inline-block;
+  margin-top: 18px;
+  background: var(--white);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-size: 14px;
+  color: var(--charcoal);
+}
+.review-deadline strong { color: var(--teal-dark); }
+
+.review-steps {
+  margin: 18px 0 22px 20px;
+  color: var(--mid);
+  font-size: 15px;
+}
+.review-steps li { margin-bottom: 4px; }
+
+/* ---------- Notices ---------- */
+.review-notice {
+  background: #FFF6E5;
+  border: 1px solid #F0DCA8;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--charcoal);
+  margin-top: var(--space-md);
+}
+
+/* ---------- Review blocks ---------- */
+#blokken {
+  margin-top: var(--space-md);
+  display: grid;
+  gap: 14px;
+}
+.blok {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.blok__sum {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--charcoal);
+}
+.blok__sum::-webkit-details-marker { display: none; }
+.blok__sum::after {
+  content: "";
+  flex-shrink: 0;
+  width: 11px; height: 11px;
+  border-right: 2.5px solid var(--teal);
+  border-bottom: 2.5px solid var(--teal);
+  transform: rotate(45deg);
+  transition: transform var(--duration) var(--ease-smooth);
+}
+.blok[open] .blok__sum::after { transform: rotate(-135deg); }
+.blok__sum:hover { background: var(--teal-bg); }
+.blok__count {
+  margin-left: auto;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  background: var(--teal-bg);
+  border-radius: var(--radius-pill);
+  padding: 3px 11px;
+}
+.blok__count:empty { display: none; }
+
+.blok__body {
+  padding: 4px 22px 22px;
+  border-top: 1px solid var(--rule);
+}
+.blok__lbl {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin: 18px 0 8px;
+}
+
+/* Page links */
+.blok__paginas ul { list-style: none; display: grid; gap: 4px; }
+.blok__paginas a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--teal-dark);
+}
+.blok__paginas a:hover { text-decoration: underline; }
+.blok__paginas svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ---------- Feedback form ---------- */
+.fb-form {
+  background: var(--off-white);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+.fb-row { display: grid; gap: 12px; }
+.fb-form label {
+  display: grid;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+.fb-form select,
+.fb-form input,
+.fb-form textarea {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--charcoal);
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.fb-form textarea { resize: vertical; min-height: 84px; }
+.fb-form select:focus-visible,
+.fb-form input:focus-visible,
+.fb-form textarea:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 1px;
+}
+.fb-submit { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.fb-status { font-size: 14px; font-weight: 600; }
+.fb-status--ok { color: var(--teal-dark); }
+.fb-status--err { color: #B5462F; }
+
+/* ---------- Saved feedback ---------- */
+.fb-list { list-style: none; display: grid; gap: 10px; }
+.fb-empty { color: var(--muted); font-size: 14px; }
+.fb-item {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+.fb-item__meta { font-size: 12.5px; color: var(--mid); margin-bottom: 4px; }
+.fb-item__meta strong { color: var(--charcoal); }
+.fb-item__txt { font-size: 15px; color: var(--charcoal); white-space: pre-wrap; }
+
+/* ---------- Actions / footer ---------- */
+.review-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: var(--space-md) 0;
+}
+.review-foot {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--space-md);
+  margin-top: var(--space-md);
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (min-width: 680px) {
+  .fb-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Print: clean PDF of all pages + feedback ---------- */
+@media print {
+  .no-print,
+  .review-steps,
+  .fb-form,
+  .review-head .btn { display: none !important; }
+  .review-head { background: none; padding-block: 0 8px; }
+  .blok { border-color: #ccc; break-inside: avoid; }
+  .blok__body { display: block !important; }
+  .blok__sum::after { display: none; }
+  .fb-item { background: none; border-color: #ddd; break-inside: avoid; }
+  a { color: #000; }
+}

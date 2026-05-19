@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review — klikbare wireframe opleidingindezorg.nl</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- This is a temporary internal review tool, NOT part of the website.
+       It is not in the sitemap and is not converted to the WordPress theme. -->
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/review/review.css">
+</head>
+<body class="review-page">
+
+  <header class="review-head">
+    <div class="container container--narrow">
+      <p class="review-eyebrow">Opleiding in de Zorg &middot; projectgroep</p>
+      <h1 class="text-h1">Review van de klikbare wireframe</h1>
+      <p class="text-lead">
+        We hebben een klikbare wireframe gemaakt van de nieuwe website. Bekijk
+        de paginas en laat hieronder je feedback achter. Je ziet ook meteen wat
+        de anderen al hebben opgeschreven, zo voorkomen we dubbele punten.
+      </p>
+
+      <p class="review-deadline">
+        Geef je feedback graag uiterlijk <strong>26 mei 2026</strong>
+      </p>
+
+      <ol class="review-steps">
+        <li>Open de wireframe in een nieuw tabblad.</li>
+        <li>Klap hieronder een onderdeel open en bekijk de paginas.</li>
+        <li>Kies je naam, typ je feedback en klik op <strong>Opslaan</strong>.</li>
+      </ol>
+
+      <a class="btn btn--primary btn--lg" href="https://opleidingindezorg-klikbaar-wireframe.netlify.app/" target="_blank" rel="noopener">
+        Open de wireframe
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="container container--narrow">
+
+    <p id="config-warning" class="review-notice" hidden>
+      De feedback-opslag wordt nog gekoppeld. Je kunt de paginas alvast bekijken;
+      opslaan kan zodra de koppeling klaar is.
+    </p>
+
+    <noscript>
+      <p class="review-notice">
+        Deze reviewpagina heeft JavaScript nodig. Schakel JavaScript in, of
+        bekijk de wireframe rechtstreeks via de knop hierboven.
+      </p>
+    </noscript>
+
+    <!-- The review blocks are built by review.js -->
+    <div id="blokken" aria-live="polite"></div>
+
+    <div class="review-actions no-print">
+      <button id="refresh-btn" type="button" class="btn btn--ghost">Ververs feedback</button>
+      <button id="print-btn" type="button" class="btn btn--outline">Print / opslaan als PDF</button>
+    </div>
+
+  </main>
+
+  <footer class="review-foot no-print">
+    <div class="container container--narrow">
+      <p>Klikbare wireframe opleidingindezorg.nl &mdash; review voor de projectgroep. Gemaakt door OMA.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/review/review.js"></script>
+</body>
+</html>
