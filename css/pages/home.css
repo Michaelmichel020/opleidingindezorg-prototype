@@ -3,13 +3,35 @@
    WP TEMPLATE: front-page.php
    ============================================================ */
 
-.hero--home .hero__title { max-width: 12ch; }
+/* Hero title breaks onto two lines via the <br> in the markup */
+.hero--home .hero__title { max-width: 20ch; }
 
-/* Org logo grid on the home page slightly airier */
+/* Org logo grid */
 .section--orgs .org-logo-grid { margin-top: var(--space-md); }
 
-/* Decorative line under the process steps */
+/* Process steps */
 .section--proces .steps { margin-top: var(--space-md); }
 
 /* Home CTA banner connects to the footer */
 .home-cta-banner { margin-bottom: 0; }
+
+/* "Wat is BBL?" — video on the left, the three pillars on the right */
+.bbl-layout {
+  display: grid;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+.bbl-layout .bbl-pillars {
+  grid-template-columns: 1fr;
+  margin: 0;
+}
+.bbl-layout__media { display: flex; }
+.bbl-layout__media .video-placeholder { width: 100%; }
+
+@media (min-width: 900px) {
+  .bbl-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+}

@@ -1,0 +1,246 @@
+/* ============================================================
+   widget.css — Floating help widget
+   opleidingindezorg.nl   Behaviour: js/widget.js
+   ============================================================ */
+
+.widget {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1050;
+  font-family: var(--font);
+}
+
+/* ---------- Launcher ---------- */
+.widget__launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 56px;
+  padding: 0 22px 0 18px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--teal);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-teal);
+  transition: background var(--duration) var(--ease-smooth),
+              transform var(--duration) var(--ease-smooth);
+}
+.widget__launcher:hover { background: var(--teal-dark); transform: translateY(-2px); }
+.widget__launcher-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.widget__launcher-icon--close { display: none; }
+.widget.is-open .widget__launcher { padding: 0; width: 56px; justify-content: center; }
+.widget.is-open .widget__launcher-text { display: none; }
+.widget.is-open .widget__launcher-icon--chat { display: none; }
+.widget.is-open .widget__launcher-icon--close { display: block; }
+
+/* ---------- Panel ---------- */
+.widget__panel {
+  position: absolute;
+  right: 0;
+  bottom: 70px;
+  width: 390px;
+  max-width: calc(100vw - 40px);
+  height: min(78vh, 660px);
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.98);
+  transform-origin: bottom right;
+  transition: opacity var(--duration) var(--ease-smooth),
+              transform var(--duration) var(--ease-smooth),
+              visibility var(--duration);
+}
+.widget.is-open .widget__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* ---------- Head ---------- */
+.widget__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--charcoal);
+}
+.widget__head-logo { height: 28px; width: auto; display: block; }
+.widget__head-close {
+  flex-shrink: 0;
+  width: 34px; height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+}
+.widget__head-close:hover { background: rgba(255, 255, 255, 0.22); }
+.widget__head-close svg { width: 18px; height: 18px; }
+
+/* ---------- Body + views ---------- */
+.widget__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.widget__view {
+  flex: 1;
+  padding: var(--space-md);
+}
+.widget__view[hidden] { display: none; }
+.widget__view--embed {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- Menu view ---------- */
+.widget__greeting {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--charcoal);
+}
+.widget__lead {
+  font-size: 14px;
+  color: var(--mid);
+  margin: 6px 0 18px;
+}
+.widget__choices { display: grid; gap: 10px; }
+.widget__choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 13px 14px;
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--duration) var(--ease-smooth),
+              background var(--duration) var(--ease-smooth);
+}
+.widget__choice:hover { border-color: var(--teal); background: var(--teal-bg); }
+.widget__choice-icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.widget__choice-icon svg { width: 21px; height: 21px; }
+.widget__choice-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.widget__choice-text strong { font-size: 15px; color: var(--charcoal); }
+.widget__choice-text small { font-size: 12.5px; color: var(--mid); }
+.widget__choice-arrow { flex-shrink: 0; width: 18px; height: 18px; color: var(--teal); }
+
+/* ---------- Back button + view title ---------- */
+.widget__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--mid);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.widget__back:hover { color: var(--teal-dark); }
+.widget__back svg { width: 16px; height: 16px; }
+.widget__view-title {
+  font-family: var(--serif);
+  font-size: 21px;
+  color: var(--charcoal);
+  margin-top: 12px;
+}
+.widget__view-intro {
+  font-size: 13px;
+  color: var(--mid);
+  margin: 4px 0 16px;
+}
+
+/* ---------- Keuzehulp embed ---------- */
+.widget__embed-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px var(--space-md);
+  border-bottom: 1px solid var(--rule);
+}
+.widget__embed-title { font-size: 14px; font-weight: 600; color: var(--charcoal); }
+.widget__embed { flex: 1; min-height: 0; }
+.widget__embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* ---------- Compact form tweaks ---------- */
+.widget__form .form__group { margin-bottom: 12px; }
+.widget__form .form__row { display: block; }
+.widget__form .btn { margin-top: 4px; }
+
+/* ---------- Inline success state ---------- */
+.widget__success { text-align: center; padding-top: var(--space-md); }
+.widget__success-check {
+  width: 64px; height: 64px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.widget__success-check svg { width: 32px; height: 32px; }
+.widget__success-title {
+  font-family: var(--serif);
+  font-size: 21px;
+  color: var(--charcoal);
+}
+.widget__success-text {
+  font-size: 14px;
+  color: var(--mid);
+  margin: 6px 0 18px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+  .widget { right: 14px; bottom: 14px; }
+  .widget__panel {
+    width: calc(100vw - 28px);
+    height: min(82vh, 620px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .widget__launcher, .widget__panel, .widget__choice { transition: none; }
+}

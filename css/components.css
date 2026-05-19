@@ -336,10 +336,15 @@
   right: -90px; bottom: -150px;
 }
 .cta-banner .container { position: relative; z-index: 1; }
-.cta-banner__content { padding-block: var(--space-lg); max-width: 640px; }
+.cta-banner__content {
+  padding-block: var(--space-xl);
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+}
 .cta-banner__title { font-family: var(--serif); font-size: clamp(26px,3.4vw,40px); line-height: 1.15; margin-bottom: 14px; }
 .cta-banner__text { color: rgba(255,255,255,0.78); margin-bottom: 26px; }
-.cta-banner__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-banner__actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* Dark keuzehulp bar (above org grid) */
 .dark-strip {

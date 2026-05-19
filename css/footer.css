@@ -108,13 +108,52 @@
 }
 .footer__legal a:hover { color: #fff; text-decoration: underline; }
 
+/* ---------- Sitemap ---------- */
+.footer__sitemap { border-top: 1px solid rgba(255, 255, 255, 0.10); }
+.footer__sitemap-inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: var(--space-lg) var(--gutter);
+}
+.footer__sitemap-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 18px;
+}
+.footer__sitemap-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+.footer__sitemap-group {
+  display: grid;
+  gap: 5px;
+  align-content: start;
+}
+.footer__sitemap-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.footer__sitemap-group a {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer__sitemap-group a:hover { color: #fff; }
+
 /* ---------- Responsive ---------- */
 @media (min-width: 768px) {
   .footer__grid-inner { grid-template-columns: repeat(2, 1fr); }
+  .footer__sitemap-grid { grid-template-columns: repeat(3, 1fr); }
   /* On tablet: hide the per-organisation links, keep only 'Alle zorgorganisaties' */
   .footer__org-detail { display: none; }
 }
 @media (min-width: 1024px) {
   .footer__grid-inner { grid-template-columns: repeat(5, 1fr); }
+  .footer__sitemap-grid { grid-template-columns: repeat(6, 1fr); }
   .footer__org-detail { display: list-item; }
 }

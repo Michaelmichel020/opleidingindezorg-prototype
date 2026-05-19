@@ -1,0 +1,199 @@
+<!-- ============================================================
+     FLOATING HELP WIDGET — copy this block verbatim into every page,
+     directly before the scripts at the bottom of <body>.
+     WP: register as a template part and include it in footer.php.
+     Behaviour: js/widget.js   Styling: css/widget.css
+     ============================================================ -->
+<div class="widget" id="help-widget" data-view="menu">
+
+  <!-- Panel -->
+  <div class="widget__panel" id="widget-panel" role="dialog" aria-modal="false" aria-label="Hulp en contact">
+
+    <div class="widget__head">
+      <img src="/assets/logo/logo-cream.svg" alt="Opleiding in de Zorg" class="widget__head-logo">
+      <button class="widget__head-close" type="button" data-widget-close aria-label="Sluiten">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="widget__body">
+
+      <!-- View: menu -->
+      <section class="widget__view" data-view="menu">
+        <p class="widget__greeting">Hoi! Ben jij klaar om te starten in de zorg?</p>
+        <p class="widget__lead">Waar kunnen we je mee helpen?</p>
+        <div class="widget__choices">
+          <button class="widget__choice" type="button" data-goto="keuzehulp">
+            <span class="widget__choice-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M15 9l-2.2 6L8 17l2.2-6z" fill="currentColor"/></svg>
+            </span>
+            <span class="widget__choice-text">
+              <strong>Hulp bij het kiezen</strong>
+              <small>Vind de organisatie die bij je past</small>
+            </span>
+            <svg class="widget__choice-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="widget__choice" type="button" data-goto="vraag">
+            <span class="widget__choice-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M9.6 9.3a2.5 2.5 0 014.9.7c0 1.7-2.5 2-2.5 3.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 17.3h.01" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+            </span>
+            <span class="widget__choice-text">
+              <strong>Ik heb een vraag</strong>
+              <small>Stel je vraag, we reageren snel</small>
+            </span>
+            <svg class="widget__choice-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="widget__choice" type="button" data-goto="solliciteren">
+            <span class="widget__choice-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 3L10 14M21 3l-7 18-4-8-8-4 19-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="widget__choice-text">
+              <strong>Direct solliciteren</strong>
+              <small>Vul je gegevens in, klaar in 2 minuten</small>
+            </span>
+            <svg class="widget__choice-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- View: keuzehulp -->
+      <section class="widget__view widget__view--embed" data-view="keuzehulp" hidden>
+        <div class="widget__embed-head">
+          <button class="widget__back" type="button" data-widget-back>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Terug
+          </button>
+          <span class="widget__embed-title">Hulp bij het kiezen</span>
+        </div>
+        <div class="widget__embed">
+          <iframe src="https://opleidingindezorg-wireframes.netlify.app/" title="Keuzehulp - vind jouw zorgorganisatie" loading="lazy"></iframe>
+        </div>
+      </section>
+
+      <!-- View: vraag (contact form) -->
+      <section class="widget__view" data-view="vraag" hidden>
+        <button class="widget__back" type="button" data-widget-back>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Terug
+        </button>
+        <h3 class="widget__view-title">Stel je vraag</h3>
+        <p class="widget__view-intro">Laat je vraag achter, we reageren zo snel mogelijk.</p>
+        <!-- WP: replace with a Contact Form 7 / Gravity Forms shortcode -->
+        <form class="form widget__form" action="/over-ons/contact/" method="get" novalidate>
+          <div class="form__group">
+            <label class="form__label" for="w-naam">Naam <span class="required">*</span></label>
+            <input class="form__input" type="text" id="w-naam" name="naam" required maxlength="60">
+            <span class="form__error"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="w-email">E-mailadres <span class="required">*</span></label>
+            <input class="form__input" type="email" id="w-email" name="email" required>
+            <span class="form__error"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="w-bericht">Je vraag <span class="required">*</span></label>
+            <textarea class="form__textarea" id="w-bericht" name="bericht" rows="4" maxlength="500" required></textarea>
+            <span class="form__count">0 / 500</span>
+            <span class="form__error"></span>
+          </div>
+          <div class="form__group form__group--checkbox">
+            <label class="form__checkbox-item">
+              <input type="checkbox" name="avg" required>
+              <span>Ik ga akkoord met het <a href="/privacy/" target="_blank" rel="noopener">privacybeleid</a>. <span class="required">*</span></span>
+            </label>
+            <span class="form__error"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Verstuur vraag</button>
+        </form>
+        <div class="widget__success" hidden>
+          <div class="widget__success-check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="widget__success-title">Je vraag is verstuurd</p>
+          <p class="widget__success-text">Bedankt! We reageren zo snel mogelijk per e-mail.</p>
+          <button class="btn btn--outline btn--block" type="button" data-widget-back>Terug naar start</button>
+        </div>
+      </section>
+
+      <!-- View: solliciteren -->
+      <section class="widget__view" data-view="solliciteren" hidden>
+        <button class="widget__back" type="button" data-widget-back>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Terug
+        </button>
+        <h3 class="widget__view-title">Direct solliciteren</h3>
+        <p class="widget__view-intro">Vul je gegevens in. De organisatie neemt snel contact met je op.</p>
+        <!-- WP: replace with a Contact Form 7 / Gravity Forms shortcode -->
+        <form class="form widget__form" action="/solliciteren/bevestiging/" method="get" novalidate>
+          <div class="form__row form__row--2col">
+            <div class="form__group">
+              <label class="form__label" for="w-voornaam">Voornaam <span class="required">*</span></label>
+              <input class="form__input" type="text" id="w-voornaam" name="voornaam" required maxlength="50" autocomplete="given-name">
+              <span class="form__error"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="w-achternaam">Achternaam <span class="required">*</span></label>
+              <input class="form__input" type="text" id="w-achternaam" name="achternaam" required maxlength="50" autocomplete="family-name">
+              <span class="form__error"></span>
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="w-email-2">E-mailadres <span class="required">*</span></label>
+            <input class="form__input" type="email" id="w-email-2" name="email" required autocomplete="email">
+            <span class="form__error"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="w-telefoon">Telefoonnummer <span class="required">*</span></label>
+            <input class="form__input" type="tel" id="w-telefoon" name="telefoon" required autocomplete="tel" placeholder="06 12345678">
+            <span class="form__error"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="w-org">Welke organisatie heeft je voorkeur? <span class="form__optional">(optioneel)</span></label>
+            <select class="form__input" id="w-org" name="organisatie">
+              <option value="">Weet ik nog niet</option>
+              <option value="amstelring">Amstelring</option>
+              <option value="brentano">Brentano</option>
+              <option value="cordaan">Cordaan</option>
+              <option value="pcsoh">PCSOH</option>
+              <option value="sigra">Sigra</option>
+              <option value="zonnehuisgroep-amstelland">Zonnehuisgroep Amstelland</option>
+              <option value="zorgcentra-meerlanden">Zorgcentra Meerlanden</option>
+              <option value="zorggroep-aelsmeer">Zorggroep Aelsmeer</option>
+            </select>
+          </div>
+          <div class="form__group form__group--checkbox">
+            <label class="form__checkbox-item">
+              <input type="checkbox" name="avg" required>
+              <span>Ik ga akkoord met het <a href="/privacy/" target="_blank" rel="noopener">privacybeleid</a>. <span class="required">*</span></span>
+            </label>
+            <span class="form__error"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Verstuur aanmelding</button>
+        </form>
+        <div class="widget__success" hidden>
+          <div class="widget__success-check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="widget__success-title">Je aanmelding is verstuurd</p>
+          <p class="widget__success-text">Bedankt! De organisatie neemt zo snel mogelijk contact met je op.</p>
+          <button class="btn btn--outline btn--block" type="button" data-widget-back>Terug naar start</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Launcher -->
+  <button class="widget__launcher" id="widget-launcher" type="button" aria-expanded="false" aria-controls="widget-panel">
+    <svg class="widget__launcher-icon widget__launcher-icon--chat" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M21 11.5a8 8 0 01-11.9 7L4 20l1.5-5A8 8 0 1121 11.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    </svg>
+    <svg class="widget__launcher-icon widget__launcher-icon--close" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    <span class="widget__launcher-text">Hulp nodig?</span>
+  </button>
+
+</div>
+<!-- ===================== END FLOATING HELP WIDGET ===================== -->
