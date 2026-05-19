@@ -3,37 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Brentano | Opleiding in de Zorg</title>
-  <meta name="description" content="Brentano biedt BBL-opleidingen op niveau 2, 3 en 4 in Amstelveen. Verpleeghuiszorg en revalidatie met aandacht.">
+  <title>Sitemap | Opleiding in de Zorg</title>
+  <meta name="description" content="Sitemap van opleidingindezorg.nl: alle pagina-s van het BBL-zorgopleidingsplatform voor Amstelland en Meerlanden op een rij.">
 
   <!-- WP_OPTION: site_title | becomes 'Opleiding in de Zorg' -->
-  <!-- WP TEMPLATE: single-organisaties.php -->
-
-  <!--
-    WORDPRESS CUSTOM POST TYPE: organisaties
-    ------------------------------------------
-    Register in functions.php:
-    register_post_type('organisaties', [...])
-
-    ACF fields per organisation:
-    - org_naam (text)
-    - org_logo (image)
-    - org_tagline (text)
-    - org_video_url (url) — organisation-specific video
-    - org_beschrijving (wysiwyg, max 100 words)
-    - org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
-    - org_werkplek (checkbox: verpleeghuis, thuiszorg, revalidatie)
-    - org_type (select: klein, middelgroot, groot)
-    - org_adres (text)
-    - org_telefoon (text)
-    - org_locaties (repeater: naam, adres, lat, lng)
-    - org_arbeidsvoorwaarden (repeater: icoon, tekst)
-
-    Taxonomies:
-    - org_type (klein, middelgroot, groot)
-    - bbl_niveau (niveau-2, niveau-3, niveau-4)
-    - werkplek (verpleeghuis, thuiszorg, revalidatie)
-  -->
+  <!-- WP TEMPLATE: page.php -->
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
@@ -51,12 +25,13 @@
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/widget.css">
   <link rel="stylesheet" href="/css/cookie.css">
-  <link rel="stylesheet" href="/css/pages/org-detail.css">
+  <link rel="stylesheet" href="/css/pages/home.css">
 </head>
-<body data-page="org-detail">
+<body data-page="sitemap">
 
 <!-- ============================================================
-     CANONICAL HEADER
+     CANONICAL HEADER — copy this block verbatim into every page,
+     directly after the opening <body> tag.
      WORDPRESS TEMPLATE: header.php + nav.php
      ============================================================ -->
 
@@ -277,178 +252,94 @@
 
 <main id="main">
 
-  <!-- ============================================================
-       SECTION 1: Org hero — 2-column
-       ACF GROUP: org_hero
-       ACF: org_naam (text), org_tagline (text), org_video_url (url)
-       ============================================================ -->
-  <section class="hero hero--org">
-    <span class="hero__blob parallax" data-parallax-speed="0.18" aria-hidden="true"></span>
+  <!-- WP TEMPLATE: page.php -->
+  <section class="hero hero--compact">
     <div class="container">
-      <div class="hero__content">
-        <nav class="breadcrumb" aria-label="Kruimelpad">
+      <nav class="breadcrumb" aria-label="Kruimelpad">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Sitemap</span>
+      </nav>
+      <span class="hero__eyebrow reveal">Overzicht</span>
+      <h1 class="hero__title text-h1 reveal">Sitemap</h1>
+      <p class="hero__subtitle text-lead reveal">Alle pagina's van opleidingindezorg.nl overzichtelijk op een rij.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sitemap-grid reveal--stagger">
+
+        <div class="sitemap-group">
+          <p class="sitemap-group__head">Algemeen</p>
           <a href="/">Home</a>
-          <span aria-hidden="true">/</span>
-          <a href="/zorgorganisaties/">Zorgorganisaties</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Brentano</span>
-        </nav>
-        <!-- ACF: org_logo (image) — otherwise placeholder -->
-        <div class="org-detail__logo logo-placeholder reveal">Brentano</div>
-        <!-- ACF: org_naam (text) -->
-        <h1 class="text-h1 reveal">Brentano</h1>
-        <!-- ACF: org_tagline (text) -->
-        <p class="text-lead reveal">Vertrouwde ouderenzorg in Amstelveen sinds 1821.</p>
-        <div class="hero__actions reveal">
-          <a href="/solliciteren/?org=brentano" class="btn btn--primary btn--lg">
-            Direct Solliciteren
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="/keuzehulp/" class="btn btn--outline btn--lg">Keuzehulp starten</a>
+          <a href="/keuzehulp/">Keuzehulp</a>
+          <a href="/solliciteren/">Direct Solliciteren</a>
+          <a href="/solliciteren/bevestiging/">Solliciteren: bevestiging</a>
+          <a href="/sitemap/">Sitemap</a>
         </div>
-      </div>
 
-      <div class="hero__media reveal reveal--right">
-        <!-- ACF: org_video_url (url) — organisation-specific video -->
-        <div class="video-placeholder">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <span>Organisatievideo</span>
-          <small>Brentano</small>
+        <div class="sitemap-group">
+          <p class="sitemap-group__head">Werken &amp; Leren</p>
+          <a href="/werken-en-leren/">Werken &amp; Leren</a>
+          <a href="/werken-en-leren/niveau-2/">BBL Niveau 2</a>
+          <a href="/werken-en-leren/niveau-3/">BBL Niveau 3</a>
+          <a href="/werken-en-leren/niveau-4/">BBL Niveau 4</a>
+          <a href="/werken-en-leren/bbl-vs-bol/">Verschil BBL en BOL</a>
+          <a href="/werken-en-leren/toelatingseisen/">Toelatingseisen</a>
+          <a href="/werken-en-leren/salaris/">Salaris en vergoedingen</a>
+          <a href="/werken-en-leren/faq/">Veelgestelde vragen</a>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============================================================
-       SECTION 2: Who we are (max 100 words)
-       ACF: org_beschrijving (wysiwyg, max 100 words)
-       ============================================================ -->
-  <section class="section section--warm">
-    <div class="container container--narrow">
-      <div class="section__header reveal">
-        <span class="text-label text-label--teal">Wie zijn wij?</span>
-        <h2 class="text-h2">Vertrouwd en thuis in Amstelveen</h2>
-      </div>
-      <!-- ACF: org_beschrijving (wysiwyg, max 100 words) -->
-      <!-- TODO: tekst gebaseerd op https://brentano.nl/over-ons/onze-organisatie/, laten bevestigen door de organisatie -->
-      <p class="text-lead reveal">
-        Brentano is een zelfstandige ouderenzorgorganisatie met diepe wortels in Amstelveen, opgericht in 1821. Met ongeveer 560 medewerkers en ruim 250 vrijwilligers verzorgen we dagelijks zo'n 700 cliënten, zowel thuis als in onze woonzorglocaties zoals 't Huis aan de Poel, BijVredeveld en BijKlaasje. Ons aanbod omvat wijkverpleging en thuisondersteuning, verpleeg- en verzorgingszorg, palliatieve zorg, dagverzorging en welzijnsactiviteiten. We werken vanuit Positieve Gezondheid en de Sociale Benadering Dementie, met aandacht voor waardig ouder worden. Voor ons betekent goede zorg vooral zorgen mét mensen, en niet zorgen vóór hen, dichtbij en vertrouwd in de regio Amstelland.
-      </p>
-    </div>
-  </section>
+        <div class="sitemap-group">
+          <p class="sitemap-group__head">Zorgorganisaties</p>
+          <a href="/zorgorganisaties/">Alle zorgorganisaties</a>
+          <a href="/zorgorganisaties/amstelring/">Amstelring</a>
+          <a href="/zorgorganisaties/brentano/">Brentano</a>
+          <a href="/zorgorganisaties/cordaan/">Cordaan</a>
+          <a href="/zorgorganisaties/pcsoh/">PCSOH</a>
+          <a href="/zorgorganisaties/sigra/">Sigra</a>
+          <a href="/zorgorganisaties/zonnehuisgroep-amstelland/">Zonnehuisgroep Amstelland</a>
+          <a href="/zorgorganisaties/zorgcentra-meerlanden/">Zorgcentra Meerlanden</a>
+          <a href="/zorgorganisaties/zorggroep-aelsmeer/">Zorggroep Aelsmeer</a>
+        </div>
 
-  <!-- ============================================================
-       SECTION 3: BBL levels we offer
-       ACF: org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
-       ============================================================ -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="text-label text-label--teal">Opleidingsaanbod</span>
-        <h2 class="text-h2">BBL-niveaus die we aanbieden</h2>
-        <p class="section__subtitle text-lead">Bij Brentano kun je een BBL-opleiding volgen op niveau 2, 3 en 4.</p>
-      </div>
-      <!-- WP_LOOP: start — repeat per checked org_niveau -->
-      <div class="org-niveaus reveal--stagger">
-        <div class="org-niveau-item">
-          <span class="org-niveau-item__badge">2</span>
-          <div>
-            <p class="org-niveau-item__title">Niveau 2 - Helpende</p>
-            <p class="org-niveau-item__text">Een sterke start in de zorg. Je ondersteunt bij de dagelijkse zorg en het welzijn van cliënten.</p>
-          </div>
+        <div class="sitemap-group">
+          <p class="sitemap-group__head">Scholen</p>
+          <a href="/scholen/">Scholen</a>
+          <a href="/scholen/hoe-werkt-het/">Hoe werkt het proces?</a>
+          <a href="/scholen/open-dagen/">Open dagen</a>
         </div>
-        <div class="org-niveau-item">
-          <span class="org-niveau-item__badge">3</span>
-          <div>
-            <p class="org-niveau-item__title">Niveau 3 - Verzorgende IG</p>
-            <p class="org-niveau-item__text">Meer verantwoordelijkheid. Je verzorgt cliënten zelfstandig, signaleert en rapporteert.</p>
-          </div>
-        </div>
-        <div class="org-niveau-item">
-          <span class="org-niveau-item__badge">4</span>
-          <div>
-            <p class="org-niveau-item__title">Niveau 4 - Verpleegkundige</p>
-            <p class="org-niveau-item__text">Het hoogste BBL-niveau. Je coördineert zorg en voert voorbehouden handelingen uit.</p>
-          </div>
-        </div>
-      </div>
-      <!-- WP_LOOP: end -->
-    </div>
-  </section>
 
-  <!-- ============================================================
-       SECTION 4: Work locations
-       ACF: org_locaties (repeater: naam, adres, lat, lng)
-       ============================================================ -->
-  <section class="section section--warm">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="text-label text-label--teal">Werklocaties</span>
-        <h2 class="text-h2">Waar je aan de slag gaat</h2>
-        <p class="section__subtitle text-lead">Onze locaties liggen verspreid over Amstelveen, goed bereikbaar binnen de regio.</p>
-      </div>
-      <!-- TODO: provide the final location details and interactive map -->
-      <div class="locaties-map-placeholder reveal">Kaart met werklocaties Brentano</div>
-    </div>
-  </section>
+        <div class="sitemap-group">
+          <p class="sitemap-group__head">Over ons</p>
+          <a href="/over-ons/">Over ons</a>
+          <a href="/over-ons/samenwerking/">Waarom samenwerken?</a>
+          <a href="/over-ons/deelnemers/">Deelnemende organisaties</a>
+          <a href="/over-ons/contact/">Contact</a>
+          <a href="/over-ons/contact/bedankt/">Contact: bedankt</a>
+        </div>
 
-  <!-- ============================================================
-       SECTION 5: Employment benefits
-       ACF: org_arbeidsvoorwaarden (repeater: icoon, tekst)
-       ============================================================ -->
-  <section class="section">
-    <div class="container container--narrow">
-      <div class="section__header reveal">
-        <span class="text-label text-label--teal">Arbeidsvoorwaarden</span>
-        <h2 class="text-h2">Wat we je bieden</h2>
-      </div>
-      <!-- WP_LOOP: start — repeat per employment benefit -->
-      <!-- TODO: provide the final employment benefits -->
-      <div class="voorwaarden-grid reveal--stagger">
-        <div class="voorwaarde">
-          <span class="voorwaarde__icon">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 7a5 5 0 100 10M5 10h7M5 14h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </span>
-          <p class="voorwaarde__text">Een leer-arbeidscontract met salaris volgens de cao VVT vanaf je eerste werkdag.</p>
+        <div class="sitemap-group">
+          <p class="sitemap-group__head">Juridisch</p>
+          <a href="/privacy/">Privacybeleid</a>
+          <a href="/cookies/">Cookiebeleid</a>
+          <a href="/disclaimer/">Disclaimer</a>
+          <a href="/toegankelijkheid/">Toegankelijkheid</a>
         </div>
-        <div class="voorwaarde">
-          <span class="voorwaarde__icon">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 2.5C21 12 19 16 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-          </span>
-          <p class="voorwaarde__text">Een vaste werkbegeleider en een duidelijk leerplan vanaf de start.</p>
-        </div>
-        <div class="voorwaarde">
-          <span class="voorwaarde__icon">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4zM7 10v6c0 1 2 3 5 3s5-2 5-3v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <p class="voorwaarde__text">Je opleidingskosten en lesmateriaal worden volledig vergoed.</p>
-        </div>
-        <div class="voorwaarde">
-          <span class="voorwaarde__icon">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 21V5l8-3v19M12 21h8V9l-8-2M8 8v.01M8 12v.01M8 16v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <p class="voorwaarde__text">Werkervaring in zowel verpleeghuiszorg als revalidatie, met goede doorgroeikansen.</p>
-        </div>
-      </div>
-      <!-- WP_LOOP: end -->
-    </div>
-  </section>
 
-  <!-- ============================================================
-       SECTION 7: Back link
-       ============================================================ -->
-  <section class="section section--back">
-    <div class="container">
-      <a href="/zorgorganisaties/" class="btn btn--ghost">&larr; Alle zorgorganisaties bekijken</a>
+      </div>
     </div>
   </section>
 
 </main>
 
 <!-- ============================================================
-     CANONICAL FOOTER
+     CANONICAL FOOTER — copy this block verbatim into every page,
+     directly before the scripts at the bottom of <body>.
      WORDPRESS TEMPLATE: footer.php
      ============================================================ -->
+
 <!-- WP TEMPLATE PART: footer.php -->
 <footer class="site-footer" id="site-footer">
 
@@ -780,8 +671,7 @@
 
 </div>
 
-<!-- Scripts: every page loads the same set. Each script does
-     nothing if its target elements are absent (safe guards). -->
+<!-- Scripts: every page loads the same set. Each script does nothing if its target elements are absent (safe guards). -->
 <script src="/js/nav.js"></script>
 <script src="/js/animations.js"></script>
 <script src="/js/footer.js"></script>
