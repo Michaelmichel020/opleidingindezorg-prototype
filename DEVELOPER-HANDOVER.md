@@ -55,6 +55,9 @@ python3 -m http.server 8000
 ```
 03-prototype/
 ├── index.html                     Home (front-page.php)
+├── 404.html                        not-found page (404.php)
+├── robots.txt                      crawl rules (WordPress/Yoast handles this)
+├── sitemap.xml                     URL list (WordPress/Yoast generates this)
 ├── werken-en-leren/                Werken & Leren section
 │   ├── index.html                 page.php (template: werken-leren)
 │   ├── niveau-2|3|4/index.html     page.php (template: bbl-niveau)
@@ -82,7 +85,7 @@ python3 -m http.server 8000
 │   ├── animations.js               IntersectionObserver reveals, parallax, counter
 │   ├── footer.js                   footer expand/collapse
 │   ├── faq.js                      accordion
-│   ├── filter.js                   org + open-dagen view-toggle, result count
+│   ├── filter.js                   org filters + view-toggle, result count
 │   └── forms.js                    validation, character counter, URL pre-fill
 ├── assets/logo/                    logo SVGs (teal, white, icon)
 ├── _partials/                      build sources, NOT part of the WP theme
@@ -126,6 +129,7 @@ Search the code for these prefixes:
 | Template file | Used by |
 |---|---|
 | `front-page.php` | Home |
+| `404.php` | not-found page (`404.html` in the prototype) |
 | `page.php` | generic subpages (scholen, over-ons, legal pages) |
 | `header.php`, `nav.php`, `footer.php` | template parts, identical site-wide |
 | `archive.php` | zorgorganisaties overview (post type `organisaties`) |
@@ -316,6 +320,20 @@ them.
   and buttons and cards have hover and press transitions. All motion is
   disabled under `prefers-reduced-motion`.
 
+### SEO & social
+
+Each page `<head>` carries, besides the title and meta description:
+Open Graph + Twitter Card tags, a `rel="canonical"`, and JSON-LD schema
+(`EducationalOrganization` site-wide, `BreadcrumbList` per page,
+`FAQPage` on the two FAQ pages). `robots.txt` and `sitemap.xml` sit in
+the root. The 404 page is `noindex` and has none of this.
+
+In WordPress this is **Yoast SEO's** job: it generates the social tags,
+canonicals, breadcrumb schema and the XML sitemap. The static tags show
+the intended values. Two things still need a real value: the
+`og:image` asset (`/assets/og-image.jpg`, 1200x630) and the
+`EducationalOrganization` `sameAs` profiles.
+
 ---
 
 ## 6. JavaScript
@@ -330,7 +348,7 @@ before `</body>`:
 | `animations.js` | IntersectionObserver scroll reveals, stagger, number counter, parallax |
 | `footer.js` | footer expand/collapse |
 | `faq.js` | accordion (one panel open at a time, animated max-height) |
-| `filter.js` | grid/list view toggle for the organisation overview (`#org-grid`) and the open-dagen agenda (`#agenda-grid`); the organisation result count; the org filter dropdowns are a visual placeholder |
+| `filter.js` | grid/list view toggle (org overview `#org-grid` + open-dagen `#agenda-grid`); client-side organisation filters (type / niveau / werkplek) on the overview and the "Andere zorgorganisaties" block, with live result count and empty state |
 | `forms.js` | form validation, textarea character counter, `?org=` pre-fill, hidden source field |
 
 In WordPress, enqueue these with `wp_enqueue_script` in the footer. No
@@ -412,7 +430,8 @@ the client, not theme bugs.
 | Sigra | Sigra is included as an organisation, but it is a regional collaboration network, not a care employer: you cannot apply or follow a BBL programme there. Its detail page keeps the standard layout, but the BBL-levels, employment-benefits and apply sections do not apply and are flagged with inline TODOs. Decide before launch how to present Sigra. |
 | Cordaan | May need to be hidden at launch, see "Hiding Cordaan at launch" below. |
 | Level 4 organisations | The set of organisations offering BBL level 4 needs confirmation. |
-| Filter bar | Visual only in the prototype. Connect to `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
+| Filter bar | Works client-side in the prototype (`js/filter.js`, driven by `data-org-*` attributes on the cards). In WordPress replace it with a `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
+| Social image | `og:image` points to `/assets/og-image.jpg`; supply a real 1200x630 share image. |
 | Open days | Open days are a custom post type (`open_dagen`); the admin adds them via the "Open dagen" admin screen. Example dates/locations used, final agenda to be supplied. The "Meer informatie" button stays inert until each event's `meer_info_url` field is filled (it opens in a new tab). |
 | Organisation count | The organisation total is shown as a count in two places: the overview result count (`#org-count`) and the over-ons "In cijfers" stat. Neither is hardcoded copy; each must be wired to the live `organisaties` post count (`$query->found_posts` / `wp_count_posts('organisaties')->publish`) so it updates by itself when an organisation is added or removed. |
 | Contact details | The contact details on the contact page are placeholder. |
