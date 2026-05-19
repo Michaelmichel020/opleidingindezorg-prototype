@@ -26,6 +26,51 @@
   <link rel="stylesheet" href="/css/widget.css">
   <link rel="stylesheet" href="/css/cookie.css">
   <link rel="stylesheet" href="/css/pages/werken-leren.css">
+  <!-- ============================================================
+       SEO: FAQPage structured data (schema.org JSON-LD)
+       WP: generate this from the faq ACF repeater(s), or use the
+       Yoast FAQ block. Keep it in sync with the visible FAQ.
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat betekent BBL precies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BBL staat voor Beroepsbegeleidende Leerweg. Je werkt vier dagen per week bij een zorgorganisatie en gaat een dag per week naar school. Zo leer je in de praktijk en in de klas tegelijk, en haal je een erkend MBO-diploma."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Verdien ik salaris tijdens de opleiding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Bij BBL teken je een leer-arbeidsovereenkomst en verdien je vanaf de eerste dag salaris. Je hebt dus inkomen terwijl je je diploma haalt en je bouwt geen studieschuld op."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ik starten zonder diploma?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Voor niveau 2 zijn er geen formele diploma-eisen. Ook zonder vooropleiding ben je welkom voor een kennismakingsgesprek. Samen kijken we welke route bij jou past, eventueel met een instroomtraject."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe lang duurt een BBL-opleiding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dat verschilt per niveau. Niveau 2 duurt gemiddeld 1 tot 2 jaar, niveau 3 ongeveer 3 jaar en niveau 4 ongeveer 3 tot 4 jaar. De exacte duur hangt af van je vooropleiding en ervaring."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body data-page="werken-en-leren">
 
@@ -219,8 +264,8 @@
       </div>
       <div class="mega__col mega__col--featured">
         <p class="mega__featured-label">Eén regio, één platform</p>
-        <p class="mega__featured-title">Acht organisaties.<br>Eén platform.</p>
-        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van acht zorgorganisaties in Amstelland &amp; Meerlanden.</p>
+        <p class="mega__featured-title">Alle organisaties.<br>Eén platform.</p>
+        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van de zorgorganisaties in Amstelland &amp; Meerlanden.</p>
         <div class="mega__featured-actions">
           <a href="/over-ons/" class="btn btn--primary btn--sm">Lees over de samenwerking</a>
         </div>

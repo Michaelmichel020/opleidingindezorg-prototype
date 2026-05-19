@@ -27,7 +27,7 @@ scroll-animaties.
 
 - **Home** (`index.html`)
 - **Werken & Leren** — overzicht + 3 BBL-niveaus + 4 informatiepagina's
-- **Zorgorganisaties** — overzicht met filterbar + 8 organisatie-detailpagina's
+- **Zorgorganisaties** — overzicht met filterbar + organisatie-detailpagina's
 - **Scholen** — overzicht + proces + open dagen
 - **Over ons** — overzicht + samenwerking + deelnemers + contact
 - **Keuzehulp** — wizard via iframe-embed
@@ -64,10 +64,10 @@ Elke pagina bevat commentaarblokken die de WordPress-structuur aangeven:
 - `<!-- WP TEMPLATE PART: header.php / footer.php / nav.php -->`
 - `<!-- ACF: veldnaam (type) -->` — bewerkbare velden via Advanced Custom Fields
 - `<!-- WP_LOOP: start / end -->` — herhalende content
-- `<!-- CPT: organisaties -->` — het custom post type voor de 8 organisaties
+- `<!-- CPT: organisaties -->` — het custom post type voor de organisaties
 
 De header en footer zijn op alle pagina's identiek, klaar om `header.php` en
-`footer.php` van te maken. De 8 organisatiepagina's volgen één template
+`footer.php` van te maken. De organisatiepagina's volgen één template
 (`single-organisaties.php`), het overzicht wordt `archive.php`.
 
 ## Openstaande punten (TODO's in de code)

@@ -115,6 +115,6 @@ can be synced to them, or the taxonomies can be the single source of truth.
   organisation checkbox (`js/forms.js`). When wiring up the real form, keep
   the organisation slugs identical to the `organisaties` post slugs.
 - The home page and overview organisation listings are query loops over the
-  `organisaties` post type. The HTML shows 8 hardcoded examples between
+  `organisaties` post type. The HTML shows several hardcoded examples between
   `<!-- WP_LOOP: start -->` and `<!-- WP_LOOP: end -->`; replace with
   `while ( have_posts() ) : the_post();`.

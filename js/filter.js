@@ -26,17 +26,28 @@
     });
   }
 
-  /* ---------- Filter dropdowns (placeholder) ---------- */
-  /* In the prototype the dropdowns only show the number of results.
-     The PHP developer will later connect this to a WP_Query with tax_query. */
-  var selects = Array.prototype.slice.call(document.querySelectorAll('.filterbar__select'));
+  /* ---------- Result count + filter dropdowns (placeholder) ---------- */
+  /* The result count is derived from the organisations actually rendered, so
+     it never hardcodes a total: adding an organisation updates it on its own.
+     In WordPress this value is $query->found_posts. The dropdowns are visual
+     only; the PHP developer connects them to a WP_Query with a tax_query. */
   var countEl = document.getElementById('org-count');
+
+  function orgCount() {
+    return grid ? grid.querySelectorAll('.org-card').length : 0;
+  }
+  function renderCount(suffix) {
+    if (countEl) {
+      countEl.textContent = orgCount() + ' organisaties' + (suffix || '');
+    }
+  }
+  renderCount();
+
+  var selects = Array.prototype.slice.call(document.querySelectorAll('.filterbar__select'));
   selects.forEach(function (sel) {
     sel.addEventListener('change', function () {
-      if (countEl) {
-        countEl.textContent = '8 organisaties, filter wordt actief in de WordPress-versie';
-      }
-      /* <!-- TODO: connect filter to WP_Query (tax_query org_type / bbl_niveau / werkplek) --> */
+      renderCount(', filter wordt actief in de WordPress-versie');
+      /* TODO: connect filter to WP_Query (tax_query org_type / bbl_niveau / werkplek) */
     });
   });
 })();

@@ -13,12 +13,12 @@ developer-facing comments in the code are in English.
 
 **opleidingindezorg.nl** is a regional BBL care-education platform for the
 Amstelland & Meerlanden region (greater Amsterdam / Hoofddorp / Aalsmeer).
-Eight care organisations jointly offer BBL programmes (work and study at the
+Care organisations across the region jointly offer BBL programmes (work and study at the
 same time). Candidates are matched to the right organisation through the site.
 
 - **Primary audience:** young people (16-25) and career changers who want to
   work in care.
-- **Secondary audience:** HR staff at the eight organisations, MBO
+- **Secondary audience:** HR staff at the participating organisations, MBO
   institutions, and other stakeholders.
 - **Conversion goals:** the Keuzehulp (a guidance wizard) and the Direct
   Solliciteren (direct application) form.
@@ -61,7 +61,7 @@ python3 -m http.server 8000
 │   └── bbl-vs-bol|toelatingseisen|salaris|faq/index.html   page.php
 ├── zorgorganisaties/
 │   ├── index.html                 archive.php (post type: organisaties)
-│   └── <8 org slugs>/index.html    single-organisaties.php
+│   └── <org-slug>/index.html       single-organisaties.php
 ├── scholen/                        page.php
 ├── over-ons/                       page.php (contact = template: contact)
 ├── keuzehulp/index.html            page.php (template: keuzehulp-full)
@@ -126,22 +126,60 @@ Search the code for these prefixes:
 | `page.php` | generic subpages (scholen, over-ons, legal pages) |
 | `header.php`, `nav.php`, `footer.php` | template parts, identical site-wide |
 | `archive.php` | zorgorganisaties overview (post type `organisaties`) |
-| `single-organisaties.php` | the 8 organisation detail pages |
+| `single-organisaties.php` | the organisation detail pages |
 | Page Templates: `werken-leren`, `bbl-niveau`, `keuzehulp-full`, `solliciteren`, `contact` | registered via the Template Name header in dedicated `page-*.php` files |
 
-The 8 organisation detail pages all share **one** template
+The organisation detail pages all share **one** template
 (`single-organisaties.php`); their differences come entirely from ACF field
 values, not from markup.
 
-### 3.2 Custom post type
+### 3.2 Custom post type — managing the organisations
 
-Register one custom post type in `functions.php`:
+The care organisations are the part of the site the client edits most
+often: an organisation joins, leaves, changes its description, swaps a photo
+for a video. **This must be a first-class, self-contained task in wp-admin —
+not page editing.**
+
+Register one custom post type, `organisaties`, in `functions.php`:
 
 ```php
-register_post_type( 'organisaties', [ /* public, has_archive, etc. */ ] );
+register_post_type( 'organisaties', [
+    'public'        => true,
+    'has_archive'   => true,        // -> archive.php (the overview page)
+    'show_in_menu'  => true,        // its own top-level item in the admin sidebar
+    'menu_icon'     => 'dashicons-groups',
+    'menu_position' => 5,
+    'labels'        => [ /* "Organisaties", "Nieuwe organisatie", etc. */ ],
+    'supports'      => [ 'title' ], // title only; everything else is ACF
+    'rewrite'       => [ 'slug' => 'zorgorganisaties' ],
+] );
 ```
 
-With three taxonomies used by the overview filter:
+This gives the admin a dedicated **"Organisaties"** item in the wp-admin
+sidebar. The whole lifecycle happens there:
+
+- **Add** an organisation — "Nieuwe organisatie", fill in the ACF fields, Publish.
+- **Edit** — open the organisation, change fields, Update.
+- **Remove / hide** — set the post to Draft or Trash (see section 10 for the
+  Cordaan launch case).
+
+The admin never touches the WordPress **page editor** or the Gutenberg block
+canvas for an organisation. To make that explicit and prevent mistakes:
+
+- Set `'supports' => [ 'title' ]` so the content/block editor is not even shown
+  on the organisation edit screen — only the title field and the ACF fields.
+- Keep **all** organisation content in ACF fields (section 3.3 / `ACF-FIELDS.md`),
+  so the edit screen reads as a simple, labelled form.
+- The detail-page layout lives entirely in `single-organisaties.php`. All
+  organisations share that one template; their differences come only from ACF
+  values. The admin changes data, never markup.
+
+Each organisation is one `organisaties` post. The overview
+(`archive.php`) loops them; each detail page is the `single` view; the home
+page and the "Andere zorgorganisaties" block on every detail page loop the
+same post type.
+
+#### Taxonomies (overview + detail-page filter)
 
 | Taxonomy | Terms |
 |---|---|
@@ -149,8 +187,10 @@ With three taxonomies used by the overview filter:
 | `bbl_niveau` | niveau-2, niveau-3, niveau-4 |
 | `werkplek` | verpleeghuis, thuiszorg, revalidatie |
 
-Each of the 8 organisations is one `organisaties` post. The overview
-(`archive.php`) loops them; each detail page is the `single` view.
+These power two filters: the organisations overview page (`archive.php`) and
+the **"Andere zorgorganisaties"** block at the bottom of every detail page.
+Register them with `show_admin_column => true` so the admin can also filter the
+organisations list inside wp-admin.
 
 ### 3.3 ACF field groups
 
@@ -315,8 +355,8 @@ the client, not theme bugs.
 | Area | What is needed |
 |---|---|
 | Salary figures | Indicative amounts used for BBL levels 2/3/4. Confirm against the current VVT collective labour agreement (cao VVT). Pages: werken-en-leren index, niveau-2/3/4, salaris. |
-| Organisation copy | The "Wie zijn wij?" intro texts on the 8 detail pages were written from each organisation's official website and should still be confirmed by the organisations. Employment benefits and locations are still placeholder. |
-| Sigra | Sigra is the 8th organisation, but it is a regional collaboration network, not a care employer: you cannot apply or follow a BBL programme there. Its detail page keeps the standard layout, but the BBL-levels, employment-benefits and apply sections do not apply and are flagged with inline TODOs. Decide before launch how to present Sigra. |
+| Organisation copy | The "Wie zijn wij?" intro texts on the organisation detail pages were written from each organisation's official website and should still be confirmed by the organisations. Employment benefits and locations are still placeholder. |
+| Sigra | Sigra is included as an organisation, but it is a regional collaboration network, not a care employer: you cannot apply or follow a BBL programme there. Its detail page keeps the standard layout, but the BBL-levels, employment-benefits and apply sections do not apply and are flagged with inline TODOs. Decide before launch how to present Sigra. |
 | Cordaan | May need to be hidden at launch, see "Hiding Cordaan at launch" below. |
 | Level 4 organisations | The set of organisations offering BBL level 4 needs confirmation. |
 | Filter bar | Visual only in the prototype. Connect to `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
@@ -324,7 +364,8 @@ the client, not theme bugs.
 | Contact details | The contact details on the contact page are placeholder. |
 | Legal pages | privacy, cookies, disclaimer, toegankelijkheid contain plausible but not legally reviewed text. |
 | Keuzehulp URL | Make the wizard iframe URL manageable in WordPress (ACF option or constant). |
-| Org locations / map | Detail pages use a static map placeholder. Provide location data and, if wanted, an interactive map. |
+| Org work locations | Detail pages show work locations as a plain list (name + address), rendered only when an organisation has more than one location. No map. Provide the real location data per organisation. |
+| Org hero media | Each detail page hero shows either a photo or a video, the admin's choice per organisation. Prototype uses a placeholder. Supply the real photo or video per organisation. |
 | Forms | There are two forms: Direct Solliciteren and Contact. Build them in WordPress with Gravity Forms. Each form redirects to a dedicated thank-you page so submissions can be tracked as conversions: solliciteren goes to /solliciteren/bevestiging/, contact goes to /over-ons/contact/bedankt/. |
 
 ---

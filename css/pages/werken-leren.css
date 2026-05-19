@@ -10,10 +10,13 @@
 }
 .niveau-intro__body p { color: var(--mid); margin-bottom: 14px; }
 
-/* Hero use of .niveau-intro: video centred next to the text,
-   roomier spacing under the subtitle. */
+/* Hero use of .niveau-intro: video centred next to the text, with
+   breathing room between the eyebrow, title, intro and buttons so the
+   hero does not feel cramped. */
 .hero .niveau-intro { align-items: center; }
-.hero .niveau-intro__body p { margin-bottom: 30px; }
+.hero .niveau-intro__body .niveau-tile__label { display: inline-block; margin-bottom: 6px; }
+.hero .niveau-intro__body h1 { margin-top: 18px; margin-bottom: 22px; }
+.hero .niveau-intro__body p { margin-bottom: 34px; }
 
 /* Career progression path */
 .groei-path {
@@ -51,4 +54,23 @@
 
 @media (min-width: 768px) {
   .niveau-intro { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+}
+
+/* ============================================================
+   FAQ page — three themed question columns side by side
+   WP: each column maps to one faq ACF repeater
+   (faq_algemeen / faq_salaris / faq_aanmelden)
+   ============================================================ */
+.faq-columns {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+.faq-col__header { margin-bottom: var(--space-md); }
+.faq-col__header .text-h3 { margin-top: 6px; }
+/* Inside a column the accordion is full-width and left-aligned */
+.faq-col .faq { max-width: none; margin-inline: 0; }
+
+@media (min-width: 900px) {
+  .faq-columns { grid-template-columns: repeat(3, 1fr); align-items: start; }
 }

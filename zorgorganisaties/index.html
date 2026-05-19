@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alle zorgorganisaties | Opleiding in de Zorg</title>
-  <meta name="description" content="Vergelijk de 8 zorgorganisaties die BBL-opleidingen aanbieden in Amstelland & Meerlanden. Filter op type, niveau en werkplek en vind jouw match.">
+  <meta name="description" content="Vergelijk de zorgorganisaties die BBL-opleidingen aanbieden in Amstelland & Meerlanden. Filter op type, niveau en werkplek en vind jouw match.">
 
   <!-- WP_OPTION: site_title | becomes 'Opleiding in de Zorg' -->
   <!-- WP TEMPLATE: archive.php -->
@@ -244,8 +244,8 @@
       </div>
       <div class="mega__col mega__col--featured">
         <p class="mega__featured-label">Eén regio, één platform</p>
-        <p class="mega__featured-title">Acht organisaties.<br>Eén platform.</p>
-        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van acht zorgorganisaties in Amstelland &amp; Meerlanden.</p>
+        <p class="mega__featured-title">Alle organisaties.<br>Eén platform.</p>
+        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van de zorgorganisaties in Amstelland &amp; Meerlanden.</p>
         <div class="mega__featured-actions">
           <a href="/over-ons/" class="btn btn--primary btn--sm">Lees over de samenwerking</a>
         </div>
@@ -292,7 +292,7 @@
       <!-- ACF: archive_title (text) -->
       <h1 class="text-h1 reveal">Alle zorgorganisaties</h1>
       <!-- ACF: archive_intro (textarea) -->
-      <p class="text-lead reveal">Vergelijk de 8 deelnemende organisaties in de regio.</p>
+      <p class="text-lead reveal">Vergelijk de deelnemende organisaties in de regio.</p>
     </div>
   </section>
 
@@ -352,10 +352,10 @@
       </div>
 
       <!-- Result counter -->
-      <p class="org-count" id="org-count">8 organisaties</p>
+      <p class="org-count" id="org-count" aria-live="polite"><!-- WP: echo $org_query->found_posts . ' organisaties' --></p>
 
       <!-- ============================================================
-           SECTION 3: Grid of 8 org cards
+           SECTION 3: Grid of org cards
            CPT: organisaties | post_type loop
            ============================================================ -->
       <!-- WP_LOOP: start — while (have_posts()) : the_post(); -->
