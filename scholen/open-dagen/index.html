@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/widget.css">
+  <link rel="stylesheet" href="/css/cookie.css">
   <link rel="stylesheet" href="/css/pages/home.css">
 </head>
 <body data-page="scholen-open-dagen">
@@ -573,6 +574,55 @@
 </footer>
 <!-- ===================== END CANONICAL FOOTER ===================== -->
 
+<div class="cookie" id="cookie-notice" hidden>
+  <div class="cookie__card">
+
+    <!-- View: intro -->
+    <div class="cookie__view" data-cookie-view="intro">
+      <p class="cookie__text">
+        We gebruiken cookies om de site goed te laten werken en, met jouw
+        toestemming, om te meten hoe de site gebruikt wordt.
+        <a href="/cookies/">Meer over cookies</a>.
+      </p>
+      <div class="cookie__actions">
+        <button class="btn btn--primary btn--sm" type="button" data-cookie="accept-all">Alles accepteren</button>
+        <button class="btn btn--outline btn--sm" type="button" data-cookie="customize">Aanpassen</button>
+      </div>
+    </div>
+
+    <!-- View: settings -->
+    <div class="cookie__view" data-cookie-view="settings" hidden>
+      <p class="cookie__title">Cookievoorkeuren</p>
+      <label class="cookie__option">
+        <span class="cookie__option-text">
+          <strong>Functioneel</strong>
+          <small>Nodig om de site te laten werken. Altijd aan.</small>
+        </span>
+        <input type="checkbox" checked disabled aria-label="Functionele cookies (altijd aan)">
+      </label>
+      <label class="cookie__option">
+        <span class="cookie__option-text">
+          <strong>Analytisch</strong>
+          <small>Anoniem meten hoe de site gebruikt wordt.</small>
+        </span>
+        <input type="checkbox" data-cookie-cat="analytisch" checked>
+      </label>
+      <label class="cookie__option">
+        <span class="cookie__option-text">
+          <strong>Marketing</strong>
+          <small>Voor relevante advertenties en tracking.</small>
+        </span>
+        <input type="checkbox" data-cookie-cat="marketing">
+      </label>
+      <div class="cookie__actions">
+        <button class="btn btn--primary btn--sm" type="button" data-cookie="save">Voorkeuren opslaan</button>
+        <button class="btn btn--ghost btn--sm" type="button" data-cookie="accept-all">Alles accepteren</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div class="widget" id="help-widget" data-view="menu">
 
   <!-- Panel -->
@@ -736,6 +786,14 @@
     </div>
   </div>
 
+  <!-- Intro bubble (subtle, dismissed for good via the cross, remembered in localStorage) -->
+  <div class="widget__bubble" id="widget-bubble" hidden>
+    <button class="widget__bubble-close" type="button" data-bubble-close aria-label="Tip verbergen">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <p class="widget__bubble-text">Heb je een vraag, hulp nodig of wil je direct solliciteren?</p>
+  </div>
+
   <!-- Launcher -->
   <button class="widget__launcher" id="widget-launcher" type="button" aria-expanded="false" aria-controls="widget-panel">
     <svg class="widget__launcher-icon widget__launcher-icon--chat" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -758,5 +816,6 @@
 <script src="/js/filter.js"></script>
 <script src="/js/forms.js"></script>
 <script src="/js/widget.js"></script>
+<script src="/js/cookie.js"></script>
 </body>
 </html>

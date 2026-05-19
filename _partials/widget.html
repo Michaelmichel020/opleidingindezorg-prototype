@@ -167,6 +167,14 @@
     </div>
   </div>
 
+  <!-- Intro bubble (subtle, dismissed for good via the cross, remembered in localStorage) -->
+  <div class="widget__bubble" id="widget-bubble" hidden>
+    <button class="widget__bubble-close" type="button" data-bubble-close aria-label="Tip verbergen">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <p class="widget__bubble-text">Heb je een vraag, hulp nodig of wil je direct solliciteren?</p>
+  </div>
+
   <!-- Launcher -->
   <button class="widget__launcher" id="widget-launcher" type="button" aria-expanded="false" aria-controls="widget-panel">
     <svg class="widget__launcher-icon widget__launcher-icon--chat" viewBox="0 0 24 24" fill="none" aria-hidden="true">

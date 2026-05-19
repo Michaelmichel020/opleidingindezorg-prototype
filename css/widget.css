@@ -38,6 +38,63 @@
 .widget.is-open .widget__launcher-icon--chat { display: none; }
 .widget.is-open .widget__launcher-icon--close { display: block; }
 
+/* ---------- Intro bubble ---------- */
+.widget__bubble {
+  position: absolute;
+  right: 0;
+  bottom: 72px;
+  width: 260px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 14px 36px 14px 16px;
+  cursor: pointer;
+  animation: widget-bubble-in 0.4s var(--ease-smooth) both;
+}
+@keyframes widget-bubble-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.widget__bubble::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: -7px;
+  width: 13px;
+  height: 13px;
+  background: var(--white);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transform: rotate(45deg);
+}
+.widget__bubble-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--charcoal);
+}
+.widget__bubble-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--off-white);
+  color: var(--mid);
+  cursor: pointer;
+}
+.widget__bubble-close:hover { background: var(--rule); color: var(--charcoal); }
+.widget__bubble-close svg { width: 12px; height: 12px; }
+.widget.is-open .widget__bubble { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .widget__bubble { animation: none; }
+}
+
 /* ---------- Panel ---------- */
 .widget__panel {
   position: absolute;
