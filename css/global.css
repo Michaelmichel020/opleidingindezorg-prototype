@@ -113,7 +113,7 @@ h1, h2, h3, h4 { font-weight: 400; }
 .container--narrow { max-width: var(--max-w-content); }
 
 .section {
-  padding-block: 56px;
+  padding-block: 40px;
 }
 /* Soft, barely-there gradients keep the section backgrounds from
    reading as flat blocks. */
@@ -164,6 +164,11 @@ h1, h2, h3, h4 { font-weight: 400; }
 .breadcrumb a:hover { color: var(--teal); }
 .breadcrumb span[aria-current] { color: var(--mid); }
 
+/* Section rhythm grows with the viewport: tight on phones, roomy on
+   desktop, with a calmer middle step for tablets. */
 @media (min-width: 768px) {
+  .section { padding-block: 64px; }
+}
+@media (min-width: 1024px) {
   .section { padding-block: 88px; }
 }

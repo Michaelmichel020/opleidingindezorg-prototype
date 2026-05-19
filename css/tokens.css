@@ -64,3 +64,14 @@
   --z-overlay:      980;
   --z-mobile-nav:   1100;
 }
+
+/* Tighter spacing on phones — keeps pages from becoming long scrolls.
+   Every gap, margin and hero padding built on these tokens shrinks with it. */
+@media (max-width: 767px) {
+  :root {
+    --space-lg:   32px;   /* 48 -> 32 */
+    --space-xl:   52px;   /* 80 -> 52 */
+    --space-2xl:  72px;   /* 120 -> 72 */
+    --gutter:     20px;   /* 24 -> 20 */
+  }
+}

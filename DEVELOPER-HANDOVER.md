@@ -303,8 +303,11 @@ them.
 
 ### Responsive behaviour
 
-- The layout is mobile-first; tablet and desktop add columns through
-  `min-width` media queries. Tablets render the desktop layout.
+- The layout is mobile-first; columns are added through `min-width` media
+  queries. Section spacing graduates with the viewport (phone / tablet /
+  desktop) and the phone spacing scale is tightened in `tokens.css` so
+  pages stay short. The full desktop navigation appears at >=1024px;
+  tablets use the mobile navigation drawer.
 - On phone-sized screens held in **landscape**, a full-screen overlay
   (`.rotate-notice`, the `rotate-notice.php` template part) asks the visitor
   to rotate to portrait. It is pure CSS: an `orientation: landscape` media
