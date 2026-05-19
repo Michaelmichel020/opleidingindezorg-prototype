@@ -27,11 +27,18 @@
 }
 .bbl-layout__media { display: flex; }
 .bbl-layout__media .video-placeholder { width: 100%; }
+.bbl-layout__pillars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.bbl-layout__cta { display: flex; }
 
 @media (min-width: 900px) {
   .bbl-layout {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-lg);
-    align-items: center;
+    align-items: start;
   }
+  .bbl-layout__cta { justify-content: flex-end; }
 }

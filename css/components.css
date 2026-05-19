@@ -238,24 +238,29 @@
   gap: var(--space-md);
 }
 .pillar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 14px;
+  row-gap: 6px;
+  align-items: center;
   background: var(--white);
   border: 1px solid var(--rule);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
 }
 .pillar__icon {
-  width: 56px; height: 56px;
+  width: 40px; height: 40px;
   border-radius: var(--radius-md);
   background: var(--teal-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--teal-dark);
-  margin-bottom: 16px;
 }
-.pillar__icon svg { width: 28px; height: 28px; }
-.pillar__title { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
-.pillar__text { color: var(--mid); font-size: 14px; }
+.pillar__icon svg { width: 20px; height: 20px; }
+.pillar__title { font-size: 17px; font-weight: 600; }
+/* body copy spans the full width, on the row below the icon + title */
+.pillar__text { grid-column: 1 / -1; color: var(--mid); font-size: 14px; }
 
 /* ---------- Steps (process) ---------- */
 .steps {
