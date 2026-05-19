@@ -251,19 +251,22 @@ on `org_type`, `bbl_niveau`, and `werkplek`.
 
 ## 7. Keuzehulp wizard integration
 
-`/keuzehulp/` embeds an existing external wizard app as a full-page iframe:
+`/keuzehulp/` embeds an external application via an iframe. The iframe sits in
+a contained, rounded panel (`.keuzehulp-embed`) in the normal page flow, so it
+scrolls with the page; a normal hero and CTA banner surround it.
 
 ```html
-<iframe src="https://opleidenindezorg-keuzehulp-wizard.netlify.app/"
-        class="keuzehulp-iframe" title="Keuzehulp wizard"
-        allow="autoplay" loading="lazy"></iframe>
+<iframe src="https://opleidingindezorg-wireframes.netlify.app/"
+        class="keuzehulp-frame" title="Keuzehulp"
+        loading="lazy"></iframe>
 ```
 
 Notes:
-- The wizard is a separate application, hosted separately. It is not part of
-  this theme.
-- Make the iframe `src` editable in WordPress (an ACF option or a theme
-  constant) so the URL can change without a code edit.
+- The embedded app is separate and hosted separately. It is not part of this
+  theme.
+- Make the iframe `src` editable in WordPress (an ACF option, suggested name
+  `keuzehulp_wizard_url`, or a theme constant) so the URL can change without a
+  code edit.
 - The application form pre-fills the selected organisation from a URL
   parameter: links such as `/solliciteren/?org=amstelring` tick the matching
   checkbox. This is handled in `js/forms.js`; keep the `?org=` slug contract
@@ -312,8 +315,9 @@ the client, not theme bugs.
 | Area | What is needed |
 |---|---|
 | Salary figures | Indicative amounts used for BBL levels 2/3/4. Confirm against the current VVT collective labour agreement (cao VVT). Pages: werken-en-leren index, niveau-2/3/4, salaris. |
-| Organisation copy | The "Wie zijn wij?" texts and employment benefits on the 8 detail pages are placeholder copy. Final texts to be supplied. |
-| Organisatie 8 | Name and all data unknown. Marked as TODO across the menu, footer, overview, and its detail page. |
+| Organisation copy | The "Wie zijn wij?" intro texts on the 8 detail pages were written from each organisation's official website and should still be confirmed by the organisations. Employment benefits and locations are still placeholder. |
+| Sigra | Sigra is the 8th organisation, but it is a regional collaboration network, not a care employer: you cannot apply or follow a BBL programme there. Its detail page keeps the standard layout, but the BBL-levels, employment-benefits and apply sections do not apply and are flagged with inline TODOs. Decide before launch how to present Sigra. |
+| Cordaan | May need to be hidden at launch, see "Hiding Cordaan at launch" below. |
 | Level 4 organisations | The set of organisations offering BBL level 4 needs confirmation. |
 | Filter bar | Visual only in the prototype. Connect to `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
 | Open days | Example dates and locations used. Final agenda to be supplied. |
@@ -325,7 +329,28 @@ the client, not theme bugs.
 
 ---
 
-## 10. Quality status of the prototype
+## 10. Hiding Cordaan at launch
+
+Cordaan may not have its BBL programme ready when the site goes live. The site
+is built with Cordaan fully included; if it must be hidden at launch, here is
+every place Cordaan appears:
+
+1. **Detail page** `zorgorganisaties/cordaan/index.html` — in WordPress, set the
+   `organisaties` post for Cordaan to **Draft** or **Private**. Loop-driven
+   listings (the organisaties archive, the home page grid, the
+   `over-ons/deelnemers` grid) then drop Cordaan automatically.
+2. **Hand-built lists** that are not loop-driven and must be edited by hand to
+   remove Cordaan:
+   - the "Zorgorganisaties" mega menu in `nav.php` (header)
+   - the organisations column in `footer.php`
+   - the organisation checkboxes on the application form (`/solliciteren/`)
+
+When Cordaan's programme is ready, set the post back to Published and restore
+the hand-built references.
+
+---
+
+## 11. Quality status of the prototype
 
 Verified before handover:
 

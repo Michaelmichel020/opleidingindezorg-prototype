@@ -1,5 +1,5 @@
 /* ============================================================
-   footer.css — Footer with expandable grid
+   footer.css — Footer with CTA row and always-visible link grid
    opleidingindezorg.nl
    WORDPRESS TEMPLATE: footer.php
    ============================================================ */
@@ -10,19 +10,34 @@
   margin-top: var(--space-xl);
 }
 
-/* ---------- Expandable grid ---------- */
-.footer__grid {
-  max-width: 0;            /* fallback */
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height var(--duration-slow) var(--ease-smooth);
+/* ---------- Footer CTA row ---------- */
+.footer__cta {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
-.footer__grid {
-  max-width: none;
-  display: grid;
-  gap: var(--space-lg);
-  width: 100%;
+.footer__cta-inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: var(--space-lg) var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
 }
+.footer__cta-text {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.2;
+  color: #fff;
+}
+.footer__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- Link grid (always expanded) ---------- */
+.footer__grid { width: 100%; }
 .footer__grid-inner {
   max-width: var(--max-w);
   margin-inline: auto;
@@ -31,9 +46,6 @@
   gap: var(--space-lg);
   grid-template-columns: 1fr;
 }
-.site-footer.is-open .footer__grid { max-height: 1600px; }
-.site-footer:not(.is-open) .footer__grid { max-height: 0; }
-
 .footer__col { min-width: 0; }
 .footer__heading {
   font-family: var(--font);
@@ -69,23 +81,10 @@
   align-items: center;
   justify-content: space-between;
 }
-.footer__toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.7);
+.footer__copy {
   font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
 }
-.footer__toggle:hover { color: #fff; }
-.footer__toggle-icon {
-  width: 16px; height: 16px;
-  transition: transform var(--duration) var(--ease-smooth);
-}
-.site-footer.is-open .footer__toggle-icon { transform: rotate(180deg); }
-.footer__copy { white-space: nowrap; }
-
 .footer__legal {
   list-style: none;
   display: flex;
@@ -101,7 +100,7 @@
 /* ---------- Responsive ---------- */
 @media (min-width: 768px) {
   .footer__grid-inner { grid-template-columns: repeat(2, 1fr); }
-  /* On tablet: hide org-detail links, show only 'Alle zorgorganisaties' */
+  /* On tablet: hide the per-organisation links, keep only 'Alle zorgorganisaties' */
   .footer__org-detail { display: none; }
 }
 @media (min-width: 1024px) {

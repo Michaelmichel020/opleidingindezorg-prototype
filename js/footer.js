@@ -1,16 +1,6 @@
 /* ============================================================
-   footer.js — Expandable footer grid
-   opleidingindezorg.nl
+   footer.js — no behaviour
+   The footer is always expanded; the earlier collapsible grid
+   and its toggle have been removed. This file is kept so the
+   shared script block stays identical across every page.
    ============================================================ */
-(function () {
-  'use strict';
-
-  var footer = document.getElementById('site-footer');
-  var toggle = document.getElementById('footer-toggle');
-  if (!footer || !toggle) { return; }
-
-  toggle.addEventListener('click', function () {
-    var isOpen = footer.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-})();

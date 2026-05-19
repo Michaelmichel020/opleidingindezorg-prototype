@@ -75,9 +75,13 @@ De header en footer zijn op alle pagina's identiek, klaar om `header.php` en
 Doorzoekbaar met `grep -rn "TODO" .` Samengevat:
 
 - **Salarisbedragen** — indicatief ingevuld, laten bevestigen op de actuele cao VVT.
-- **Organisatieteksten** — de "Wie zijn wij?"-teksten en arbeidsvoorwaarden van
-  de 8 organisaties zijn voorbeeldcopy, definitieve teksten aanleveren.
-- **Organisatie 8** — naam en gegevens nog onbekend, overal als TODO gemarkeerd.
+- **Organisatieteksten** — de "Wie zijn wij?"-teksten zijn geschreven op basis
+  van de officiële sites van de organisaties, laten bevestigen door de
+  organisaties zelf. Arbeidsvoorwaarden en locaties zijn nog voorbeeldcopy.
+- **Sigra** — Sigra is de 8e organisatie maar een regionaal samenwerkingsverband,
+  geen zorgwerkgever. De niet-kloppende secties op de Sigra-pagina zijn in de
+  code gemarkeerd. Beslis voor livegang hoe Sigra wordt gepresenteerd.
+- **Cordaan** — mogelijk verborgen bij livegang, zie DEVELOPER-HANDOVER.md.
 - **Niveau 4** — organisatie-selectie laten bevestigen.
 - **Filterbar** — in het prototype visueel; in WordPress koppelen aan `WP_Query`
   met `tax_query` (org_type / bbl_niveau / werkplek).
