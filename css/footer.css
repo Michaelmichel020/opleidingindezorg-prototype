@@ -81,6 +81,17 @@
   align-items: center;
   justify-content: space-between;
 }
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.footer__logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
 .footer__copy {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.7);

@@ -40,7 +40,7 @@
   flex-shrink: 0;
 }
 .nav__logo svg,
-.nav__logo img { height: 34px; width: auto; }
+.nav__logo img { height: 44px; width: auto; display: block; }
 
 /* ---------- Desktop nav list ---------- */
 .nav__list {

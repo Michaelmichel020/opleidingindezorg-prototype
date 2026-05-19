@@ -9,6 +9,8 @@
   <!-- WP_OPTION: site_title | becomes 'Opleiding in de Zorg' -->
   <!-- WP TEMPLATE: page.php -->
 
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,17 +42,9 @@
     <div class="nav__inner">
 
       <!-- Logo -->
-      <!-- ACF: site_logo (image) — otherwise inline SVG -->
+      <!-- ACF: site_logo (image) — otherwise the default logo file below -->
       <a href="/" class="nav__logo" aria-label="Opleiding in de Zorg - naar de homepagina">
-        <svg width="200" height="32" viewBox="0 0 252 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="40" height="40" rx="10" fill="#32AC98"/>
-          <rect x="9"  y="23" width="6" height="8"  rx="3" fill="#FFFFFF"/>
-          <rect x="17" y="17" width="6" height="14" rx="3" fill="#FFFFFF"/>
-          <rect x="25" y="11" width="6" height="20" rx="3" fill="#FFFFFF"/>
-          <text x="52" y="26" font-family="'DM Sans', system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">
-            <tspan fill="#1C2B3A">opleiding in de </tspan><tspan fill="#32AC98">zorg</tspan>
-          </text>
-        </svg>
+        <img src="/assets/logo/logo.svg" alt="Opleiding in de Zorg" width="193" height="85">
       </a>
 
       <!-- Desktop nav -->
@@ -476,7 +470,10 @@
   <!-- Bottom bar -->
   <div class="footer__bottom">
     <div class="footer__bottom-inner">
-      <span class="footer__copy">&copy; 2026 opleidingindezorg.nl &nbsp;&middot;&nbsp; Amstelland &amp; Meerlanden</span>
+      <div class="footer__brand">
+        <img src="/assets/logo/logo-cream.svg" alt="Opleiding in de Zorg" class="footer__logo" width="193" height="85">
+        <span class="footer__copy">&copy; 2026 opleidingindezorg.nl &nbsp;&middot;&nbsp; Amstelland &amp; Meerlanden</span>
+      </div>
       <ul class="footer__legal" role="list">
         <li><a href="/privacy/">Privacybeleid</a></li>
         <li><a href="/cookies/">Cookiebeleid</a></li>
