@@ -1,0 +1,23 @@
+/* ============================================================
+   pages/keuzehulp.css — Keuzehulp wizard (iframe embed)
+   WP TEMPLATE: page.php (template: keuzehulp-full)
+   ============================================================ */
+
+.keuzehulp-page { padding: 0; }
+
+.keuzehulp-iframe {
+  width: 100%;
+  min-height: 100vh;
+  border: none;
+  display: block;
+}
+
+/* Narrow intro bar above the iframe (optional, small) */
+.keuzehulp-bar {
+  background: var(--teal-bg);
+  border-bottom: 1px solid var(--teal-border);
+  padding: 12px var(--gutter);
+  text-align: center;
+  font-size: 14px;
+  color: var(--teal-dark);
+}

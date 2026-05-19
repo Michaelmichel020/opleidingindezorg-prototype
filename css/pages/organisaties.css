@@ -1,0 +1,32 @@
+/* ============================================================
+   pages/organisaties.css — Zorgorganisaties overview page
+   WP TEMPLATE: archive.php (post_type: organisaties)
+   ============================================================ */
+
+/* List view of the org grid (toggle in filterbar) */
+.org-grid--list .org-card__link {
+  display: grid;
+  grid-template-columns: 130px 1fr auto;
+  gap: var(--space-md);
+  align-items: center;
+}
+.org-grid--list .org-card__logo { margin-bottom: 0; }
+.org-grid--list .org-card__cta { white-space: nowrap; }
+
+@media (max-width: 767px) {
+  .org-grid--list .org-card__link {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Filterbar at the top, with spacing from the grid */
+.org-toolbar { margin-bottom: var(--space-md); }
+.org-toolbar .dark-strip { margin-bottom: var(--space-sm); }
+
+/* Result counter */
+.org-count {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: var(--space-sm);
+}

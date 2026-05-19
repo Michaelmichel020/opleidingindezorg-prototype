@@ -1,0 +1,228 @@
+<!-- ============================================================
+     CANONICAL HEADER — copy this block verbatim into every page,
+     directly after the opening <body> tag.
+     WORDPRESS TEMPLATE: header.php + nav.php
+     ============================================================ -->
+
+<a class="skip-link" href="#main">Direct naar de inhoud</a>
+
+<!-- WP TEMPLATE PART: header.php -->
+<header class="site-header" id="site-header">
+
+  <!-- WP TEMPLATE PART: nav.php -->
+  <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+    <div class="nav__inner">
+
+      <!-- Logo -->
+      <!-- ACF: site_logo (image) — otherwise inline SVG -->
+      <a href="/" class="nav__logo" aria-label="Opleiding in de Zorg - naar de homepagina">
+        <svg width="200" height="32" viewBox="0 0 252 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#32AC98"/>
+          <rect x="9"  y="23" width="6" height="8"  rx="3" fill="#FFFFFF"/>
+          <rect x="17" y="17" width="6" height="14" rx="3" fill="#FFFFFF"/>
+          <rect x="25" y="11" width="6" height="20" rx="3" fill="#FFFFFF"/>
+          <text x="52" y="26" font-family="'DM Sans', system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">
+            <tspan fill="#1C2B3A">opleiding in de </tspan><tspan fill="#32AC98">zorg</tspan>
+          </text>
+        </svg>
+      </a>
+
+      <!-- Desktop nav -->
+      <!-- WP_MENU: primary | register as the 'Primary navigation' menu location in functions.php -->
+      <ul class="nav__list" role="list">
+        <li class="nav__item" data-menu="werken-leren">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Werken &amp; Leren
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="organisaties">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Zorgorganisaties
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="scholen">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Scholen
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="over-ons">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Over ons
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+      </ul>
+
+      <!-- CTA buttons -->
+      <div class="nav__ctas">
+        <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp</a>
+        <a href="/solliciteren/" class="btn btn--dark btn--sm">Direct Solliciteren</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ===================== MEGA MENU: Werken & Leren ===================== -->
+  <div class="mega" id="mega-werken-leren" role="region" aria-label="Werken en Leren">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Overzicht</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/" class="mega__link mega__link--featured">
+            Werken &amp; Leren (Wat is BBL?)
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a></li>
+        </ul>
+        <p class="mega__eyebrow" style="margin-top:20px">Niveaus</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/niveau-2/" class="mega__link">BBL Niveau 2 - Helpende</a></li>
+          <li><a href="/werken-en-leren/niveau-3/" class="mega__link">BBL Niveau 3 - Verzorgende IG</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="mega__link">
+            BBL Niveau 4 - Verpleegkundige
+            <span class="badge badge--new">nieuw</span>
+          </a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Informatie</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
+          <li><a href="/werken-en-leren/toelatingseisen/" class="mega__link">Toelatingseisen</a></li>
+          <li><a href="/werken-en-leren/salaris/" class="mega__link">Salaris en vergoedingen</a></li>
+          <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Leer meer</p>
+        <h3 class="mega__featured-title">Vier dagen werken,<br>één dag school</h3>
+        <p class="mega__featured-body">Bij BBL combineer je werken en leren. Je verdient direct een salaris en bouwt echte ervaring op in de zorg.</p>
+        <div class="mega__featured-actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp starten</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--sm">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Zorgorganisaties ===================== -->
+  <div class="mega" id="mega-organisaties" role="region" aria-label="Zorgorganisaties">
+    <div class="mega__inner mega__inner--orgs">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Zorgorganisaties</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/zorgorganisaties/" class="mega__link mega__link--featured">Alle organisaties bekijken</a></li>
+          <li><a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="mega__link">Zonnehuisgroep Amstelland</a></li>
+          <li><a href="/zorgorganisaties/zorgcentra-meerlanden/" class="mega__link">Zorgcentra Meerlanden</a></li>
+          <li><a href="/zorgorganisaties/zorggroep-aelsmeer/" class="mega__link">Zorggroep Aelsmeer</a></li>
+          <li><a href="/zorgorganisaties/pcsoh/" class="mega__link">PCSOH</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">&nbsp;</p>
+        <ul class="mega__links" role="list" style="margin-top:28px">
+          <li><a href="/zorgorganisaties/brentano/" class="mega__link">Brentano</a></li>
+          <li><a href="/zorgorganisaties/viva-zorggroep/" class="mega__link">ViVa! Zorggroep</a></li>
+          <li><a href="/zorgorganisaties/amstelring/" class="mega__link">Amstelring</a></li>
+          <li><a href="/zorgorganisaties/organisatie-8/" class="mega__link">Organisatie 8</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Weet je het nog niet?</p>
+        <h3 class="mega__featured-title">Laat de keuzehulp je op weg helpen</h3>
+        <p class="mega__featured-body">Beantwoord 6 korte vragen. We koppelen je aan de organisatie die het beste bij jou past.</p>
+        <div class="mega__featured-actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp starten</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--sm">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Scholen ===================== -->
+  <div class="mega" id="mega-scholen" role="region" aria-label="Scholen">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Voor scholen</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/scholen/" class="mega__link mega__link--featured">Scholen (Opleidingsinstituten)</a></li>
+          <li><a href="/scholen/hoe-werkt-het/" class="mega__link">Hoe werkt het proces?</a></li>
+          <li><a href="/scholen/open-dagen/" class="mega__link">Open dagen</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Goed om te weten</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/" class="mega__link">Wat is BBL?</a></li>
+          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Het opleidingstraject</p>
+        <h3 class="mega__featured-title">Samen leiden we de zorg van morgen op</h3>
+        <p class="mega__featured-body">MBO-instellingen en zorgorganisaties werken samen aan een sterk BBL-traject in de regio Amstelland &amp; Meerlanden.</p>
+        <div class="mega__featured-actions">
+          <a href="/scholen/hoe-werkt-het/" class="btn btn--primary btn--sm">Bekijk het proces</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Over ons ===================== -->
+  <div class="mega" id="mega-over-ons" role="region" aria-label="Over ons">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Over ons</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/over-ons/" class="mega__link mega__link--featured">Regionale samenwerking</a></li>
+          <li><a href="/over-ons/samenwerking/" class="mega__link">Waarom samenwerken?</a></li>
+          <li><a href="/over-ons/deelnemers/" class="mega__link">Deelnemende organisaties</a></li>
+          <li><a href="/over-ons/contact/" class="mega__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Voor professionals</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/over-ons/" class="mega__link">Voor zorgorganisaties</a></li>
+          <li><a href="/scholen/" class="mega__link">Voor opleidingsinstituten</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Eén regio, één platform</p>
+        <h3 class="mega__featured-title">Acht organisaties.<br>Eén platform.</h3>
+        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van acht zorgorganisaties in Amstelland &amp; Meerlanden.</p>
+        <div class="mega__featured-actions">
+          <a href="/over-ons/" class="btn btn--primary btn--sm">Lees over de samenwerking</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay behind mega menu -->
+  <div class="mega-overlay" id="mega-overlay"></div>
+
+</header>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobiele navigatie">
+  <nav class="mobile-nav__inner" aria-label="Mobiele hoofdnavigatie">
+    <a href="/" class="mobile-nav__item">Home</a>
+    <a href="/werken-en-leren/" class="mobile-nav__item">Werken &amp; Leren</a>
+    <a href="/zorgorganisaties/" class="mobile-nav__item">Zorgorganisaties</a>
+    <a href="/scholen/" class="mobile-nav__item">Scholen</a>
+    <a href="/over-ons/" class="mobile-nav__item">Over ons</a>
+  </nav>
+  <div class="mobile-nav__footer">
+    <a href="/keuzehulp/" class="btn btn--primary">Keuzehulp starten</a>
+    <a href="/solliciteren/" class="btn btn--dark">Direct Solliciteren</a>
+  </div>
+</div>
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+<!-- ===================== END CANONICAL HEADER ===================== -->

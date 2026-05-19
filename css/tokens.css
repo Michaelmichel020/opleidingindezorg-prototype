@@ -1,0 +1,66 @@
+/* ============================================================
+   tokens.css — Design tokens
+   opleidingindezorg.nl — Amstelland & Meerlanden
+   WORDPRESS: load as the first stylesheet via wp_enqueue_style
+   ============================================================ */
+
+:root {
+  /* Primary brand color */
+  --teal:           #32AC98;
+  --teal-dark:      #1C7A6E;
+  --teal-light:     #A8E0D8;
+  --teal-bg:        #E8F7F5;
+  --teal-border:    #C0E8E2;
+
+  /* Neutral colors */
+  --warm:           #F8F5F0;   /* page background */
+  --charcoal:       #1C2B3A;   /* primary text + secondary CTA */
+  --mid:            #4A6572;   /* secondary text */
+  --muted:          #8AABBA;   /* placeholder, labels, captions */
+  --rule:           #E0ECEA;   /* borders */
+  --white:          #FFFFFF;
+  --off-white:      #F4F4F4;
+
+  /* Typography */
+  --font:           'DM Sans', system-ui, -apple-system, sans-serif;
+  --serif:          'DM Serif Display', Georgia, serif;
+
+  /* Scale */
+  --nav-h-desktop:  80px;
+  --nav-h-mobile:   64px;
+  --max-w:          1200px;
+  --max-w-content:  800px;
+  --gutter:         24px;
+
+  /* Spacing scale */
+  --space-xs:       8px;
+  --space-sm:       16px;
+  --space-md:       24px;
+  --space-lg:       48px;
+  --space-xl:       80px;
+  --space-2xl:      120px;
+
+  /* Radius */
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      16px;
+  --radius-pill:    50px;
+
+  /* Shadows */
+  --shadow-sm:      0 2px 8px rgba(28, 43, 58, 0.08);
+  --shadow-md:      0 4px 20px rgba(28, 43, 58, 0.10);
+  --shadow-lg:      0 12px 40px rgba(28, 43, 58, 0.14);
+  --shadow-teal:    0 6px 24px rgba(50, 172, 152, 0.30);
+
+  /* Transitions */
+  --ease:           cubic-bezier(0.22, 0.68, 0, 1.2);
+  --ease-smooth:    cubic-bezier(0.4, 0, 0.2, 1);
+  --duration:       250ms;
+  --duration-slow:  400ms;
+
+  /* Z-index scale */
+  --z-nav:          1000;
+  --z-mega:         990;
+  --z-overlay:      980;
+  --z-mobile-nav:   1100;
+}

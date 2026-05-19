@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brentano | Opleiding in de Zorg</title>
+  <meta name="description" content="Brentano biedt BBL-opleidingen op niveau 2, 3 en 4 in Amstelveen. Verpleeghuiszorg en revalidatie met aandacht.">
+
+  <!-- WP_OPTION: site_title | becomes 'Opleiding in de Zorg' -->
+  <!-- WP TEMPLATE: single-organisaties.php -->
+
+  <!--
+    WORDPRESS CUSTOM POST TYPE: organisaties
+    ------------------------------------------
+    Register in functions.php:
+    register_post_type('organisaties', [...])
+
+    ACF fields per organisation:
+    - org_naam (text)
+    - org_logo (image)
+    - org_tagline (text)
+    - org_video_url (url) — organisation-specific video
+    - org_beschrijving (wysiwyg, max 100 words)
+    - org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
+    - org_werkplek (checkbox: verpleeghuis, thuiszorg, revalidatie)
+    - org_type (select: klein, middelgroot, groot)
+    - org_adres (text)
+    - org_telefoon (text)
+    - org_locaties (repeater: naam, adres, lat, lng)
+    - org_arbeidsvoorwaarden (repeater: icoon, tekst)
+
+    Taxonomies:
+    - org_type (klein, middelgroot, groot)
+    - bbl_niveau (niveau-2, niveau-3, niveau-4)
+    - werkplek (verpleeghuis, thuiszorg, revalidatie)
+  -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/pages/org-detail.css">
+</head>
+<body data-page="org-detail">
+
+<!-- ============================================================
+     CANONICAL HEADER
+     WORDPRESS TEMPLATE: header.php + nav.php
+     ============================================================ -->
+
+<a class="skip-link" href="#main">Direct naar de inhoud</a>
+
+<!-- WP TEMPLATE PART: header.php -->
+<header class="site-header" id="site-header">
+
+  <!-- WP TEMPLATE PART: nav.php -->
+  <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+    <div class="nav__inner">
+
+      <!-- Logo -->
+      <!-- ACF: site_logo (image) — otherwise inline SVG -->
+      <a href="/" class="nav__logo" aria-label="Opleiding in de Zorg - naar de homepagina">
+        <svg width="200" height="32" viewBox="0 0 252 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#32AC98"/>
+          <rect x="9"  y="23" width="6" height="8"  rx="3" fill="#FFFFFF"/>
+          <rect x="17" y="17" width="6" height="14" rx="3" fill="#FFFFFF"/>
+          <rect x="25" y="11" width="6" height="20" rx="3" fill="#FFFFFF"/>
+          <text x="52" y="26" font-family="'DM Sans', system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">
+            <tspan fill="#1C2B3A">opleiding in de </tspan><tspan fill="#32AC98">zorg</tspan>
+          </text>
+        </svg>
+      </a>
+
+      <!-- Desktop nav -->
+      <!-- WP_MENU: primary | register as the 'Primary navigation' menu location in functions.php -->
+      <ul class="nav__list" role="list">
+        <li class="nav__item" data-menu="werken-leren">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Werken &amp; Leren
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="organisaties">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Zorgorganisaties
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="scholen">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Scholen
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="over-ons">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Over ons
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+      </ul>
+
+      <!-- CTA buttons -->
+      <div class="nav__ctas">
+        <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp</a>
+        <a href="/solliciteren/" class="btn btn--dark btn--sm">Direct Solliciteren</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ===================== MEGA MENU: Werken & Leren ===================== -->
+  <div class="mega" id="mega-werken-leren" role="region" aria-label="Werken en Leren">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Overzicht</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/" class="mega__link mega__link--featured">
+            Werken &amp; Leren (Wat is BBL?)
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a></li>
+        </ul>
+        <p class="mega__eyebrow" style="margin-top:20px">Niveaus</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/niveau-2/" class="mega__link">BBL Niveau 2 - Helpende</a></li>
+          <li><a href="/werken-en-leren/niveau-3/" class="mega__link">BBL Niveau 3 - Verzorgende IG</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="mega__link">
+            BBL Niveau 4 - Verpleegkundige
+            <span class="badge badge--new">nieuw</span>
+          </a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Informatie</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
+          <li><a href="/werken-en-leren/toelatingseisen/" class="mega__link">Toelatingseisen</a></li>
+          <li><a href="/werken-en-leren/salaris/" class="mega__link">Salaris en vergoedingen</a></li>
+          <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Leer meer</p>
+        <h3 class="mega__featured-title">Vier dagen werken,<br>één dag school</h3>
+        <p class="mega__featured-body">Bij BBL combineer je werken en leren. Je verdient direct een salaris en bouwt echte ervaring op in de zorg.</p>
+        <div class="mega__featured-actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp starten</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--sm">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Zorgorganisaties ===================== -->
+  <div class="mega" id="mega-organisaties" role="region" aria-label="Zorgorganisaties">
+    <div class="mega__inner mega__inner--orgs">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Zorgorganisaties</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/zorgorganisaties/" class="mega__link mega__link--featured">Alle organisaties bekijken</a></li>
+          <li><a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="mega__link">Zonnehuisgroep Amstelland</a></li>
+          <li><a href="/zorgorganisaties/zorgcentra-meerlanden/" class="mega__link">Zorgcentra Meerlanden</a></li>
+          <li><a href="/zorgorganisaties/zorggroep-aelsmeer/" class="mega__link">Zorggroep Aelsmeer</a></li>
+          <li><a href="/zorgorganisaties/pcsoh/" class="mega__link">PCSOH</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">&nbsp;</p>
+        <ul class="mega__links" role="list" style="margin-top:28px">
+          <li><a href="/zorgorganisaties/brentano/" class="mega__link">Brentano</a></li>
+          <li><a href="/zorgorganisaties/viva-zorggroep/" class="mega__link">ViVa! Zorggroep</a></li>
+          <li><a href="/zorgorganisaties/amstelring/" class="mega__link">Amstelring</a></li>
+          <li><a href="/zorgorganisaties/organisatie-8/" class="mega__link">Organisatie 8</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Weet je het nog niet?</p>
+        <h3 class="mega__featured-title">Laat de keuzehulp je op weg helpen</h3>
+        <p class="mega__featured-body">Beantwoord 6 korte vragen. We koppelen je aan de organisatie die het beste bij jou past.</p>
+        <div class="mega__featured-actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp starten</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--sm">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Scholen ===================== -->
+  <div class="mega" id="mega-scholen" role="region" aria-label="Scholen">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Voor scholen</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/scholen/" class="mega__link mega__link--featured">Scholen (Opleidingsinstituten)</a></li>
+          <li><a href="/scholen/hoe-werkt-het/" class="mega__link">Hoe werkt het proces?</a></li>
+          <li><a href="/scholen/open-dagen/" class="mega__link">Open dagen</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Goed om te weten</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/" class="mega__link">Wat is BBL?</a></li>
+          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Het opleidingstraject</p>
+        <h3 class="mega__featured-title">Samen leiden we de zorg van morgen op</h3>
+        <p class="mega__featured-body">MBO-instellingen en zorgorganisaties werken samen aan een sterk BBL-traject in de regio Amstelland &amp; Meerlanden.</p>
+        <div class="mega__featured-actions">
+          <a href="/scholen/hoe-werkt-het/" class="btn btn--primary btn--sm">Bekijk het proces</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Over ons ===================== -->
+  <div class="mega" id="mega-over-ons" role="region" aria-label="Over ons">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Over ons</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/over-ons/" class="mega__link mega__link--featured">Regionale samenwerking</a></li>
+          <li><a href="/over-ons/samenwerking/" class="mega__link">Waarom samenwerken?</a></li>
+          <li><a href="/over-ons/deelnemers/" class="mega__link">Deelnemende organisaties</a></li>
+          <li><a href="/over-ons/contact/" class="mega__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Voor professionals</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/over-ons/" class="mega__link">Voor zorgorganisaties</a></li>
+          <li><a href="/scholen/" class="mega__link">Voor opleidingsinstituten</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Eén regio, één platform</p>
+        <h3 class="mega__featured-title">Acht organisaties.<br>Eén platform.</h3>
+        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van acht zorgorganisaties in Amstelland &amp; Meerlanden.</p>
+        <div class="mega__featured-actions">
+          <a href="/over-ons/" class="btn btn--primary btn--sm">Lees over de samenwerking</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay behind mega menu -->
+  <div class="mega-overlay" id="mega-overlay"></div>
+
+</header>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobiele navigatie">
+  <nav class="mobile-nav__inner" aria-label="Mobiele hoofdnavigatie">
+    <a href="/" class="mobile-nav__item">Home</a>
+    <a href="/werken-en-leren/" class="mobile-nav__item">Werken &amp; Leren</a>
+    <a href="/zorgorganisaties/" class="mobile-nav__item">Zorgorganisaties</a>
+    <a href="/scholen/" class="mobile-nav__item">Scholen</a>
+    <a href="/over-ons/" class="mobile-nav__item">Over ons</a>
+  </nav>
+  <div class="mobile-nav__footer">
+    <a href="/keuzehulp/" class="btn btn--primary">Keuzehulp starten</a>
+    <a href="/solliciteren/" class="btn btn--dark">Direct Solliciteren</a>
+  </div>
+</div>
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+<!-- ===================== END CANONICAL HEADER ===================== -->
+
+<main id="main">
+
+  <!-- ============================================================
+       SECTION 1: Org hero — 2-column
+       ACF GROUP: org_hero
+       ACF: org_naam (text), org_tagline (text), org_video_url (url)
+       ============================================================ -->
+  <section class="hero hero--org">
+    <span class="hero__blob parallax" data-parallax-speed="0.18" aria-hidden="true"></span>
+    <div class="container">
+      <div class="hero__content">
+        <nav class="breadcrumb" aria-label="Kruimelpad">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/zorgorganisaties/">Zorgorganisaties</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Brentano</span>
+        </nav>
+        <!-- ACF: org_logo (image) — otherwise placeholder -->
+        <div class="org-detail__logo logo-placeholder reveal">Brentano</div>
+        <!-- ACF: org_naam (text) -->
+        <h1 class="text-h1 reveal">Brentano</h1>
+        <!-- ACF: org_tagline (text) -->
+        <p class="text-lead reveal">Thuis in Amstelveen, met zorg die er toe doet.</p>
+        <div class="hero__actions reveal">
+          <a href="/solliciteren/?org=brentano" class="btn btn--primary btn--lg">
+            Direct Solliciteren
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/keuzehulp/" class="btn btn--outline btn--lg">Keuzehulp starten</a>
+        </div>
+      </div>
+
+      <div class="hero__media reveal reveal--right">
+        <!-- ACF: org_video_url (url) — organisation-specific video -->
+        <div class="video-placeholder">
+          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <span>Organisatievideo</span>
+          <small>Brentano</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: Who we are (max 100 words)
+       ACF: org_beschrijving (wysiwyg, max 100 words)
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container container--narrow">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Wie zijn wij?</span>
+        <h2 class="text-h2">Vertrouwd en thuis in Amstelveen</h2>
+      </div>
+      <!-- ACF: org_beschrijving (wysiwyg, max 100 words) -->
+      <!-- TODO: provide the final organisation copy -->
+      <p class="text-lead reveal">
+        Brentano is een middelgrote zorgorganisatie die helemaal thuis is in Amstelveen. We bieden verpleeghuiszorg en revalidatie en willen dat bewoners zich bij ons echt thuis voelen, ook als ze veel zorg nodig hebben. Onze locaties zijn herkenbaar en gastvrij, met teams die elkaar goed kennen. BBL-studenten krijgen bij ons een warm onthaal: een vaste begeleider, een duidelijk leerplan en collega's die graag hun kennis delen. We bieden BBL op niveau 2, 3 en 4 en denken met je mee over je toekomst. Werken bij Brentano betekent zinvol werk, een fijne sfeer en de kans om je echt te ontwikkelen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: BBL levels we offer
+       ACF: org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Opleidingsaanbod</span>
+        <h2 class="text-h2">BBL-niveaus die we aanbieden</h2>
+        <p class="section__subtitle text-lead">Bij Brentano kun je een BBL-opleiding volgen op niveau 2, 3 en 4.</p>
+      </div>
+      <!-- WP_LOOP: start — repeat per checked org_niveau -->
+      <div class="org-niveaus reveal--stagger">
+        <div class="org-niveau-item">
+          <span class="org-niveau-item__badge">2</span>
+          <div>
+            <p class="org-niveau-item__title">Niveau 2 - Helpende</p>
+            <p class="org-niveau-item__text">Een sterke start in de zorg. Je ondersteunt bij de dagelijkse zorg en het welzijn van cliënten.</p>
+          </div>
+        </div>
+        <div class="org-niveau-item">
+          <span class="org-niveau-item__badge">3</span>
+          <div>
+            <p class="org-niveau-item__title">Niveau 3 - Verzorgende IG</p>
+            <p class="org-niveau-item__text">Meer verantwoordelijkheid. Je verzorgt cliënten zelfstandig, signaleert en rapporteert.</p>
+          </div>
+        </div>
+        <div class="org-niveau-item">
+          <span class="org-niveau-item__badge">4</span>
+          <div>
+            <p class="org-niveau-item__title">Niveau 4 - Verpleegkundige</p>
+            <p class="org-niveau-item__text">Het hoogste BBL-niveau. Je coördineert zorg en voert voorbehouden handelingen uit.</p>
+          </div>
+        </div>
+      </div>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: Work locations
+       ACF: org_locaties (repeater: naam, adres, lat, lng)
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Werklocaties</span>
+        <h2 class="text-h2">Waar je aan de slag gaat</h2>
+        <p class="section__subtitle text-lead">Onze locaties liggen verspreid over Amstelveen, goed bereikbaar binnen de regio.</p>
+      </div>
+      <!-- TODO: provide the final location details and interactive map -->
+      <div class="locaties-map-placeholder reveal">Kaart met werklocaties Brentano</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: Employment benefits
+       ACF: org_arbeidsvoorwaarden (repeater: icoon, tekst)
+       ============================================================ -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Arbeidsvoorwaarden</span>
+        <h2 class="text-h2">Wat we je bieden</h2>
+      </div>
+      <!-- WP_LOOP: start — repeat per employment benefit -->
+      <!-- TODO: provide the final employment benefits -->
+      <div class="voorwaarden-grid reveal--stagger">
+        <div class="voorwaarde">
+          <span class="voorwaarde__icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 7a5 5 0 100 10M5 10h7M5 14h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <p class="voorwaarde__text">Een leer-arbeidscontract met salaris volgens de cao VVT vanaf je eerste werkdag.</p>
+        </div>
+        <div class="voorwaarde">
+          <span class="voorwaarde__icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 2.5C21 12 19 16 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </span>
+          <p class="voorwaarde__text">Een vaste werkbegeleider en een duidelijk leerplan vanaf de start.</p>
+        </div>
+        <div class="voorwaarde">
+          <span class="voorwaarde__icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4zM7 10v6c0 1 2 3 5 3s5-2 5-3v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p class="voorwaarde__text">Je opleidingskosten en lesmateriaal worden volledig vergoed.</p>
+        </div>
+        <div class="voorwaarde">
+          <span class="voorwaarde__icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 21V5l8-3v19M12 21h8V9l-8-2M8 8v.01M8 12v.01M8 16v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p class="voorwaarde__text">Werkervaring in zowel verpleeghuiszorg als revalidatie, met goede doorgroeikansen.</p>
+        </div>
+      </div>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: Direct Solliciteren CTA banner
+       ============================================================ -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner__content">
+        <h2 class="cta-banner__title">Solliciteer bij Brentano</h2>
+        <p class="cta-banner__text">Vul je gegevens in, dan neemt Brentano zo snel mogelijk contact met je op voor een vrijblijvend kennismakingsgesprek.</p>
+        <div class="cta-banner__actions">
+          <a href="/solliciteren/?org=brentano" class="btn btn--primary btn--lg">Direct Solliciteren</a>
+          <a href="/keuzehulp/" class="btn btn--outline btn--on-dark">Keuzehulp starten</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: Back link
+       ============================================================ -->
+  <section class="section section--back">
+    <div class="container">
+      <a href="/zorgorganisaties/" class="btn btn--ghost">&larr; Alle zorgorganisaties bekijken</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     CANONICAL FOOTER
+     WORDPRESS TEMPLATE: footer.php
+     ============================================================ -->
+<!-- WP TEMPLATE PART: footer.php -->
+<footer class="site-footer" id="site-footer">
+
+  <!-- WP_MENU: footer | register as the 'Footer navigation' menu location in functions.php -->
+  <div class="footer__grid" id="footer-grid">
+    <div class="footer__grid-inner">
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Voor kandidaten</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/keuzehulp/" class="footer__link footer__link--cta">Keuzehulp starten</a></li>
+          <li><a href="/solliciteren/" class="footer__link footer__link--cta">Direct Solliciteren</a></li>
+          <li><a href="/werken-en-leren/" class="footer__link">Werken &amp; Leren (Wat is BBL?)</a></li>
+          <li><a href="/werken-en-leren/niveau-2/" class="footer__link">BBL Niveau 2 - Helpende</a></li>
+          <li><a href="/werken-en-leren/niveau-3/" class="footer__link">BBL Niveau 3 - Verzorgende IG</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="footer__link">BBL Niveau 4 - Verpleegkundige</a></li>
+          <li><a href="/werken-en-leren/toelatingseisen/" class="footer__link">Toelatingseisen</a></li>
+          <li><a href="/werken-en-leren/salaris/" class="footer__link">Salaris en vergoedingen</a></li>
+          <li><a href="/werken-en-leren/faq/" class="footer__link">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Zorgorganisaties</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/zorgorganisaties/" class="footer__link footer__link--strong">Alle zorgorganisaties</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="footer__link">Zonnehuisgroep Amstelland</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/zorgcentra-meerlanden/" class="footer__link">Zorgcentra Meerlanden</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/zorggroep-aelsmeer/" class="footer__link">Zorggroep Aelsmeer</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/pcsoh/" class="footer__link">PCSOH</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/brentano/" class="footer__link">Brentano</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/viva-zorggroep/" class="footer__link">ViVa! Zorggroep</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/amstelring/" class="footer__link">Amstelring</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/organisatie-8/" class="footer__link">Organisatie 8</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Scholen &amp; Proces</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/scholen/" class="footer__link">Scholen (Opleidingsinstituten)</a></li>
+          <li><a href="/scholen/hoe-werkt-het/" class="footer__link">Hoe werkt het proces?</a></li>
+          <li><a href="/scholen/open-dagen/" class="footer__link">Open dagen</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Over ons</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/over-ons/" class="footer__link">Regionale samenwerking</a></li>
+          <li><a href="/over-ons/samenwerking/" class="footer__link">Waarom samenwerken?</a></li>
+          <li><a href="/over-ons/deelnemers/" class="footer__link">Deelnemende organisaties</a></li>
+          <li><a href="/over-ons/contact/" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Voor professionals</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/over-ons/" class="footer__link">Voor zorgorganisaties</a></li>
+          <li><a href="/scholen/" class="footer__link">Voor opleidingsinstituten</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__bottom-inner">
+      <button class="footer__toggle" id="footer-toggle" aria-expanded="false" aria-controls="footer-grid">
+        <span class="footer__copy">&copy; 2026 opleidingindezorg.nl &nbsp;&middot;&nbsp; Amstelland &amp; Meerlanden</span>
+        <svg class="footer__toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="footer__legal" role="list">
+        <li><a href="/privacy/">Privacybeleid</a></li>
+        <li><a href="/cookies/">Cookiebeleid</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/toegankelijkheid/">Toegankelijkheid</a></li>
+      </ul>
+    </div>
+  </div>
+
+</footer>
+<!-- ===================== END CANONICAL FOOTER ===================== -->
+
+<!-- Scripts: every page loads the same set. Each script does
+     nothing if its target elements are absent (safe guards). -->
+<script src="/js/nav.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/footer.js"></script>
+<script src="/js/faq.js"></script>
+<script src="/js/filter.js"></script>
+<script src="/js/forms.js"></script>
+</body>
+</html>

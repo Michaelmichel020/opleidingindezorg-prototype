@@ -1,0 +1,15 @@
+/* ============================================================
+   pages/home.css — Homepage-specific styling
+   WP TEMPLATE: front-page.php
+   ============================================================ */
+
+.hero--home .hero__title { max-width: 12ch; }
+
+/* Org logo grid on the home page slightly airier */
+.section--orgs .org-logo-grid { margin-top: var(--space-md); }
+
+/* Decorative line under the process steps */
+.section--proces .steps { margin-top: var(--space-md); }
+
+/* Home CTA banner connects to the footer */
+.home-cta-banner { margin-bottom: 0; }

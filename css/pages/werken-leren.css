@@ -1,0 +1,49 @@
+/* ============================================================
+   pages/werken-leren.css — Werken & Leren + BBL niveau pages
+   WP TEMPLATE: page.php (werken-leren / bbl-niveau)
+   ============================================================ */
+
+/* Niveau detail: two-column intro */
+.niveau-intro {
+  display: grid;
+  gap: var(--space-lg);
+}
+.niveau-intro__body p { color: var(--mid); margin-bottom: 14px; }
+
+/* Career progression path */
+.groei-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.groei-node {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.groei-node--current { background: var(--teal); color: #fff; border-color: var(--teal); }
+.groei-arrow { color: var(--teal); width: 20px; height: 20px; }
+
+/* Requirements list with checkmarks */
+.eisen-list { list-style: none; display: grid; gap: 12px; }
+.eisen-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: var(--mid);
+}
+.eisen-list svg {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  color: var(--teal);
+  margin-top: 1px;
+}
+
+@media (min-width: 768px) {
+  .niveau-intro { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+}

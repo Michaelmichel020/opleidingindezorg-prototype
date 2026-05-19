@@ -1,0 +1,61 @@
+/* ============================================================
+   pages/org-detail.css — Organization detail page
+   WP TEMPLATE: single-organisaties.php
+   ============================================================ */
+
+.org-detail__logo {
+  width: 160px;
+  min-height: 70px;
+  margin-bottom: 18px;
+}
+
+/* Niveau row offered by the org */
+.org-niveaus { display: grid; gap: var(--space-sm); }
+.org-niveau-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+}
+.org-niveau-item__badge {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: var(--radius-sm);
+  background: var(--teal-bg);
+  color: var(--teal-dark);
+  font-family: var(--serif);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.org-niveau-item__title { font-weight: 600; font-size: 15px; }
+.org-niveau-item__text { font-size: 13px; color: var(--mid); }
+
+/* Employment terms */
+.voorwaarden-grid { display: grid; gap: var(--space-sm); }
+.voorwaarde {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.voorwaarde__icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--teal-bg);
+  color: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.voorwaarde__icon svg { width: 20px; height: 20px; }
+.voorwaarde__text { font-size: 14px; color: var(--mid); padding-top: 8px; }
+
+@media (min-width: 768px) {
+  .org-niveaus { grid-template-columns: repeat(3, 1fr); }
+  .voorwaarden-grid { grid-template-columns: repeat(2, 1fr); }
+}

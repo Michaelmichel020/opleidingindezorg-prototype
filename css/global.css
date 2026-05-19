@@ -1,0 +1,165 @@
+/* ============================================================
+   global.css — Reset, base, typography, layout-utilities
+   opleidingindezorg.nl
+   ============================================================ */
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--charcoal);
+  background: var(--warm);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+ul[role="list"], ol[role="list"] { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; font-size: inherit; }
+
+/* --- Accessibility --- */
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 2000;
+  background: var(--charcoal);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Typography scale --- */
+.text-display {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+.text-h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.5vw, 60px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+.text-h2 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.5vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+.text-h3 {
+  font-family: var(--font);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.text-lead {
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.65;
+  color: var(--mid);
+}
+.text-body { font-size: 15px; line-height: 1.65; }
+.text-small { font-size: 13px; line-height: 1.5; color: var(--muted); }
+.text-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.text-label--teal { color: var(--teal); }
+
+/* Default heading elements inherit the serif */
+h1, h2, h3, h4 { font-weight: 400; }
+
+/* --- Layout-utilities --- */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container--narrow { max-width: var(--max-w-content); }
+
+.section {
+  padding-block: var(--space-xl);
+}
+.section--warm   { background: var(--warm); }
+.section--white  { background: var(--white); }
+.section--teal   { background: var(--teal-bg); }
+.section--dark   { background: var(--charcoal); color: var(--white); }
+.section--dark .text-lead { color: rgba(255,255,255,0.78); }
+
+.section__header {
+  max-width: 720px;
+  margin-bottom: var(--space-lg);
+}
+.section__header--center {
+  margin-inline: auto;
+  text-align: center;
+}
+.section__header .text-h2 { margin-top: 10px; }
+.section__subtitle { margin-top: 16px; }
+.section__cta {
+  margin-top: var(--space-lg);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section__cta--center { justify-content: center; }
+
+/* Generic prose for legal/text pages */
+.prose { max-width: var(--max-w-content); }
+.prose h2 { font-family: var(--serif); font-size: 28px; margin-top: 40px; margin-bottom: 12px; }
+.prose h3 { font-size: 19px; font-weight: 600; margin-top: 28px; margin-bottom: 8px; }
+.prose p  { margin-bottom: 14px; color: var(--mid); }
+.prose ul { margin: 0 0 14px 22px; color: var(--mid); }
+.prose li { margin-bottom: 6px; }
+.prose a  { color: var(--teal-dark); text-decoration: underline; }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span[aria-current] { color: var(--mid); }
+
+@media (min-width: 768px) {
+  .section { padding-block: var(--space-2xl); }
+}

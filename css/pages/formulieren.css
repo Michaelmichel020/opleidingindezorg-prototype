@@ -1,0 +1,52 @@
+/* ============================================================
+   pages/formulieren.css — Application + confirmation + contact
+   WP TEMPLATE: page.php (template: solliciteren / contact)
+   ============================================================ */
+
+/* Form in a card */
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+/* Two-column layout: form + sidebar with explanation */
+.form-layout {
+  display: grid;
+  gap: var(--space-lg);
+}
+.form-aside {
+  align-self: start;
+}
+.form-aside__box {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+.form-aside__box .steps-mini { list-style: none; display: grid; gap: 14px; margin-top: 14px; }
+.steps-mini li { display: flex; gap: 12px; font-size: 14px; color: var(--mid); }
+.steps-mini__num {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Submit row */
+.form__submit-row {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 1024px) {
+  .form-layout { grid-template-columns: 1.6fr 1fr; align-items: start; }
+}

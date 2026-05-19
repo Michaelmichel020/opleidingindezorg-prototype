@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wat is BBL? Werken en leren in de zorg | Opleiding in de Zorg</title>
+  <meta name="description" content="BBL betekent vier dagen werken en één dag school, met salaris vanaf dag 1. Ontdek de drie niveaus, het verschil met BOL, toelatingseisen en salaris.">
+
+  <!-- WP_OPTION: site_title | becomes 'Opleiding in de Zorg' -->
+  <!-- WP TEMPLATE: page.php (template: werken-leren) -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/pages/werken-leren.css">
+</head>
+<body data-page="werken-en-leren">
+
+<!-- ============================================================
+     CANONICAL HEADER — copy this block verbatim into every page,
+     directly after the opening <body> tag.
+     WORDPRESS TEMPLATE: header.php + nav.php
+     ============================================================ -->
+
+<a class="skip-link" href="#main">Direct naar de inhoud</a>
+
+<!-- WP TEMPLATE PART: header.php -->
+<header class="site-header" id="site-header">
+
+  <!-- WP TEMPLATE PART: nav.php -->
+  <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+    <div class="nav__inner">
+
+      <!-- Logo -->
+      <!-- ACF: site_logo (image) — otherwise inline SVG -->
+      <a href="/" class="nav__logo" aria-label="Opleiding in de Zorg - naar de homepagina">
+        <svg width="200" height="32" viewBox="0 0 252 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#32AC98"/>
+          <rect x="9"  y="23" width="6" height="8"  rx="3" fill="#FFFFFF"/>
+          <rect x="17" y="17" width="6" height="14" rx="3" fill="#FFFFFF"/>
+          <rect x="25" y="11" width="6" height="20" rx="3" fill="#FFFFFF"/>
+          <text x="52" y="26" font-family="'DM Sans', system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">
+            <tspan fill="#1C2B3A">opleiding in de </tspan><tspan fill="#32AC98">zorg</tspan>
+          </text>
+        </svg>
+      </a>
+
+      <!-- Desktop nav -->
+      <!-- WP_MENU: primary | register as the 'Primary navigation' menu location in functions.php -->
+      <ul class="nav__list" role="list">
+        <li class="nav__item" data-menu="werken-leren">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Werken &amp; Leren
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="organisaties">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Zorgorganisaties
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="scholen">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Scholen
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+        <li class="nav__item" data-menu="over-ons">
+          <button class="nav__trigger" aria-expanded="false" aria-haspopup="true">
+            Over ons
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+      </ul>
+
+      <!-- CTA buttons -->
+      <div class="nav__ctas">
+        <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp</a>
+        <a href="/solliciteren/" class="btn btn--dark btn--sm">Direct Solliciteren</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ===================== MEGA MENU: Werken & Leren ===================== -->
+  <div class="mega" id="mega-werken-leren" role="region" aria-label="Werken en Leren">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Overzicht</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/" class="mega__link mega__link--featured">
+            Werken &amp; Leren (Wat is BBL?)
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a></li>
+        </ul>
+        <p class="mega__eyebrow" style="margin-top:20px">Niveaus</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/niveau-2/" class="mega__link">BBL Niveau 2 - Helpende</a></li>
+          <li><a href="/werken-en-leren/niveau-3/" class="mega__link">BBL Niveau 3 - Verzorgende IG</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="mega__link">
+            BBL Niveau 4 - Verpleegkundige
+            <span class="badge badge--new">nieuw</span>
+          </a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Informatie</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
+          <li><a href="/werken-en-leren/toelatingseisen/" class="mega__link">Toelatingseisen</a></li>
+          <li><a href="/werken-en-leren/salaris/" class="mega__link">Salaris en vergoedingen</a></li>
+          <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Leer meer</p>
+        <h3 class="mega__featured-title">Vier dagen werken,<br>één dag school</h3>
+        <p class="mega__featured-body">Bij BBL combineer je werken en leren. Je verdient direct een salaris en bouwt echte ervaring op in de zorg.</p>
+        <div class="mega__featured-actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp starten</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--sm">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Zorgorganisaties ===================== -->
+  <div class="mega" id="mega-organisaties" role="region" aria-label="Zorgorganisaties">
+    <div class="mega__inner mega__inner--orgs">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Zorgorganisaties</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/zorgorganisaties/" class="mega__link mega__link--featured">Alle organisaties bekijken</a></li>
+          <li><a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="mega__link">Zonnehuisgroep Amstelland</a></li>
+          <li><a href="/zorgorganisaties/zorgcentra-meerlanden/" class="mega__link">Zorgcentra Meerlanden</a></li>
+          <li><a href="/zorgorganisaties/zorggroep-aelsmeer/" class="mega__link">Zorggroep Aelsmeer</a></li>
+          <li><a href="/zorgorganisaties/pcsoh/" class="mega__link">PCSOH</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">&nbsp;</p>
+        <ul class="mega__links" role="list" style="margin-top:28px">
+          <li><a href="/zorgorganisaties/brentano/" class="mega__link">Brentano</a></li>
+          <li><a href="/zorgorganisaties/viva-zorggroep/" class="mega__link">ViVa! Zorggroep</a></li>
+          <li><a href="/zorgorganisaties/amstelring/" class="mega__link">Amstelring</a></li>
+          <li><a href="/zorgorganisaties/organisatie-8/" class="mega__link">Organisatie 8</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Weet je het nog niet?</p>
+        <h3 class="mega__featured-title">Laat de keuzehulp je op weg helpen</h3>
+        <p class="mega__featured-body">Beantwoord 6 korte vragen. We koppelen je aan de organisatie die het beste bij jou past.</p>
+        <div class="mega__featured-actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp starten</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--sm">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Scholen ===================== -->
+  <div class="mega" id="mega-scholen" role="region" aria-label="Scholen">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Voor scholen</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/scholen/" class="mega__link mega__link--featured">Scholen (Opleidingsinstituten)</a></li>
+          <li><a href="/scholen/hoe-werkt-het/" class="mega__link">Hoe werkt het proces?</a></li>
+          <li><a href="/scholen/open-dagen/" class="mega__link">Open dagen</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Goed om te weten</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/werken-en-leren/" class="mega__link">Wat is BBL?</a></li>
+          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Het opleidingstraject</p>
+        <h3 class="mega__featured-title">Samen leiden we de zorg van morgen op</h3>
+        <p class="mega__featured-body">MBO-instellingen en zorgorganisaties werken samen aan een sterk BBL-traject in de regio Amstelland &amp; Meerlanden.</p>
+        <div class="mega__featured-actions">
+          <a href="/scholen/hoe-werkt-het/" class="btn btn--primary btn--sm">Bekijk het proces</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MEGA MENU: Over ons ===================== -->
+  <div class="mega" id="mega-over-ons" role="region" aria-label="Over ons">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <p class="mega__eyebrow">Over ons</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/over-ons/" class="mega__link mega__link--featured">Regionale samenwerking</a></li>
+          <li><a href="/over-ons/samenwerking/" class="mega__link">Waarom samenwerken?</a></li>
+          <li><a href="/over-ons/deelnemers/" class="mega__link">Deelnemende organisaties</a></li>
+          <li><a href="/over-ons/contact/" class="mega__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__eyebrow">Voor professionals</p>
+        <ul class="mega__links" role="list">
+          <li><a href="/over-ons/" class="mega__link">Voor zorgorganisaties</a></li>
+          <li><a href="/scholen/" class="mega__link">Voor opleidingsinstituten</a></li>
+        </ul>
+      </div>
+      <div class="mega__col mega__col--featured">
+        <p class="mega__featured-label">Eén regio, één platform</p>
+        <h3 class="mega__featured-title">Acht organisaties.<br>Eén platform.</h3>
+        <p class="mega__featured-body">Opleidingindezorg.nl bundelt het BBL-aanbod van acht zorgorganisaties in Amstelland &amp; Meerlanden.</p>
+        <div class="mega__featured-actions">
+          <a href="/over-ons/" class="btn btn--primary btn--sm">Lees over de samenwerking</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay behind mega menu -->
+  <div class="mega-overlay" id="mega-overlay"></div>
+
+</header>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobiele navigatie">
+  <nav class="mobile-nav__inner" aria-label="Mobiele hoofdnavigatie">
+    <a href="/" class="mobile-nav__item">Home</a>
+    <a href="/werken-en-leren/" class="mobile-nav__item">Werken &amp; Leren</a>
+    <a href="/zorgorganisaties/" class="mobile-nav__item">Zorgorganisaties</a>
+    <a href="/scholen/" class="mobile-nav__item">Scholen</a>
+    <a href="/over-ons/" class="mobile-nav__item">Over ons</a>
+  </nav>
+  <div class="mobile-nav__footer">
+    <a href="/keuzehulp/" class="btn btn--primary">Keuzehulp starten</a>
+    <a href="/solliciteren/" class="btn btn--dark">Direct Solliciteren</a>
+  </div>
+</div>
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+<!-- ===================== END CANONICAL HEADER ===================== -->
+
+<main id="main">
+
+  <!-- ============================================================
+       SECTION 1: Hero compact — What is BBL? + compilation video
+       ACF GROUP: hero_fields
+       ACF: hero_title (text), hero_subtitle (textarea),
+            hero_video_url (url)
+       ============================================================ -->
+  <section class="hero hero--compact">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Kruimelpad">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Werken &amp; Leren</span>
+      </nav>
+
+      <div class="niveau-intro reveal">
+        <div class="niveau-intro__body">
+          <span class="hero__eyebrow">Werken &amp; Leren in de zorg</span>
+          <!-- ACF: hero_title (text) -->
+          <h1 class="text-h1">Wat is BBL? Werken en leren in de zorg</h1>
+          <!-- ACF: hero_subtitle (textarea) -->
+          <p class="text-lead">
+            BBL staat voor Beroepsbegeleidende Leerweg. Je werkt vier dagen per week
+            bij een zorgorganisatie en gaat één dag naar school. Je haalt een erkend
+            MBO-diploma en verdient vanaf de eerste dag salaris. Geen studieschuld,
+            wel echte ervaring.
+          </p>
+          <div class="hero__actions">
+            <a href="/keuzehulp/" class="btn btn--primary btn--lg">
+              Vind jouw match
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/solliciteren/" class="btn btn--dark btn--lg">Direct Solliciteren</a>
+          </div>
+        </div>
+        <div class="niveau-intro__media">
+          <!-- ACF: hero_video_url (url) — compilation video of all organisations -->
+          <div class="video-placeholder">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span>Compilatievideo</span>
+            <small>BBL bij de 8 zorgorganisaties</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: The three BBL levels — clickable level tiles
+       WP_LOOP: optional — pages using the 'bbl-niveau' template
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Kies je niveau</span>
+        <h2 class="text-h2">Drie BBL-niveaus, één duidelijke route</h2>
+        <p class="section__subtitle text-lead">Elk niveau is een opstap naar het volgende. Je begint waar jij past en groeit door in je eigen tempo.</p>
+      </div>
+      <div class="niveau-grid reveal--stagger">
+        <a href="/werken-en-leren/niveau-2/" class="niveau-tile">
+          <span class="niveau-tile__label">Niveau 2</span>
+          <h3 class="niveau-tile__title">Helpende Zorg en Welzijn</h3>
+          <p class="niveau-tile__text">Ideaal als startpunt. Ook zonder diploma welkom.</p>
+          <span class="niveau-tile__arrow">
+            Bekijk niveau 2
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <a href="/werken-en-leren/niveau-3/" class="niveau-tile">
+          <span class="niveau-tile__label">Niveau 3</span>
+          <h3 class="niveau-tile__title">Verzorgende IG</h3>
+          <p class="niveau-tile__text">De stap naar meer verantwoordelijkheid in de zorg.</p>
+          <span class="niveau-tile__arrow">
+            Bekijk niveau 3
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <a href="/werken-en-leren/niveau-4/" class="niveau-tile">
+          <span class="niveau-tile__label">Niveau 4 <span class="badge badge--new">nieuw</span></span>
+          <h3 class="niveau-tile__title">Verpleegkundige</h3>
+          <p class="niveau-tile__text">De hoogste BBL-opleiding in VVT. Nieuw in de regio.</p>
+          <span class="niveau-tile__arrow">
+            Bekijk niveau 4
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: Difference between BBL and BOL — comparison table
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">BBL of BOL?</span>
+        <h2 class="text-h2">Het verschil tussen BBL en BOL</h2>
+        <p class="section__subtitle text-lead">Beide leiden tot hetzelfde diploma. Het verschil zit in hoe je leert en of je direct salaris verdient.</p>
+      </div>
+      <div class="reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col">Onderwerp</th>
+              <th scope="col">BBL</th>
+              <th scope="col">BOL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Werken</td>
+              <td>4 dagen per week bij een zorgorganisatie</td>
+              <td>Stage, een aantal weken per jaar</td>
+            </tr>
+            <tr>
+              <td>School</td>
+              <td>1 dag per week</td>
+              <td>4 tot 5 dagen per week</td>
+            </tr>
+            <tr>
+              <td>Salaris</td>
+              <td>Ja, vanaf dag 1</td>
+              <td>Nee, soms een stagevergoeding</td>
+            </tr>
+            <tr>
+              <td>Contractvorm</td>
+              <td>Leer-arbeidsovereenkomst</td>
+              <td>Onderwijsovereenkomst</td>
+            </tr>
+            <tr>
+              <td>Diploma</td>
+              <td>Erkend MBO-diploma</td>
+              <td>Erkend MBO-diploma</td>
+            </tr>
+            <tr>
+              <td>Voor wie geschikt</td>
+              <td>Wie graag in de praktijk leert en direct wil verdienen</td>
+              <td>Wie eerst vooral klassikaal wil leren</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="section__cta">
+          <a href="/werken-en-leren/bbl-vs-bol/" class="btn btn--outline">Lees meer over BBL en BOL</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: Admission requirements summary + prominent callout
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Toelatingseisen</span>
+        <h2 class="text-h2">Kun jij starten met een BBL-opleiding?</h2>
+      </div>
+      <div class="callout callout--lg reveal">
+        <div class="callout__icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 2.5C21 12 19 16 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <p class="callout__title">Ook zonder diploma ben je welkom</p>
+          <p class="callout__text">
+            Heb je geen vooropleiding of twijfel je of je in aanmerking komt? Geen
+            probleem. Een gesprek is altijd mogelijk. Samen kijken we naar de route
+            die bij jou past, bijvoorbeeld via een instroomtraject of niveau 2.
+          </p>
+        </div>
+      </div>
+      <ul class="eisen-list reveal--stagger" style="margin-top:var(--space-md)">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Je bent gemotiveerd om in de zorg te werken en te leren.</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Voor niveau 2 zijn er geen formele diploma-eisen, een kennismakingsgesprek is voldoende.</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Voor niveau 3 en 4 helpt een diploma op het juiste instroomniveau, maar de school bepaalt dit per situatie.</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Je beheerst de Nederlandse taal voldoende voor de zorg en de opleiding.</span>
+        </li>
+      </ul>
+      <div class="section__cta reveal">
+        <a href="/werken-en-leren/toelatingseisen/" class="btn btn--outline">Bekijk alle toelatingseisen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: Salary summary — 3 salary cards
+       ACF: salaris_n2, salaris_n3, salaris_n4 (text)
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Salaris</span>
+        <h2 class="text-h2">Wat verdien je tijdens je BBL-opleiding?</h2>
+        <p class="section__subtitle text-lead">Je verdient vanaf dag 1. Het bruto maandsalaris hangt af van je niveau, leeftijd en de cao.</p>
+      </div>
+      <!-- TODO: exact salary figures to be confirmed by OMA based on the current VVT collective labour agreement (cao VVT) -->
+      <div class="salaris-grid reveal--stagger">
+        <div class="salaris-card salaris-card--n2">
+          <span class="salaris-card__level">Niveau 2 - Helpende</span>
+          <p class="salaris-card__amount">&euro; 1.450</p>
+          <p class="salaris-card__note">Indicatief bruto per maand bij een fulltime leer-arbeidsovereenkomst.</p>
+        </div>
+        <div class="salaris-card salaris-card--n3">
+          <span class="salaris-card__level">Niveau 3 - Verzorgende IG</span>
+          <p class="salaris-card__amount">&euro; 1.750</p>
+          <p class="salaris-card__note">Indicatief bruto per maand bij een fulltime leer-arbeidsovereenkomst.</p>
+        </div>
+        <div class="salaris-card salaris-card--n4">
+          <span class="salaris-card__level">Niveau 4 - Verpleegkundige</span>
+          <p class="salaris-card__amount">&euro; 2.050</p>
+          <p class="salaris-card__note">Indicatief bruto per maand bij een fulltime leer-arbeidsovereenkomst.</p>
+        </div>
+      </div>
+      <div class="section__cta reveal">
+        <a href="/werken-en-leren/salaris/" class="btn btn--outline">Bekijk salaris en vergoedingen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: FAQ accordion — 4 questions
+       js/faq.js handles open/close behaviour
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Veelgestelde vragen</span>
+        <h2 class="text-h2">Goed om te weten over BBL</h2>
+      </div>
+      <div class="faq reveal" style="margin-inline:auto">
+        <div class="faq__item">
+          <button class="faq__trigger" aria-expanded="false">
+            Wat betekent BBL precies?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel">
+            <div class="faq__panel-inner">
+              BBL staat voor Beroepsbegeleidende Leerweg. Je werkt vier dagen per week bij
+              een zorgorganisatie en gaat één dag per week naar school. Zo leer je in de
+              praktijk en in de klas tegelijk, en haal je een erkend MBO-diploma.
+            </div>
+          </div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__trigger" aria-expanded="false">
+            Verdien ik salaris tijdens de opleiding?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel">
+            <div class="faq__panel-inner">
+              Ja. Bij BBL teken je een leer-arbeidsovereenkomst en verdien je vanaf de
+              eerste dag salaris. Je hebt dus inkomen terwijl je je diploma haalt en je
+              bouwt geen studieschuld op.
+            </div>
+          </div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__trigger" aria-expanded="false">
+            Kan ik starten zonder diploma?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel">
+            <div class="faq__panel-inner">
+              Voor niveau 2 zijn er geen formele diploma-eisen. Ook zonder vooropleiding
+              ben je welkom voor een kennismakingsgesprek. Samen kijken we welke route
+              bij jou past, eventueel met een instroomtraject.
+            </div>
+          </div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__trigger" aria-expanded="false">
+            Hoe lang duurt een BBL-opleiding?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel">
+            <div class="faq__panel-inner">
+              Dat verschilt per niveau. Niveau 2 duurt gemiddeld 1 tot 2 jaar, niveau 3
+              ongeveer 3 jaar en niveau 4 ongeveer 3 tot 4 jaar. De exacte duur hangt af
+              van je vooropleiding en ervaring.
+            </div>
+          </div>
+        </div>
+        <div class="section__cta">
+          <a href="/werken-en-leren/faq/" class="btn btn--outline">Alle veelgestelde vragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: Keuzehulp CTA banner
+       ============================================================ -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner__content">
+        <h2 class="cta-banner__title">Klaar om te beginnen?</h2>
+        <p class="cta-banner__text">Beantwoord 6 korte vragen in de Keuzehulp en ontdek welke zorgorganisatie en welk niveau bij jou passen. Of solliciteer direct.</p>
+        <div class="cta-banner__actions">
+          <a href="/keuzehulp/" class="btn btn--primary btn--lg">Start de Keuzehulp</a>
+          <a href="/solliciteren/" class="btn btn--outline btn--on-dark">Direct Solliciteren</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     CANONICAL FOOTER — copy this block verbatim into every page,
+     directly before the scripts at the bottom of <body>.
+     WORDPRESS TEMPLATE: footer.php
+     ============================================================ -->
+
+<!-- WP TEMPLATE PART: footer.php -->
+<footer class="site-footer" id="site-footer">
+
+  <!-- Expandable grid -->
+  <!-- WP_MENU: footer | register as the 'Footer navigation' menu location in functions.php -->
+  <div class="footer__grid" id="footer-grid">
+    <div class="footer__grid-inner">
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Voor kandidaten</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/keuzehulp/" class="footer__link footer__link--cta">Keuzehulp starten</a></li>
+          <li><a href="/solliciteren/" class="footer__link footer__link--cta">Direct Solliciteren</a></li>
+          <li><a href="/werken-en-leren/" class="footer__link">Werken &amp; Leren (Wat is BBL?)</a></li>
+          <li><a href="/werken-en-leren/niveau-2/" class="footer__link">BBL Niveau 2 - Helpende</a></li>
+          <li><a href="/werken-en-leren/niveau-3/" class="footer__link">BBL Niveau 3 - Verzorgende IG</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="footer__link">BBL Niveau 4 - Verpleegkundige</a></li>
+          <li><a href="/werken-en-leren/toelatingseisen/" class="footer__link">Toelatingseisen</a></li>
+          <li><a href="/werken-en-leren/salaris/" class="footer__link">Salaris en vergoedingen</a></li>
+          <li><a href="/werken-en-leren/faq/" class="footer__link">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Zorgorganisaties</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/zorgorganisaties/" class="footer__link footer__link--strong">Alle zorgorganisaties</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="footer__link">Zonnehuisgroep Amstelland</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/zorgcentra-meerlanden/" class="footer__link">Zorgcentra Meerlanden</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/zorggroep-aelsmeer/" class="footer__link">Zorggroep Aelsmeer</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/pcsoh/" class="footer__link">PCSOH</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/brentano/" class="footer__link">Brentano</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/viva-zorggroep/" class="footer__link">ViVa! Zorggroep</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/amstelring/" class="footer__link">Amstelring</a></li>
+          <li class="footer__org-detail"><a href="/zorgorganisaties/organisatie-8/" class="footer__link">Organisatie 8</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Scholen &amp; Proces</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/scholen/" class="footer__link">Scholen (Opleidingsinstituten)</a></li>
+          <li><a href="/scholen/hoe-werkt-het/" class="footer__link">Hoe werkt het proces?</a></li>
+          <li><a href="/scholen/open-dagen/" class="footer__link">Open dagen</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Over ons</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/over-ons/" class="footer__link">Regionale samenwerking</a></li>
+          <li><a href="/over-ons/samenwerking/" class="footer__link">Waarom samenwerken?</a></li>
+          <li><a href="/over-ons/deelnemers/" class="footer__link">Deelnemende organisaties</a></li>
+          <li><a href="/over-ons/contact/" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Voor professionals</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="/over-ons/" class="footer__link">Voor zorgorganisaties</a></li>
+          <li><a href="/scholen/" class="footer__link">Voor opleidingsinstituten</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar (always visible) -->
+  <div class="footer__bottom">
+    <div class="footer__bottom-inner">
+      <button class="footer__toggle" id="footer-toggle" aria-expanded="false" aria-controls="footer-grid">
+        <span class="footer__copy">&copy; 2026 opleidingindezorg.nl &nbsp;&middot;&nbsp; Amstelland &amp; Meerlanden</span>
+        <svg class="footer__toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="footer__legal" role="list">
+        <li><a href="/privacy/">Privacybeleid</a></li>
+        <li><a href="/cookies/">Cookiebeleid</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/toegankelijkheid/">Toegankelijkheid</a></li>
+      </ul>
+    </div>
+  </div>
+
+</footer>
+<!-- ===================== END CANONICAL FOOTER ===================== -->
+
+<!-- Scripts: every page loads the same set. Each script does nothing
+     if its target elements are absent (safe guards). -->
+<script src="/js/nav.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/footer.js"></script>
+<script src="/js/faq.js"></script>
+<script src="/js/filter.js"></script>
+<script src="/js/forms.js"></script>
+</body>
+</html>

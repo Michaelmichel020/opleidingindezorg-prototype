@@ -1,0 +1,101 @@
+/* ============================================================
+   animations.css — Scroll-triggered reveals, parallax, counter
+   opleidingindezorg.nl
+   Classes are activated by js/animations.js
+   ============================================================ */
+
+/* ---------- Reveal: fade-in + slide-up ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-smooth),
+              transform 0.6s var(--ease-smooth);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Reveal: from the left ---------- */
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.6s var(--ease-smooth),
+              transform 0.6s var(--ease-smooth);
+}
+.reveal--left.is-visible { opacity: 1; transform: translateX(0); }
+
+/* ---------- Reveal: from the right ---------- */
+.reveal--right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.6s var(--ease-smooth),
+              transform 0.6s var(--ease-smooth);
+}
+.reveal--right.is-visible { opacity: 1; transform: translateX(0); }
+
+/* ---------- Reveal: scale ---------- */
+.reveal--scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s var(--ease-smooth),
+              transform 0.6s var(--ease-smooth);
+}
+.reveal--scale.is-visible { opacity: 1; transform: scale(1); }
+
+/* ---------- Stagger: child elements get an increasing delay ---------- */
+/* js/animations.js sets --stagger-index per child; 50ms per step */
+.reveal--stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease-smooth),
+              transform 0.5s var(--ease-smooth);
+  transition-delay: calc(var(--stagger-index, 0) * 50ms);
+}
+.reveal--stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Parallax ---------- */
+/* js/animations.js shifts translateY via --parallax-shift */
+.parallax {
+  will-change: transform;
+  transform: translateY(var(--parallax-shift, 0));
+}
+
+/* ---------- Counter (number animation) ---------- */
+.counter { font-variant-numeric: tabular-nums; }
+
+/* ---------- Confirmation: check pop-in ---------- */
+@keyframes check-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.confirm__check {
+  animation: check-pop 0.6s var(--ease) both;
+}
+
+/* ---------- Mega menu reveal ---------- */
+@keyframes mega-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--left,
+  .reveal--right,
+  .reveal--scale,
+  .reveal--stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .parallax { transform: none !important; }
+  .confirm__check { animation: none; }
+  html { scroll-behavior: auto; }
+}
