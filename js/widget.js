@@ -3,7 +3,8 @@
    opleidingindezorg.nl
    Opens a panel with three choices; each choice loads its content
    (keuzehulp / question form / application form) into the same panel.
-   Field validation is handled by js/forms.js.
+   The forms submit normally and redirect to a thank-you page;
+   field validation is handled by js/forms.js.
    ============================================================ */
 (function () {
   'use strict';
@@ -19,13 +20,6 @@
   function showView(name) {
     views.forEach(function (v) {
       v.hidden = (v.getAttribute('data-view') !== name);
-      /* reset a form view to its initial state (form shown, success hidden) */
-      var form    = v.querySelector('.widget__form');
-      var success = v.querySelector('.widget__success');
-      var intro   = v.querySelector('.widget__view-intro');
-      if (form)    { form.hidden = false; }
-      if (success) { success.hidden = true; }
-      if (intro)   { intro.hidden = false; }
     });
     widget.setAttribute('data-view', name);
     if (body) { body.scrollTop = 0; }
@@ -57,31 +51,6 @@
     if ((e.key === 'Escape' || e.key === 'Esc') && widget.classList.contains('is-open')) {
       closePanel();
     }
-  });
-
-  /* ---------- Widget forms: keep the submit inside the panel ----------
-     js/forms.js validates and shows the field errors. After a valid
-     submit we show an inline confirmation instead of navigating away. */
-  Array.prototype.slice.call(widget.querySelectorAll('.widget__form')).forEach(function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      /* let forms.js finish its synchronous validation first */
-      setTimeout(function () {
-        if (form.querySelector('.is-invalid') ||
-            form.querySelector('.form__error.is-visible')) {
-          return;
-        }
-        var view    = form.closest('.widget__view');
-        var success = view ? view.querySelector('.widget__success') : null;
-        if (!success) { return; }
-        var intro = view.querySelector('.widget__view-intro');
-        form.reset();
-        form.hidden = true;
-        if (intro) { intro.hidden = true; }
-        success.hidden = false;
-        if (body) { body.scrollTop = 0; }
-      }, 0);
-    });
   });
 
   showView('menu');

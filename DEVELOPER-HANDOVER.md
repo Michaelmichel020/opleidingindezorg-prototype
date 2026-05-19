@@ -23,7 +23,7 @@ same time). Candidates are matched to the right organisation through the site.
 - **Conversion goals:** the Keuzehulp (a guidance wizard) and the Direct
   Solliciteren (direct application) form.
 
-The prototype is 32 fully linked pages. It is meant to be converted 1:1 into a
+The prototype is 33 fully linked pages. It is meant to be converted 1:1 into a
 WordPress custom theme by a PHP developer.
 
 ### Tech stack
@@ -321,11 +321,11 @@ the client, not theme bugs.
 | Level 4 organisations | The set of organisations offering BBL level 4 needs confirmation. |
 | Filter bar | Visual only in the prototype. Connect to `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
 | Open days | Example dates and locations used. Final agenda to be supplied. |
-| Bureau Certo | Contact details on the contact page are placeholder. |
+| Contact details | The contact details on the contact page are placeholder. |
 | Legal pages | privacy, cookies, disclaimer, toegankelijkheid contain plausible but not legally reviewed text. |
 | Keuzehulp URL | Make the wizard iframe URL manageable in WordPress (ACF option or constant). |
 | Org locations / map | Detail pages use a static map placeholder. Provide location data and, if wanted, an interactive map. |
-| Application form | In WordPress, replace the static form with a Contact Form 7 or Gravity Forms shortcode. |
+| Forms | There are two forms: Direct Solliciteren and Contact. Build them in WordPress with Gravity Forms. Each form redirects to a dedicated thank-you page so submissions can be tracked as conversions: solliciteren goes to /solliciteren/bevestiging/, contact goes to /over-ons/contact/bedankt/. |
 
 ---
 
@@ -354,7 +354,7 @@ the hand-built references.
 
 Verified before handover:
 
-- All 32 pages return HTTP 200; no broken internal links.
+- All 33 pages return HTTP 200; no broken internal links.
 - Header and footer are functionally identical on every page.
 - All four mega menus present and consistent on every page.
 - Application form: validation, `?org=` pre-fill, and redirect to the

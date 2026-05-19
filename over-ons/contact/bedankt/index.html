@@ -3,37 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alle zorgorganisaties | Opleiding in de Zorg</title>
-  <meta name="description" content="Vergelijk de 8 zorgorganisaties die BBL-opleidingen aanbieden in Amstelland & Meerlanden. Filter op type, niveau en werkplek en vind jouw match.">
+  <title>Bedankt voor je bericht | Opleiding in de Zorg</title>
+  <meta name="description" content="Bedankt voor je bericht aan opleidingindezorg.nl. We hebben je vraag ontvangen en reageren zo snel mogelijk.">
 
   <!-- WP_OPTION: site_title | becomes 'Opleiding in de Zorg' -->
-  <!-- WP TEMPLATE: archive.php -->
-
-  <!--
-    WORDPRESS CUSTOM POST TYPE: organisaties
-    ------------------------------------------
-    Register in functions.php:
-    register_post_type('organisaties', [...])
-
-    ACF fields per organisation:
-    - org_naam (text)
-    - org_logo (image)
-    - org_tagline (text)
-    - org_video_url (url) — organisation-specific video
-    - org_beschrijving (wysiwyg, max 100 words)
-    - org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
-    - org_werkplek (checkbox: verpleeghuis, thuiszorg, revalidatie)
-    - org_type (select: klein, middelgroot, groot)
-    - org_adres (text)
-    - org_telefoon (text)
-    - org_locaties (repeater: naam, adres, lat, lng)
-    - org_arbeidsvoorwaarden (repeater: icoon, tekst)
-
-    Taxonomies:
-    - org_type (klein, middelgroot, groot)
-    - bbl_niveau (niveau-2, niveau-3, niveau-4)
-    - werkplek (verpleeghuis, thuiszorg, revalidatie)
-  -->
+  <!-- WP TEMPLATE: page.php -->
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
@@ -50,9 +24,9 @@
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/widget.css">
-  <link rel="stylesheet" href="/css/pages/organisaties.css">
+  <link rel="stylesheet" href="/css/pages/formulieren.css">
 </head>
-<body data-page="zorgorganisaties">
+<body data-page="contact-bedankt">
 
 <!-- ============================================================
      CANONICAL HEADER
@@ -277,246 +251,32 @@
 <main id="main">
 
   <!-- ============================================================
-       SECTION 1: Compact hero + breadcrumb
-       ACF GROUP: archive_header
-       ACF: archive_title (text), archive_intro (textarea)
-       ============================================================ -->
-  <section class="hero hero--compact">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Kruimelpad">
-        <a href="/">Home</a>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">Zorgorganisaties</span>
-      </nav>
-      <!-- ACF: archive_title (text) -->
-      <h1 class="text-h1 reveal">Alle zorgorganisaties</h1>
-      <!-- ACF: archive_intro (textarea) -->
-      <p class="text-lead reveal">Vergelijk de 8 deelnemende organisaties in de regio.</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 2: Org toolbar — Keuzehulp strip + filterbar
+       SECTION 1: Confirmation — conversion page, no form
+       WP TEMPLATE: page.php
+       Dedicated thank-you URL so the contact form submission can be
+       tracked (for example as a conversion goal).
        ============================================================ -->
   <section class="section section--warm">
     <div class="container">
+      <div class="confirm">
 
-      <div class="org-toolbar reveal">
-
-        <!-- Keuzehulp CTA bar, prominent above the grid -->
-        <div class="dark-strip">
-          <p class="dark-strip__text">Weet je niet welke bij je past? Laat de <strong>Keuzehulp</strong> je helpen.</p>
-          <a href="/keuzehulp/" class="btn btn--primary btn--sm">Start de Keuzehulp</a>
+        <div class="confirm__check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
 
-        <!-- Filterbar — visual only, not functional in this prototype.
-             The PHP developer connects this to a WP_Query with tax_query. -->
-        <!-- TODO: connect filters to WP_Query (tax_query org_type / bbl_niveau / werkplek) -->
-        <div class="filterbar">
-          <!-- WP_QUERY_FILTER: taxonomy org_type -->
-          <select class="filterbar__select" id="filter-type" aria-label="Filter op type organisatie">
-            <option value="">Type organisatie</option>
-            <option value="klein">Klein</option>
-            <option value="middelgroot">Middelgroot</option>
-            <option value="groot">Groot</option>
-          </select>
-
-          <!-- WP_QUERY_FILTER: taxonomy bbl_niveau -->
-          <select class="filterbar__select" id="filter-niveau" aria-label="Filter op BBL-niveau">
-            <option value="">BBL-niveau</option>
-            <option value="niveau-2">Niveau 2 - Helpende</option>
-            <option value="niveau-3">Niveau 3 - Verzorgende IG</option>
-            <option value="niveau-4">Niveau 4 - Verpleegkundige</option>
-          </select>
-
-          <!-- WP_QUERY_FILTER: taxonomy werkplek -->
-          <select class="filterbar__select" id="filter-werkplek" aria-label="Filter op werkplek">
-            <option value="">Werkplek</option>
-            <option value="verpleeghuis">Verpleeghuis</option>
-            <option value="thuiszorg">Thuiszorg</option>
-            <option value="revalidatie">Revalidatie</option>
-          </select>
-
-          <!-- View toggle: grid / list (js/filter.js) -->
-          <div class="filterbar__view" role="group" aria-label="Weergave kiezen">
-            <button type="button" data-view="grid" class="is-active" aria-pressed="true" aria-label="Rasterweergave">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
-            </button>
-            <button type="button" data-view="list" aria-pressed="false" aria-label="Lijstweergave">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </button>
-          </div>
-        </div>
+        <h1 class="text-h1 reveal">Bedankt voor je bericht!</h1>
+        <p class="text-lead reveal">
+          We hebben je vraag ontvangen en reageren zo snel mogelijk, meestal binnen twee werkdagen.
+        </p>
 
       </div>
 
-      <!-- Result counter -->
-      <p class="org-count" id="org-count">8 organisaties</p>
-
-      <!-- ============================================================
-           SECTION 3: Grid of 8 org cards
-           CPT: organisaties | post_type loop
-           ============================================================ -->
-      <!-- WP_LOOP: start — while (have_posts()) : the_post(); -->
-      <div class="org-grid reveal--stagger" id="org-grid">
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <!-- ACF: org_naam, org_logo, org_type, org_tagline, org_niveaus, org_werkplek, org_url -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Zonnehuisgroep<br>Amstelland</div>
-            <h3 class="org-card__name">Zonnehuisgroep Amstelland</h3>
-            <p class="org-card__type">Groot &middot; Al meer dan 100 jaar ouderenzorg rond Amstelveen.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag">Niveau 4</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-              <span class="tag tag--neutral">Thuiszorg</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/zorgcentra-meerlanden/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Zorgcentra<br>Meerlanden</div>
-            <h3 class="org-card__name">Zorgcentra Meerlanden</h3>
-            <p class="org-card__type">Middelgroot &middot; Zorgen doen we met elkaar, in de Haarlemmermeer.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag">Niveau 4</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-              <span class="tag tag--neutral">Thuiszorg</span>
-              <span class="tag tag--neutral">Revalidatie</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/zorggroep-aelsmeer/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Zorggroep<br>Aelsmeer</div>
-            <h3 class="org-card__name">Zorggroep Aelsmeer</h3>
-            <p class="org-card__type">Middelgroot &middot; Goed in het gewone, dicht bij mensen.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-              <span class="tag tag--neutral">Thuiszorg</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/pcsoh/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">PCSOH</div>
-            <h3 class="org-card__name">PCSOH</h3>
-            <p class="org-card__type">Middelgroot &middot; Geborgen ouderenzorg in de Haarlemmermeer.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag">Niveau 4</span>
-              <span class="tag tag--neutral">Thuiszorg</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/brentano/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Brentano</div>
-            <h3 class="org-card__name">Brentano</h3>
-            <p class="org-card__type">Middelgroot &middot; Vertrouwde ouderenzorg in Amstelveen sinds 1821.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag">Niveau 4</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-              <span class="tag tag--neutral">Revalidatie</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/cordaan/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Cordaan</div>
-            <h3 class="org-card__name">Cordaan</h3>
-            <p class="org-card__type">Groot &middot; Zorg in Amsterdam, voor jong tot oud.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag">Niveau 4</span>
-              <span class="tag tag--neutral">Thuiszorg</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-              <span class="tag tag--neutral">Revalidatie</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/amstelring/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Amstelring</div>
-            <h3 class="org-card__name">Amstelring</h3>
-            <p class="org-card__type">Groot &middot; De mens blijven zien, dichtbij in de buurt.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag">Niveau 4</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-              <span class="tag tag--neutral">Thuiszorg</span>
-              <span class="tag tag--neutral">Revalidatie</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
-        <!-- TEMPLATE_PART: components/org-card.php -->
-        <!-- TODO: Sigra is a regional collaboration network, not a care employer. Review whether this card belongs in the care-organisations grid. -->
-        <article class="org-card reveal">
-          <a href="/zorgorganisaties/sigra/" class="org-card__link">
-            <div class="org-card__logo logo-placeholder">Sigra</div>
-            <h3 class="org-card__name">Sigra</h3>
-            <p class="org-card__type">Samenwerkingsverband &middot; Samen voor betere zorg en welzijn in de regio.</p>
-            <div class="org-card__tags">
-              <span class="tag">Niveau 2</span>
-              <span class="tag">Niveau 3</span>
-              <span class="tag tag--neutral">Verpleeghuis</span>
-            </div>
-            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
-          </a>
-        </article>
-
+      <!-- CTAs -->
+      <div class="hero__actions reveal" style="justify-content:center">
+        <a href="/" class="btn btn--primary btn--lg">Terug naar home</a>
+        <a href="/werken-en-leren/" class="btn btn--outline btn--lg">Lees over Werken &amp; Leren</a>
       </div>
-      <!-- WP_LOOP: end -->
 
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 4: Keuzehulp CTA banner
-       ============================================================ -->
-  <section class="cta-banner reveal">
-    <div class="container">
-      <div class="cta-banner__content">
-        <h2 class="cta-banner__title">Welke organisatie past bij jou?</h2>
-        <p class="cta-banner__text">Beantwoord 6 korte vragen. Je krijgt een persoonlijk advies op basis van jouw woonplaats, voorkeur en situatie. In minder dan 3 minuten weet je waar je past.</p>
-        <div class="cta-banner__actions">
-          <a href="/keuzehulp/" class="btn btn--primary btn--lg">Start de Keuzehulp</a>
-          <a href="/solliciteren/" class="btn btn--outline btn--on-dark">Direct Solliciteren</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -859,8 +619,7 @@
 
 </div>
 
-<!-- Scripts: every page loads the same set. Each script does
-     nothing if its target elements are absent (safe guards). -->
+<!-- Scripts: every page loads the same set. Each script does nothing if its target elements are absent (safe guards). -->
 <script src="/js/nav.js"></script>
 <script src="/js/animations.js"></script>
 <script src="/js/footer.js"></script>

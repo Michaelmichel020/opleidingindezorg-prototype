@@ -23,7 +23,7 @@ scroll-animaties.
 
 ## Wat zit erin
 
-32 pagina's, volledig onderling gelinkt:
+33 pagina's, volledig onderling gelinkt:
 
 - **Home** (`index.html`)
 - **Werken & Leren** — overzicht + 3 BBL-niveaus + 4 informatiepagina's
@@ -86,12 +86,12 @@ Doorzoekbaar met `grep -rn "TODO" .` Samengevat:
 - **Filterbar** — in het prototype visueel; in WordPress koppelen aan `WP_Query`
   met `tax_query` (org_type / bbl_niveau / werkplek).
 - **Open dagen** — voorbeelddata en -locaties, definitieve agenda aanleveren.
-- **Bureau Certo** — contactgegevens op de contactpagina zijn voorbeeld.
+- **Contactgegevens** — de contactgegevens op de contactpagina zijn voorbeeld.
 - **Legal-pagina's** — privacy, cookies, disclaimer en toegankelijkheid bevatten
   plausibele maar niet-juridisch-gecontroleerde tekst.
 
 ## Kwaliteitscheck
 
-Geverifieerd: 32 pagina's geven HTTP 200, geen kapotte interne links, identieke
+Geverifieerd: 33 pagina's geven HTTP 200, geen kapotte interne links, identieke
 header/footer overal, mega menu's compleet, sollicitatieformulier met validatie
 en `?org=`-pre-fill, FAQ-accordion, geen externe dependencies buiten Google Fonts.

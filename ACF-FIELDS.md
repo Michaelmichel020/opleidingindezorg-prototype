@@ -99,8 +99,8 @@ can be synced to them, or the taxonomies can be the single source of truth.
 | `page.php` template `bbl-niveau` (niveau 2/3/4) | `hero_title`, `hero_subtitle`, `hero_video_url` (level-specific) |
 | `archive.php` (organisaties overview) | `archive_title`, `archive_intro`; `organisaties` loop (`org_naam`, `org_logo`, `org_type`, `org_tagline`, `org_niveaus`, `org_werkplek`, `org_url`) |
 | `single-organisaties.php` | all `org_*` fields |
-| `page.php` template `solliciteren` | `hero_title`, `hero_subtitle` (the form itself: Contact Form 7 / Gravity Forms, not ACF) |
-| `page.php` template `contact` | `hero_title`, `hero_subtitle` (the form itself: Contact Form 7 / Gravity Forms) |
+| `page.php` template `solliciteren` | `hero_title`, `hero_subtitle` (the form itself: Gravity Forms, not ACF) |
+| `page.php` template `contact` | `hero_title`, `hero_subtitle` (the form itself: Gravity Forms) |
 | `page.php` template `keuzehulp-full` | `keuzehulp_wizard_url` (Options) |
 
 ---
@@ -108,7 +108,7 @@ can be synced to them, or the taxonomies can be the single source of truth.
 ## Notes
 
 - The application and contact forms are **not** ACF. In WordPress, build them
-  with Contact Form 7 or Gravity Forms. The prototype form uses
+  with Gravity Forms. The prototype form uses
   `method="get"` with a redirect to the confirmation page purely to make the
   flow clickable; replace it with the plugin's submission handling.
 - The `?org=<slug>` URL parameter on the application form pre-selects an

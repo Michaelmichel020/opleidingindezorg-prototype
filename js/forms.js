@@ -3,7 +3,7 @@
    opleidingindezorg.nl
    NOTE: in this prototype the forms do not submit any data. On a
          valid submit a redirect follows (method="get" action).
-         In WordPress: Contact Form 7 / Gravity Forms.
+         In WordPress: Gravity Forms.
    ============================================================ */
 (function () {
   'use strict';

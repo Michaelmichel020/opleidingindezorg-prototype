@@ -501,6 +501,7 @@
           <a href="/over-ons/samenwerking/">Waarom samenwerken?</a>
           <a href="/over-ons/deelnemers/">Deelnemende organisaties</a>
           <a href="/over-ons/contact/">Contact</a>
+          <a href="/over-ons/contact/bedankt/">Contact: bedankt</a>
         </div>
         <div class="footer__sitemap-group">
           <span class="footer__sitemap-head">Juridisch</span>
@@ -606,8 +607,8 @@
         </button>
         <h3 class="widget__view-title">Stel je vraag</h3>
         <p class="widget__view-intro">Laat je vraag achter, we reageren zo snel mogelijk.</p>
-        <!-- WP: replace with a Contact Form 7 / Gravity Forms shortcode -->
-        <form class="form widget__form" action="/over-ons/contact/" method="get" novalidate>
+        <!-- WP: replace with a Gravity Forms shortcode. On submit it redirects to the thank-you page. -->
+        <form class="form widget__form" action="/over-ons/contact/bedankt/" method="get" novalidate>
           <div class="form__group">
             <label class="form__label" for="w-naam">Naam <span class="required">*</span></label>
             <input class="form__input" type="text" id="w-naam" name="naam" required maxlength="60">
@@ -633,14 +634,6 @@
           </div>
           <button type="submit" class="btn btn--primary btn--block">Verstuur vraag</button>
         </form>
-        <div class="widget__success" hidden>
-          <div class="widget__success-check">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <p class="widget__success-title">Je vraag is verstuurd</p>
-          <p class="widget__success-text">Bedankt! We reageren zo snel mogelijk per e-mail.</p>
-          <button class="btn btn--outline btn--block" type="button" data-widget-back>Terug naar start</button>
-        </div>
       </section>
 
       <!-- View: solliciteren -->
@@ -651,7 +644,7 @@
         </button>
         <h3 class="widget__view-title">Direct solliciteren</h3>
         <p class="widget__view-intro">Vul je gegevens in. De organisatie neemt snel contact met je op.</p>
-        <!-- WP: replace with a Contact Form 7 / Gravity Forms shortcode -->
+        <!-- WP: replace with a Gravity Forms shortcode. On submit it redirects to the thank-you page. -->
         <form class="form widget__form" action="/solliciteren/bevestiging/" method="get" novalidate>
           <div class="form__row form__row--2col">
             <div class="form__group">
@@ -698,14 +691,6 @@
           </div>
           <button type="submit" class="btn btn--primary btn--block">Verstuur aanmelding</button>
         </form>
-        <div class="widget__success" hidden>
-          <div class="widget__success-check">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <p class="widget__success-title">Je aanmelding is verstuurd</p>
-          <p class="widget__success-text">Bedankt! De organisatie neemt zo snel mogelijk contact met je op.</p>
-          <button class="btn btn--outline btn--block" type="button" data-widget-back>Terug naar start</button>
-        </div>
       </section>
 
     </div>
