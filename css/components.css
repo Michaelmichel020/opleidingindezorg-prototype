@@ -258,6 +258,33 @@
 }
 .media-row--keep-mobile .media-row__media { display: block; }
 
+/* Media row whose illustration matches a tall text column (e.g. a list
+   of requirements): the placeholder stretches to the text height. */
+.media-row--stretch { align-items: stretch; }
+.media-row--stretch .media-placeholder { aspect-ratio: auto; height: 100%; }
+@media (min-width: 768px) {
+  .media-row--stretch { grid-template-columns: 0.85fr 1.15fr; }
+}
+
+/* ---------- Hero with a side element (callout or video) ----------
+   A compact hero that shows a callout box or a video next to the
+   intro text. One column on mobile, two columns from 880px. */
+.hero-split { display: grid; gap: var(--space-lg); }
+@media (min-width: 880px) {
+  .hero-split { grid-template-columns: 1.05fr 0.95fr; align-items: center; }
+}
+/* Keep the side element's own spacing, not the hero text defaults. */
+.hero-split__media .callout__title { margin-bottom: 4px; }
+.hero-split__media .callout__text  { margin-bottom: 0; }
+
+/* Centred compact hero: eyebrow pill, headings and intro centred. */
+.hero--center .container { text-align: center; }
+.hero--center .hero__subtitle { margin-inline: auto; }
+
+/* ---------- Open dagen: grid / list view toggle ---------- */
+.agenda-toolbar { display: flex; justify-content: flex-end; margin-bottom: var(--space-md); }
+#agenda-grid.org-grid--list { grid-template-columns: 1fr; }
+
 /* ---------- Cards (generic) ---------- */
 .card {
   background: var(--white);

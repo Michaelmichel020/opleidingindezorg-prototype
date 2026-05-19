@@ -120,6 +120,8 @@ h1, h2, h3, h4 { font-weight: 400; }
 .section--teal   { background: var(--teal-bg); }
 .section--dark   { background: var(--charcoal); color: var(--white); }
 .section--dark .text-lead { color: rgba(255,255,255,0.78); }
+/* Less space above a section that follows a hero text block closely. */
+.section--tight-top { padding-top: var(--space-lg); }
 
 .section__header {
   max-width: 720px;

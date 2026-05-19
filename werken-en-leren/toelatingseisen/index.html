@@ -267,37 +267,35 @@
         <span aria-current="page">Toelatingseisen</span>
       </nav>
 
-      <div class="reveal" style="max-width:var(--max-w-content)">
-        <span class="hero__eyebrow">Kun jij starten?</span>
-        <!-- ACF: hero_title (text) -->
-        <h1 class="text-h1">Toelatingseisen</h1>
-        <!-- ACF: hero_intro (textarea) -->
-        <p class="text-lead">
-          De drempel om in de zorg te beginnen is lager dan je denkt. Hieronder lees
-          je per BBL-niveau wat handig is om te hebben. Maar het belangrijkste vooraf:
-          een gesprek kan altijd.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 2: Large prominent callout banner
-       ============================================================ -->
-  <section class="section">
-    <div class="container">
-      <div class="callout callout--lg reveal">
-        <div class="callout__icon">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 2.5C21 12 19 16 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-        </div>
-        <div>
-          <p class="callout__title">Je hoeft geen diploma te hebben om te beginnen. Een gesprek is altijd mogelijk.</p>
-          <p class="callout__text">
-            Heb je geen vooropleiding, kom je net van school of wil je na jaren weer
-            aan het werk? Dat maakt niet uit. De zorgorganisaties kijken naar jouw
-            motivatie en samen met een MBO-instelling bekijken we welke route past.
-            Soms start je via een instroomtraject, soms direct op niveau 2.
+      <!-- Hero: intro text left, the prominent callout beside it (.hero-split) -->
+      <div class="hero-split">
+        <div class="hero-split__text reveal">
+          <span class="hero__eyebrow">Kun jij starten?</span>
+          <!-- ACF: hero_title (text) -->
+          <h1 class="text-h1">Toelatingseisen</h1>
+          <!-- ACF: hero_intro (textarea) -->
+          <p class="text-lead">
+            De drempel om in de zorg te beginnen is lager dan je denkt. Hieronder lees
+            je per BBL-niveau wat handig is om te hebben. Maar het belangrijkste vooraf:
+            een gesprek kan altijd.
           </p>
+        </div>
+        <div class="hero-split__media reveal">
+          <!-- ACF: hero_callout_titel (text), hero_callout_tekst (textarea) -->
+          <div class="callout callout--lg">
+            <div class="callout__icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 2.5C21 12 19 16 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <p class="callout__title">Je hoeft geen diploma te hebben om te beginnen. Een gesprek is altijd mogelijk.</p>
+              <p class="callout__text">
+                Heb je geen vooropleiding, kom je net van school of wil je na jaren weer
+                aan het werk? Dat maakt niet uit. De zorgorganisaties kijken naar jouw
+                motivatie en samen met een MBO-instelling bekijken we welke route past.
+                Soms start je via een instroomtraject, soms direct op niveau 2.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -309,11 +307,21 @@
        ============================================================ -->
   <section class="section section--warm">
     <div class="container">
-      <div class="section__header reveal">
-        <span class="text-label text-label--teal">Per niveau</span>
-        <h2 class="text-h2">Wat is handig om te hebben?</h2>
-        <p class="section__subtitle text-lead">De MBO-instelling bepaalt altijd of je kunt instromen. Onderstaande punten zijn een richtlijn.</p>
-      </div>
+      <!-- Per-niveau: illustration left, requirements right (.media-row) -->
+      <div class="media-row media-row--stretch reveal">
+        <div class="media-row__media">
+          <!-- ACF: niveau_illustratie (image) -->
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="9.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Foto of illustratie</span>
+          </div>
+        </div>
+        <div class="media-row__text">
+          <div class="section__header">
+            <span class="text-label text-label--teal">Per niveau</span>
+            <h2 class="text-h2">Wat is handig om te hebben?</h2>
+            <p class="section__subtitle text-lead">De MBO-instelling bepaalt altijd of je kunt instromen. Onderstaande punten zijn een richtlijn.</p>
+          </div>
 
       <!-- Level 2 -->
       <div class="reveal" style="max-width:var(--max-w-content);margin-bottom:var(--space-lg)">
@@ -370,6 +378,8 @@
             <span>Je beheerst de Nederlandse taal goed, voor duidelijke communicatie en rapportage.</span>
           </li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   </section>

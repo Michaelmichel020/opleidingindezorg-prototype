@@ -283,7 +283,8 @@
        SECTION 2: Open days overview - cards
        WP_LOOP: custom post type 'open_dagen'
        ACF per item: datum (date), tijd (text), locatie (text),
-                     organisatie (relationship), beschrijving (textarea)
+                     organisatie (relationship), beschrijving (textarea),
+                     meer_info_url (url, opens in a new tab)
        ============================================================ -->
   <section class="section section--warm">
     <div class="container">
@@ -296,9 +297,21 @@
         </p>
       </div>
 
+      <!-- View toggle: the visitor switches between grid and list view (js/filter.js) -->
+      <div class="agenda-toolbar reveal">
+        <div class="filterbar__view" role="group" aria-label="Weergave kiezen">
+          <button type="button" data-view="grid" class="is-active" aria-pressed="true" aria-label="Rasterweergave">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+          <button type="button" data-view="list" aria-pressed="false" aria-label="Lijstweergave">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+
       <!-- TODO: provide the final dates and locations -->
       <!-- WP_LOOP: start - open days -->
-      <div class="org-grid reveal--stagger">
+      <div class="org-grid reveal--stagger" id="agenda-grid">
 
         <!-- TEMPLATE_PART: components/open-dag-card.php -->
         <article class="card card--link">
@@ -310,9 +323,8 @@
             <span class="tag tag--neutral">Zonnehuisgroep Amstelland</span>
           </div>
           <p class="step__text">Rondleiding door een woonzorglocatie, in gesprek met BBL-studenten en hun werkbegeleiders.</p>
-          <p style="margin-top:12px"><a href="/over-ons/contact/" class="niveau-tile__arrow">Aanmelden of vragen
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a></p>
+          <!-- WP: link to ACF 'meer_info_url' (URL field), opens in a new tab. Inert in the prototype. -->
+          <p style="margin-top:12px"><a class="btn btn--outline btn--sm" target="_blank" rel="noopener" aria-disabled="true">Meer informatie</a></p>
         </article>
 
         <article class="card card--link">
@@ -324,9 +336,8 @@
             <span class="tag tag--neutral">Zorgcentra Meerlanden</span>
           </div>
           <p class="step__text">Avondbijeenkomst over BBL niveau 2, 3 en 4. Ideaal voor zij-instromers met een baan overdag.</p>
-          <p style="margin-top:12px"><a href="/over-ons/contact/" class="niveau-tile__arrow">Aanmelden of vragen
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a></p>
+          <!-- WP: link to ACF 'meer_info_url' (URL field), opens in a new tab. Inert in the prototype. -->
+          <p style="margin-top:12px"><a class="btn btn--outline btn--sm" target="_blank" rel="noopener" aria-disabled="true">Meer informatie</a></p>
         </article>
 
         <article class="card card--link">
@@ -338,9 +349,8 @@
             <span class="tag tag--neutral">Zorggroep Aelsmeer</span>
           </div>
           <p class="step__text">Kleinschalige kennismaking met de thuiszorg en het verpleeghuis. Loop mee met een verzorgende.</p>
-          <p style="margin-top:12px"><a href="/over-ons/contact/" class="niveau-tile__arrow">Aanmelden of vragen
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a></p>
+          <!-- WP: link to ACF 'meer_info_url' (URL field), opens in a new tab. Inert in the prototype. -->
+          <p style="margin-top:12px"><a class="btn btn--outline btn--sm" target="_blank" rel="noopener" aria-disabled="true">Meer informatie</a></p>
         </article>
 
         <article class="card card--link">
@@ -352,9 +362,8 @@
             <span class="tag tag--neutral">Alle deelnemende organisaties</span>
           </div>
           <p class="step__text">Regionale banenmarkt waar alle deelnemende zorgorganisaties aanwezig zijn. Vergelijk werkplekken op één plek.</p>
-          <p style="margin-top:12px"><a href="/over-ons/contact/" class="niveau-tile__arrow">Aanmelden of vragen
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a></p>
+          <!-- WP: link to ACF 'meer_info_url' (URL field), opens in a new tab. Inert in the prototype. -->
+          <p style="margin-top:12px"><a class="btn btn--outline btn--sm" target="_blank" rel="noopener" aria-disabled="true">Meer informatie</a></p>
         </article>
 
         <article class="card card--link">
@@ -366,9 +375,8 @@
             <span class="tag tag--neutral">Brentano</span>
           </div>
           <p class="step__text">Najaarseditie met focus op de start in januari 2027. Bekijk de afdelingen en plan een intakegesprek.</p>
-          <p style="margin-top:12px"><a href="/over-ons/contact/" class="niveau-tile__arrow">Aanmelden of vragen
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a></p>
+          <!-- WP: link to ACF 'meer_info_url' (URL field), opens in a new tab. Inert in the prototype. -->
+          <p style="margin-top:12px"><a class="btn btn--outline btn--sm" target="_blank" rel="noopener" aria-disabled="true">Meer informatie</a></p>
         </article>
 
       </div>

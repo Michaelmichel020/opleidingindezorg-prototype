@@ -7,7 +7,9 @@
 (function () {
   'use strict';
 
-  var grid = document.getElementById('org-grid');
+  /* The org overview uses #org-grid; the open-dagen agenda uses #agenda-grid.
+     Both share the grid / list view toggle below. */
+  var grid = document.getElementById('org-grid') || document.getElementById('agenda-grid');
 
   /* ---------- Grid / list view toggle ---------- */
   var viewButtons = Array.prototype.slice.call(document.querySelectorAll('.filterbar__view button'));

@@ -82,7 +82,7 @@ python3 -m http.server 8000
 │   ├── animations.js               IntersectionObserver reveals, parallax, counter
 │   ├── footer.js                   footer expand/collapse
 │   ├── faq.js                      accordion
-│   ├── filter.js                   org overview view-toggle (+ filter placeholder)
+│   ├── filter.js                   org + open-dagen view-toggle, result count
 │   └── forms.js                    validation, character counter, URL pre-fill
 ├── assets/logo/                    logo SVGs (teal, white, icon)
 ├── _partials/                      build sources, NOT part of the WP theme
@@ -192,17 +192,51 @@ the **"Andere zorgorganisaties"** block at the bottom of every detail page.
 Register them with `show_admin_column => true` so the admin can also filter the
 organisations list inside wp-admin.
 
+#### Open dagen — a second custom post type
+
+Open days and information evenings are event content the client adds and
+removes often, so they get the same treatment as organisations: a custom post
+type `open_dagen` with its own **"Open dagen"** item in the wp-admin sidebar.
+The admin never edits the `/scholen/open-dagen/` page itself — they add an open
+day, fill in the fields, Publish.
+
+```php
+register_post_type( 'open_dagen', [
+    'public'       => true,
+    'show_in_menu' => true,
+    'menu_icon'    => 'dashicons-calendar-alt',
+    'supports'     => [ 'title' ],   // title only; the rest is ACF
+] );
+```
+
+Fields per open day (ACF, see `ACF-FIELDS.md`): `datum`, `tijd`, `locatie`,
+`organisatie` (a relation to an `organisaties` post), `beschrijving` and
+`meer_info_url`.
+
+- **`meer_info_url`** drives the "Meer informatie" button on each card. Render
+  it as `<a href="{meer_info_url}" target="_blank" rel="noopener">`. In the
+  prototype the button is intentionally inert (it has no `href` and is marked
+  `aria-disabled="true"`); wire it to the field.
+- The overview at `/scholen/open-dagen/` has a **grid / list view toggle** the
+  visitor controls. It is pure front-end: `js/filter.js` toggles
+  `.org-grid--list` on the `#agenda-grid` element. Keep the toolbar markup; no
+  server work needed.
+
 ### 3.3 ACF field groups
 
 Create these ACF field groups (full field list with types in `ACF-FIELDS.md`):
 
 - **Hero fields** — `hero_title`, `hero_subtitle`, `hero_video_url`. Attach to
-  the relevant page templates.
+  the relevant page templates. `hero_video_url` now also feeds the video in the
+  scholen and over-ons heroes; `toelatingseisen` instead shows a callout beside
+  the hero text (`hero_callout_titel`, `hero_callout_tekst`).
 - **Archive intro** — `archive_title`, `archive_intro`. For the
   organisaties archive.
 - **Organisation fields** — all `org_*` fields. Attach to the `organisaties`
   post type. This is the largest group and includes two repeaters
   (`org_locaties`, `org_arbeidsvoorwaarden`).
+- **Open dag fields** — `datum`, `tijd`, `locatie`, `organisatie`,
+  `beschrijving`, `meer_info_url`. Attach to the `open_dagen` post type.
 - **Site options** — `site_logo` and the Keuzehulp wizard URL, best placed on
   an ACF Options page so they are editable site-wide.
 
@@ -243,6 +277,7 @@ Summary:
 | `archive.php` | `archive_title`, `archive_intro` |
 | `single-organisaties.php` | all `org_*` fields (see ACF-FIELDS.md) |
 | `solliciteren` / `contact` templates | `hero_title`, `hero_subtitle` |
+| `page.php` (scholen/open-dagen) | `hero_title`, `hero_subtitle` + `open_dagen` loop |
 | `keuzehulp-full` template | wizard URL (recommended as an ACF option) |
 
 ---
@@ -277,7 +312,7 @@ before `</body>`:
 | `animations.js` | IntersectionObserver scroll reveals, stagger, number counter, parallax |
 | `footer.js` | footer expand/collapse |
 | `faq.js` | accordion (one panel open at a time, animated max-height) |
-| `filter.js` | organisation overview grid/list view toggle; filter dropdowns are a visual placeholder |
+| `filter.js` | grid/list view toggle for the organisation overview (`#org-grid`) and the open-dagen agenda (`#agenda-grid`); the organisation result count; the org filter dropdowns are a visual placeholder |
 | `forms.js` | form validation, textarea character counter, `?org=` pre-fill, hidden source field |
 
 In WordPress, enqueue these with `wp_enqueue_script` in the footer. No
@@ -360,7 +395,8 @@ the client, not theme bugs.
 | Cordaan | May need to be hidden at launch, see "Hiding Cordaan at launch" below. |
 | Level 4 organisations | The set of organisations offering BBL level 4 needs confirmation. |
 | Filter bar | Visual only in the prototype. Connect to `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
-| Open days | Example dates and locations used. Final agenda to be supplied. |
+| Open days | Open days are a custom post type (`open_dagen`); the admin adds them via the "Open dagen" admin screen. Example dates/locations used, final agenda to be supplied. The "Meer informatie" button stays inert until each event's `meer_info_url` field is filled (it opens in a new tab). |
+| Organisation count | The organisation total is shown as a count in two places: the overview result count (`#org-count`) and the over-ons "In cijfers" stat. Neither is hardcoded copy; each must be wired to the live `organisaties` post count (`$query->found_posts` / `wp_count_posts('organisaties')->publish`) so it updates by itself when an organisation is added or removed. |
 | Contact details | The contact details on the contact page are placeholder. |
 | Legal pages | privacy, cookies, disclaimer, toegankelijkheid contain plausible but not legally reviewed text. |
 | Keuzehulp URL | Make the wizard iframe URL manageable in WordPress (ACF option or constant). |

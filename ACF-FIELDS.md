@@ -88,6 +88,23 @@ can be synced to them, or the taxonomies can be the single source of truth.
 
 ---
 
+## Group 5 — Open dag Fields
+
+Attach to: the `open_dagen` custom post type. One post per open day or
+information evening; looped on `/scholen/open-dagen/`. The admin manages these
+through the dedicated "Open dagen" admin screen (see DEVELOPER-HANDOVER 3.2).
+
+| Field name | Type | Description |
+|---|---|---|
+| `datum` | Date | Date of the open day. Drives the date label on the card. |
+| `tijd` | Text | Time range, e.g. "Zaterdag 10.00 - 14.00 uur". |
+| `locatie` | Text | Place name / town, shown as a tag. |
+| `organisatie` | Post Object / Relationship | The hosting organisation; links to an `organisaties` post. Shown as a tag. |
+| `beschrijving` | Textarea | Short description of the open day. |
+| `meer_info_url` | URL | Target of the "Meer informatie" button. Rendered as `<a target="_blank" rel="noopener">`, opens in a new tab. If empty, keep the button inert. |
+
+---
+
 ## Field usage per template
 
 | Template | ACF fields used |
@@ -102,6 +119,7 @@ can be synced to them, or the taxonomies can be the single source of truth.
 | `page.php` template `solliciteren` | `hero_title`, `hero_subtitle` (the form itself: Gravity Forms, not ACF) |
 | `page.php` template `contact` | `hero_title`, `hero_subtitle` (the form itself: Gravity Forms) |
 | `page.php` template `keuzehulp-full` | `keuzehulp_wizard_url` (Options) |
+| `page.php` (scholen/open-dagen) | `hero_title`, `hero_subtitle`; `open_dagen` loop (`datum`, `tijd`, `locatie`, `organisatie`, `beschrijving`, `meer_info_url`) |
 
 ---
 
@@ -118,3 +136,8 @@ can be synced to them, or the taxonomies can be the single source of truth.
   `organisaties` post type. The HTML shows several hardcoded examples between
   `<!-- WP_LOOP: start -->` and `<!-- WP_LOOP: end -->`; replace with
   `while ( have_posts() ) : the_post();`.
+- The organisation **count** is never a stored field. Where a number of
+  organisations is shown — the overview result count and the over-ons
+  "In cijfers" stat — derive it from the live post count
+  (`$query->found_posts` / `wp_count_posts('organisaties')->publish`) so it
+  updates automatically when an organisation is added or removed.

@@ -265,21 +265,33 @@
         <span aria-hidden="true">/</span>
         <span aria-current="page">Over ons</span>
       </nav>
-      <span class="hero__eyebrow reveal">Regionale samenwerking</span>
-      <!-- ACF: hero_title (text) -->
-      <h1 class="hero__title text-h1 reveal">Eén platform. Eén regio. Samen opleiden.</h1>
-      <!-- ACF: hero_subtitle (textarea) -->
-      <p class="hero__subtitle text-lead reveal">
-        Opleidingindezorg.nl is het gezamenlijke BBL-platform van de zorgorganisaties in
-        Amstelland &amp; Meerlanden. Samen leiden we de zorgmedewerkers van morgen op, dicht bij
-        huis en met salaris vanaf dag één.
-      </p>
-      <div class="hero__actions reveal">
-        <a href="/over-ons/deelnemers/" class="btn btn--primary">
-          Bekijk de deelnemers
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="/over-ons/samenwerking/" class="btn btn--outline">Waarom samenwerken?</a>
+      <!-- Hero: intro text left, video beside it (.hero-split) -->
+      <div class="hero-split">
+        <div class="hero-split__text">
+          <span class="hero__eyebrow reveal">Regionale samenwerking</span>
+          <!-- ACF: hero_title (text) -->
+          <h1 class="hero__title text-h1 reveal">Eén platform. Eén regio. Samen opleiden.</h1>
+          <!-- ACF: hero_subtitle (textarea) -->
+          <p class="hero__subtitle text-lead reveal">
+            Opleidingindezorg.nl is het gezamenlijke BBL-platform van de zorgorganisaties in
+            Amstelland &amp; Meerlanden. Samen leiden we de zorgmedewerkers van morgen op, dicht bij
+            huis en met salaris vanaf dag één.
+          </p>
+          <div class="hero__actions reveal">
+            <a href="/over-ons/deelnemers/" class="btn btn--primary">
+              Bekijk de deelnemers
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/over-ons/samenwerking/" class="btn btn--outline">Waarom samenwerken?</a>
+          </div>
+        </div>
+        <div class="hero-split__media reveal reveal--right">
+          <!-- ACF: hero_video_url (url) -->
+          <div class="video-placeholder video-placeholder--hero">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span>(Videoonderwerp volgt)</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -338,8 +350,11 @@
       </div>
       <div class="stat-row reveal--stagger">
         <div class="stat">
-          <div class="stat__number"><span class="counter" data-count="1">0</span></div>
-          <p class="stat__label">Gezamenlijk platform voor alle deelnemende zorgorganisaties</p>
+          <!-- WP: data-count = the published 'organisaties' count, e.g.
+               wp_count_posts('organisaties')->publish, so this figure
+               updates by itself when an organisation is added or removed. -->
+          <div class="stat__number"><span class="counter" data-count="8">0</span></div>
+          <p class="stat__label">Zorgorganisaties die samen opleiden</p>
         </div>
         <div class="stat">
           <div class="stat__number"><span class="counter" data-count="3">0</span></div>
