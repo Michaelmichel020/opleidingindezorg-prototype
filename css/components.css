@@ -139,7 +139,11 @@
 .hero__trust-item svg { width: 18px; height: 18px; color: var(--teal); }
 
 .hero--home { background: linear-gradient(180deg, var(--teal-bg) 0%, var(--warm) 100%); }
-.hero--compact { padding-block: var(--space-lg) var(--space-md); }
+.hero--compact { padding-block: var(--space-xl) var(--space-lg); }
+/* Consistent vertical rhythm in the hero, whether the heading and lead
+   use the hero__* classes or the generic text-* utilities. */
+.hero h1 { margin-bottom: 22px; }
+.hero p  { margin-bottom: 30px; }
 .hero--compact .container { display: block; }
 .hero--org { background: linear-gradient(180deg, var(--teal-bg) 0%, var(--warm) 100%); }
 
@@ -314,9 +318,28 @@
 }
 .niveau-tile__title { font-family: var(--serif); font-size: 24px; margin: 8px 0 10px; }
 .niveau-tile__text { color: var(--mid); font-size: 14px; margin-bottom: 16px; }
+/* "Bekijk niveau X" styled as a button (the whole tile is the link) */
 .niveau-tile__arrow {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-weight: 600; font-size: 14px; color: var(--teal-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 10px 20px;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--charcoal);
+  white-space: nowrap;
+  transition: border-color var(--duration) var(--ease-smooth),
+              background var(--duration) var(--ease-smooth),
+              color var(--duration) var(--ease-smooth);
+}
+.niveau-tile__arrow svg { width: 16px; height: 16px; }
+.niveau-tile:hover .niveau-tile__arrow {
+  border-color: var(--teal);
+  background: var(--teal-bg);
+  color: var(--teal-dark);
 }
 
 /* ---------- CTA banner ---------- */

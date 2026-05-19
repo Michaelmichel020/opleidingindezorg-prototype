@@ -10,6 +10,11 @@
 }
 .niveau-intro__body p { color: var(--mid); margin-bottom: 14px; }
 
+/* Hero use of .niveau-intro: video centred next to the text,
+   roomier spacing under the subtitle. */
+.hero .niveau-intro { align-items: center; }
+.hero .niveau-intro__body p { margin-bottom: 30px; }
+
 /* Career progression path */
 .groei-path {
   display: flex;
