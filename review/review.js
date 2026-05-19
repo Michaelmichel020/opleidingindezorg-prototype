@@ -7,8 +7,8 @@
 /* ===== CONFIG — fill in after creating the free Supabase project =====
    Both values are safe to commit: the anon key is public by design.
    Settings -> API in the Supabase dashboard.                          */
-const SUPABASE_URL = '';      // e.g. https://abcdefgh.supabase.co
-const SUPABASE_ANON_KEY = ''; // the "anon public" key
+const SUPABASE_URL = 'https://rorljmcdwskbbmghmxnm.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_z4f2ikVjfsMFVn_UbJxNUw_bMeTTnAV';
 /* ===================================================================== */
 
 const BASE = 'https://opleidingindezorg-klikbaar-wireframe.netlify.app';
