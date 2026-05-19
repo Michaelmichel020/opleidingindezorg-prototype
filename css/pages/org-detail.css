@@ -55,7 +55,36 @@
 .voorwaarde__icon svg { width: 20px; height: 20px; }
 .voorwaarde__text { font-size: 14px; color: var(--mid); padding-top: 8px; }
 
+/* Work locations — a plain list (no map), shown only when an
+   organisation has more than one location. */
+.loc-list { display: grid; gap: var(--space-sm); }
+.loc-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+.loc-item__icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--teal-bg);
+  color: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loc-item__icon svg { width: 20px; height: 20px; }
+.loc-item__naam { font-weight: 600; font-size: 15px; }
+.loc-item__adres { font-size: 13px; color: var(--mid); }
+
 @media (min-width: 768px) {
   .org-niveaus { grid-template-columns: repeat(3, 1fr); }
   .voorwaarden-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 640px) {
+  .loc-list { grid-template-columns: repeat(2, 1fr); }
 }

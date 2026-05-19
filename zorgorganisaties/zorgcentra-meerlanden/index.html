@@ -280,7 +280,7 @@
   <!-- ============================================================
        SECTION 1: Org hero — 2-column
        ACF GROUP: org_hero
-       ACF: org_naam (text), org_tagline (text), org_video_url (url)
+       ACF: org_naam (text), org_tagline (text), org_hero_media_type/foto/video_url
        ============================================================ -->
   <section class="hero hero--org">
     <span class="hero__blob parallax" data-parallax-speed="0.18" aria-hidden="true"></span>
@@ -309,10 +309,11 @@
       </div>
 
       <div class="hero__media reveal reveal--right">
-        <!-- ACF: org_video_url (url) — organisation-specific video -->
+        <!-- ACF: org_hero_media_type (select: foto|video) decides what shows;
+             org_hero_foto (image) OR org_hero_video_url (url) -->
         <div class="video-placeholder">
           <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <span>(Videoonderwerp volgt)</span>
+          <span>(Foto of video)</span>
         </div>
       </div>
     </div>
@@ -324,25 +325,15 @@
        ============================================================ -->
   <section class="section section--warm">
     <div class="container container--narrow">
-      <div class="media-row media-row--media-right">
-        <div class="media-row__media">
-          <div class="media-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="9.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Foto of illustratie</span>
-          </div>
-        </div>
-        <div class="media-row__text">
-          <div class="section__header reveal">
-            <span class="text-label text-label--teal">Wie zijn wij?</span>
-            <h2 class="text-h2">Stevige zorg in de Haarlemmermeer</h2>
-          </div>
-          <!-- ACF: org_beschrijving (wysiwyg, max 100 words) -->
-          <!-- TODO: tekst gebaseerd op https://www.zorgcentra-meerlanden.nl/over-zorgcentra-meerlanden/, laten bevestigen door de organisatie -->
-          <p class="text-lead reveal">
-            Zorgcentra Meerlanden is een stichting die ouderen ondersteunt bij wonen, zorg en welzijn in de Haarlemmermeer en omgeving. We werken vanuit drie herkenbare locaties: De Meerwende in Badhoevedorp, De Meerstede in Hoofddorp en 't Kloosterhof in Aalsmeer. Naast wonen met zorg bieden we wijkzorg bij mensen thuis, dagbesteding, gespecialiseerde zorg en wijkontmoetingscentra. Onze overtuiging is simpel: zorgen doen we met elkaar, persoonlijk en met aandacht voor wat iemand zelf wil. BBL-studenten leren bij ons in een overzichtelijke organisatie, met een ervaren praktijkbegeleider dichtbij en volop ruimte om te groeien.
-          </p>
-        </div>
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Wie zijn wij?</span>
+        <h2 class="text-h2">Stevige zorg in de Haarlemmermeer</h2>
       </div>
+      <!-- ACF: org_beschrijving (wysiwyg, max 100 words) -->
+      <!-- TODO: tekst gebaseerd op https://www.zorgcentra-meerlanden.nl/over-zorgcentra-meerlanden/, laten bevestigen door de organisatie -->
+      <p class="text-lead reveal">
+        Zorgcentra Meerlanden is een stichting die ouderen ondersteunt bij wonen, zorg en welzijn in de Haarlemmermeer en omgeving. We werken vanuit drie herkenbare locaties: De Meerwende in Badhoevedorp, De Meerstede in Hoofddorp en 't Kloosterhof in Aalsmeer. Naast wonen met zorg bieden we wijkzorg bij mensen thuis, dagbesteding, gespecialiseerde zorg en wijkontmoetingscentra. Onze overtuiging is simpel: zorgen doen we met elkaar, persoonlijk en met aandacht voor wat iemand zelf wil. BBL-studenten leren bij ons in een overzichtelijke organisatie, met een ervaren praktijkbegeleider dichtbij en volop ruimte om te groeien.
+      </p>
     </div>
   </section>
 
@@ -387,7 +378,7 @@
 
   <!-- ============================================================
        SECTION 4: Work locations
-       ACF: org_locaties (repeater: naam, adres, lat, lng)
+       ACF: org_locaties (repeater: naam, adres)
        ============================================================ -->
   <section class="section section--warm">
     <div class="container">
@@ -396,8 +387,33 @@
         <h2 class="text-h2">Waar je aan de slag gaat</h2>
         <p class="section__subtitle text-lead">Onze locaties liggen verspreid over de Haarlemmermeer, met Hoofddorp als centraal punt.</p>
       </div>
-      <!-- TODO: provide the final location details and interactive map -->
-      <div class="locaties-map-placeholder reveal">Kaart met werklocaties Zorgcentra Meerlanden</div>
+      <!-- WP: render this section only when the organisation has 2+ locations -->
+      <!-- TODO: provide the final work locations per organisation -->
+      <!-- WP_LOOP: start — repeat per org_locaties row -->
+      <ul class="loc-list reveal" role="list">
+        <li class="loc-item">
+          <span class="loc-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
+          <div>
+            <p class="loc-item__naam">Locatie 1</p>
+            <p class="loc-item__adres">Straatnaam 1, Plaatsnaam</p>
+          </div>
+        </li>
+        <li class="loc-item">
+          <span class="loc-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
+          <div>
+            <p class="loc-item__naam">Locatie 2</p>
+            <p class="loc-item__adres">Straatnaam 2, Plaatsnaam</p>
+          </div>
+        </li>
+        <li class="loc-item">
+          <span class="loc-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
+          <div>
+            <p class="loc-item__naam">Locatie 3</p>
+            <p class="loc-item__adres">Straatnaam 3, Plaatsnaam</p>
+          </div>
+        </li>
+      </ul>
+      <!-- WP_LOOP: end -->
     </div>
   </section>
 
@@ -438,6 +454,161 @@
           </span>
           <p class="voorwaarde__text">Een ervaren praktijkbegeleider en goede doorgroeikansen binnen onze organisatie.</p>
         </div>
+      </div>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: Other care organisations + filter
+       WP_LOOP: organisaties, exclude the current post (post__not_in)
+       WP_QUERY_FILTER: org_type / bbl_niveau / werkplek taxonomies
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Verder kijken</span>
+        <h2 class="text-h2">Andere zorgorganisaties</h2>
+        <p class="section__subtitle text-lead">Vergelijk de organisaties in de regio en ontdek waar jij je het beste thuis voelt.</p>
+      </div>
+      <!-- Filter — visual only in the prototype; connect to a WP_Query tax_query -->
+      <!-- TODO: connect filters to WP_Query (tax_query org_type / bbl_niveau / werkplek) -->
+      <div class="filterbar reveal">
+        <!-- WP_QUERY_FILTER: taxonomy org_type -->
+        <select class="filterbar__select" aria-label="Filter op type organisatie">
+          <option value="">Type organisatie</option>
+          <option value="klein">Klein</option>
+          <option value="middelgroot">Middelgroot</option>
+          <option value="groot">Groot</option>
+        </select>
+        <!-- WP_QUERY_FILTER: taxonomy bbl_niveau -->
+        <select class="filterbar__select" aria-label="Filter op BBL-niveau">
+          <option value="">BBL-niveau</option>
+          <option value="niveau-2">Niveau 2 - Helpende</option>
+          <option value="niveau-3">Niveau 3 - Verzorgende IG</option>
+          <option value="niveau-4">Niveau 4 - Verpleegkundige</option>
+        </select>
+        <!-- WP_QUERY_FILTER: taxonomy werkplek -->
+        <select class="filterbar__select" aria-label="Filter op werkplek">
+          <option value="">Werkplek</option>
+          <option value="verpleeghuis">Verpleeghuis</option>
+          <option value="thuiszorg">Thuiszorg</option>
+          <option value="revalidatie">Revalidatie</option>
+        </select>
+      </div>
+      <!-- WP_LOOP: start — organisaties, exclude the current organisation -->
+      <!-- TEMPLATE_PART: components/org-card.php -->
+      <div class="org-grid reveal--stagger">
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/zonnehuisgroep-amstelland/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">Zonnehuisgroep<br>Amstelland</div>
+            <h3 class="org-card__name">Zonnehuisgroep Amstelland</h3>
+            <p class="org-card__type">Groot &middot; Al meer dan 100 jaar ouderenzorg rond Amstelveen.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag">Niveau 4</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+              <span class="tag tag--neutral">Thuiszorg</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
+
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/zorggroep-aelsmeer/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">Zorggroep<br>Aelsmeer</div>
+            <h3 class="org-card__name">Zorggroep Aelsmeer</h3>
+            <p class="org-card__type">Middelgroot &middot; Goed in het gewone, dicht bij mensen.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+              <span class="tag tag--neutral">Thuiszorg</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
+
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/pcsoh/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">PCSOH</div>
+            <h3 class="org-card__name">PCSOH</h3>
+            <p class="org-card__type">Middelgroot &middot; Geborgen ouderenzorg in de Haarlemmermeer.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag">Niveau 4</span>
+              <span class="tag tag--neutral">Thuiszorg</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
+
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/brentano/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">Brentano</div>
+            <h3 class="org-card__name">Brentano</h3>
+            <p class="org-card__type">Middelgroot &middot; Vertrouwde ouderenzorg in Amstelveen sinds 1821.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag">Niveau 4</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+              <span class="tag tag--neutral">Revalidatie</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
+
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/cordaan/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">Cordaan</div>
+            <h3 class="org-card__name">Cordaan</h3>
+            <p class="org-card__type">Groot &middot; Zorg in Amsterdam, voor jong tot oud.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag">Niveau 4</span>
+              <span class="tag tag--neutral">Thuiszorg</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+              <span class="tag tag--neutral">Revalidatie</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
+
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/amstelring/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">Amstelring</div>
+            <h3 class="org-card__name">Amstelring</h3>
+            <p class="org-card__type">Groot &middot; De mens blijven zien, dichtbij in de buurt.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag">Niveau 4</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+              <span class="tag tag--neutral">Thuiszorg</span>
+              <span class="tag tag--neutral">Revalidatie</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
+
+        <article class="org-card reveal">
+          <a href="/zorgorganisaties/sigra/" class="org-card__link">
+            <div class="org-card__logo logo-placeholder">Sigra</div>
+            <h3 class="org-card__name">Sigra</h3>
+            <p class="org-card__type">Samenwerkingsverband &middot; Samen voor betere zorg en welzijn in de regio.</p>
+            <div class="org-card__tags">
+              <span class="tag">Niveau 2</span>
+              <span class="tag">Niveau 3</span>
+              <span class="tag tag--neutral">Verpleeghuis</span>
+            </div>
+            <span class="org-card__cta">Bekijk organisatie &rarr;</span>
+          </a>
+        </article>
       </div>
       <!-- WP_LOOP: end -->
     </div>
