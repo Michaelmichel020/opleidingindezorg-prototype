@@ -370,6 +370,30 @@
   </section>
 
   <!-- ============================================================
+       SECTION 2b: Cijfers en feiten
+       ACF: cijfers (repeater: getal, label)
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Cijfers en feiten</span>
+        <h2 class="text-h2">Zorggroep Aelsmeer in cijfers</h2>
+        <p class="section__subtitle text-lead">De getallen worden door de organisatie aangeleverd.</p>
+      </div>
+      <!-- WP_LOOP: start — herhaal per cijfer (5 vaste posities of vrije repeater) -->
+      <!-- TODO: cijfers per organisatie aanleveren -->
+      <div class="cijfers-grid reveal--stagger">
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Medewerkers</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Cli&euml;nten</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Verpleeghuislocaties</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Wijkteams</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Ontmoetingscentra / dagbesteding</p></div>
+      </div>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
        SECTION 3: BBL levels we offer
        ACF: org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
        ============================================================ -->
@@ -378,7 +402,7 @@
       <div class="section__header reveal">
         <span class="text-label text-label--teal">Opleidingsaanbod</span>
         <h2 class="text-h2">BBL-niveaus die we aanbieden</h2>
-        <p class="section__subtitle text-lead">Bij Zorggroep Aelsmeer volg je een BBL-opleiding op niveau 2 of niveau 3.</p>
+        <p class="section__subtitle text-lead">Bij Zorggroep Aelsmeer volg je een BBL-opleiding op niveau 2, 3 of 4.</p>
       </div>
       <!-- WP_LOOP: start — repeat per checked org_niveau -->
       <div class="org-niveaus reveal--stagger">
@@ -394,6 +418,13 @@
           <div>
             <p class="org-niveau-item__title">Niveau 3 - Verzorgende IG</p>
             <p class="org-niveau-item__text">Meer verantwoordelijkheid. Je verzorgt cliënten zelfstandig, signaleert en rapporteert.</p>
+          </div>
+        </div>
+        <div class="org-niveau-item">
+          <span class="org-niveau-item__badge">4</span>
+          <div>
+            <p class="org-niveau-item__title">Niveau 4 - Verpleegkundige</p>
+            <p class="org-niveau-item__text">Het hoogste BBL-niveau. Je coördineert zorg en voert voorbehouden handelingen uit.</p>
           </div>
         </div>
       </div>
@@ -419,25 +450,43 @@
         <li class="loc-item">
           <span class="loc-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
           <div>
-            <p class="loc-item__naam">Locatie 1</p>
-            <p class="loc-item__adres">Straatnaam 1, Plaatsnaam</p>
+            <p class="loc-item__naam">Zorgcentrum Aalsmeer</p>
+            <p class="loc-item__adres">Molenpad 2, Aalsmeer</p>
           </div>
         </li>
-        <li class="loc-item">
-          <span class="loc-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
-          <div>
-            <p class="loc-item__naam">Locatie 2</p>
-            <p class="loc-item__adres">Straatnaam 2, Plaatsnaam</p>
-          </div>
-        </li>
-        <li class="loc-item">
-          <span class="loc-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
-          <div>
-            <p class="loc-item__naam">Locatie 3</p>
-            <p class="loc-item__adres">Straatnaam 3, Plaatsnaam</p>
-          </div>
-        </li>
+        <!-- TODO: aanvullen met overige werklocaties en wijkteams van Zorggroep Aelsmeer -->
       </ul>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4b: Het verhaal van... (video-interviews carrousel)
+       ACF: verhalen (repeater: naam, functie, video_url, thumbnail)
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Het verhaal van</span>
+        <h2 class="text-h2">Maak kennis met de collega's bij Zorggroep Aelsmeer</h2>
+        <p class="section__subtitle text-lead">Korte video-interviews met BBL-studenten en hun werkbegeleiders.</p>
+      </div>
+      <!-- WP_LOOP: start — herhaal per verhaal -->
+      <!-- TODO: video-interviews per organisatie aanleveren -->
+      <div class="verhaal-carousel reveal">
+        <article class="verhaal-card">
+          <div class="video-placeholder"><svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>(Video volgt)</span></div>
+          <p class="verhaal-card__title">Naam, BBL-student niveau 3</p>
+        </article>
+        <article class="verhaal-card">
+          <div class="video-placeholder"><svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>(Video volgt)</span></div>
+          <p class="verhaal-card__title">Naam, werkbegeleider</p>
+        </article>
+        <article class="verhaal-card">
+          <div class="video-placeholder"><svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>(Video volgt)</span></div>
+          <p class="verhaal-card__title">Naam, BBL-student niveau 2</p>
+        </article>
+      </div>
       <!-- WP_LOOP: end -->
     </div>
   </section>

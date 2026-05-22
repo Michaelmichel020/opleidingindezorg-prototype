@@ -370,6 +370,30 @@
   </section>
 
   <!-- ============================================================
+       SECTION 2b: Cijfers en feiten
+       ACF: cijfers (repeater: getal, label)
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Cijfers en feiten</span>
+        <h2 class="text-h2">Amstelring in cijfers</h2>
+        <p class="section__subtitle text-lead">De getallen worden door de organisatie aangeleverd.</p>
+      </div>
+      <!-- WP_LOOP: start — herhaal per cijfer (5 vaste posities of vrije repeater) -->
+      <!-- TODO: cijfers per organisatie aanleveren -->
+      <div class="cijfers-grid reveal--stagger">
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Medewerkers</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Cli&euml;nten</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Verpleeghuislocaties</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Wijkteams</p></div>
+        <div class="cijfer"><p class="cijfer__num">…</p><p class="cijfer__label">Ontmoetingscentra / dagbesteding</p></div>
+      </div>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
        SECTION 3: BBL levels we offer
        ACF: org_niveaus (checkbox: niveau_2, niveau_3, niveau_4)
        ============================================================ -->
@@ -445,6 +469,37 @@
           </div>
         </li>
       </ul>
+      <!-- WP_LOOP: end -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4b: Het verhaal van... (video-interviews carrousel)
+       ACF: verhalen (repeater: naam, functie, video_url, thumbnail)
+       ============================================================ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="text-label text-label--teal">Het verhaal van</span>
+        <h2 class="text-h2">Maak kennis met de collega's bij Amstelring</h2>
+        <p class="section__subtitle text-lead">Korte video-interviews met BBL-studenten en hun werkbegeleiders.</p>
+      </div>
+      <!-- WP_LOOP: start — herhaal per verhaal -->
+      <!-- TODO: video-interviews per organisatie aanleveren -->
+      <div class="verhaal-carousel reveal">
+        <article class="verhaal-card">
+          <div class="video-placeholder"><svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>(Video volgt)</span></div>
+          <p class="verhaal-card__title">Naam, BBL-student niveau 3</p>
+        </article>
+        <article class="verhaal-card">
+          <div class="video-placeholder"><svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>(Video volgt)</span></div>
+          <p class="verhaal-card__title">Naam, werkbegeleider</p>
+        </article>
+        <article class="verhaal-card">
+          <div class="video-placeholder"><svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>(Video volgt)</span></div>
+          <p class="verhaal-card__title">Naam, BBL-student niveau 2</p>
+        </article>
+      </div>
       <!-- WP_LOOP: end -->
     </div>
   </section>

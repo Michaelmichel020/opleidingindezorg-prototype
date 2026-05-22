@@ -93,3 +93,46 @@
 @media (min-width: 640px) {
   .loc-list { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Cijfers en feiten — kerncijfers van de organisatie */
+.cijfers-grid {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(2, 1fr);
+}
+.cijfer {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+}
+.cijfer__num {
+  font-family: var(--serif);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--teal-dark);
+  margin-bottom: 6px;
+}
+.cijfer__label { font-size: 13px; color: var(--mid); }
+@media (min-width: 768px) {
+  .cijfers-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* Verhaal-carrousel — horizontaal scrollbare video-cards */
+.verhaal-carousel {
+  display: grid;
+  gap: var(--space-md);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+.verhaal-card { scroll-snap-align: start; }
+.verhaal-card .video-placeholder { aspect-ratio: 4 / 3; margin-bottom: 10px; }
+.verhaal-card__title { font-size: 14px; color: var(--mid); }
+@media (min-width: 900px) {
+  .verhaal-carousel { grid-auto-columns: minmax(300px, 1fr); }
+}
