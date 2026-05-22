@@ -6,6 +6,49 @@
 /* Hero title breaks onto two lines via the <br> in the markup */
 .hero--home .hero__title { max-width: 20ch; }
 
+/* Region indicator — sits directly below the hero, highlights Amstelland & Meerlanden */
+.region-band {
+  background: linear-gradient(90deg, var(--teal-bg) 0%, #F1FAF7 100%);
+  border-block: 1px solid var(--teal-border);
+  padding-block: 22px;
+}
+.region-band__row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 920px;
+  margin-inline: auto;
+}
+.region-band__icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--teal-dark);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.region-band__icon svg { width: 26px; height: 26px; }
+.region-band__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 2px;
+}
+.region-band__title {
+  font-family: var(--serif);
+  font-size: 26px;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+.region-band__towns { font-size: 14px; color: var(--mid); }
+.region-band__towns em { font-style: italic; color: var(--mid); }
+
+@media (max-width: 560px) {
+  .region-band__row { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
 /* Org logo grid */
 .section--orgs .org-logo-grid { margin-top: var(--space-md); }
 
