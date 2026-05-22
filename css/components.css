@@ -550,7 +550,7 @@
 .org-logo-tile__name { font-size: 13px; font-weight: 600; }
 
 /* ---------- Org cards (overview page) ---------- */
-.org-grid { display: grid; gap: var(--space-md); }
+.org-grid { display: grid; gap: var(--space-lg); }
 .org-grid--list { grid-template-columns: 1fr; }
 
 .org-card {
