@@ -403,6 +403,47 @@
 /* body copy spans the full width, on the row below the icon + title */
 .pillar__text { grid-column: 1 / -1; color: var(--mid); font-size: 14px; }
 
+/* ---------- School cards (MBO-instellingen op /scholen/) ----------
+   Logo + naam naast elkaar bovenaan, daaronder tekst en knop.
+   Kaarten in een rij hebben gelijke hoogte. */
+.school-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+.school-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+.school-card__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.school-card__logo {
+  flex-shrink: 0;
+  width: 88px;
+  min-height: 52px;
+  margin: 0;
+}
+.school-card__title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0;
+}
+.school-card__text { color: var(--mid); font-size: 14px; flex: 1; margin: 0; }
+.school-card__cta { margin: 0; }
+@media (min-width: 768px) {
+  .school-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 /* ---------- Steps (process) ---------- */
 .steps {
   display: grid;
