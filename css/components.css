@@ -407,7 +407,7 @@
 .steps {
   display: grid;
   gap: var(--space-md);
-  align-items: start;
+  align-items: stretch;
 }
 .step {
   background: var(--white);
@@ -415,6 +415,9 @@
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .step__number {
   width: 44px; height: 44px;
@@ -432,6 +435,35 @@
 .step__title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
 .step__text { color: var(--mid); font-size: 14px; }
 .step__connector { display: none; }
+
+/* Step-by-step animation: the number circles pop in and the connectors
+   draw from left to right, in sequence, using the per-child
+   --stagger-index variable that js/animations.js sets on .reveal--stagger
+   children. The base reveal still fades + slides up each card. */
+.steps.reveal--stagger > * {
+  transition-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+.steps.reveal--stagger > .step__connector {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s var(--ease-smooth) calc(var(--stagger-index, 0) * 80ms + 60ms),
+              opacity 0.5s var(--ease-smooth) calc(var(--stagger-index, 0) * 80ms);
+}
+.steps.reveal--stagger.is-visible > .step__connector { transform: scaleX(1); }
+
+.steps.reveal--stagger > .step .step__number {
+  transform: scale(0);
+  transition: transform 0.55s var(--ease) calc(var(--stagger-index, 0) * 80ms + 180ms);
+}
+.steps.reveal--stagger.is-visible > .step .step__number { transform: scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .steps.reveal--stagger > .step__connector,
+  .steps.reveal--stagger > .step .step__number {
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* ---------- Niveau tiles ---------- */
 .niveau-grid { display: grid; gap: var(--space-md); }
@@ -836,10 +868,11 @@
   .form__row--2col { grid-template-columns: 1fr 1fr; }
   .step__connector {
     display: block;
-    align-self: center;
-    height: 2px;
-    background: var(--teal-border);
-    margin-top: 22px;
+    align-self: start;
+    height: 3px;
+    background: var(--teal-light);
+    margin-top: 46px; /* aligned with the centre of the step number circles */
+    border-radius: 2px;
   }
   .steps {
     grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
