@@ -1,40 +1,1016 @@
 /* ============================================================
-   pages/keuzehulp.css — Keuzehulp page with embedded keuzehulp
+   pages/keuzehulp.css — Keuzehulp wizard frontend
    WP TEMPLATE: page.php (template: keuzehulp)
+
+   The wizard is a self-contained component (.kh-wizard) that
+   adapts to its container width via @container queries, so it
+   renders cleanly on the standalone /keuzehulp/ page AND inside
+   the narrow floating widget panel.
    ============================================================ */
+
+/* ---------- Page section wrapper ---------- */
 
 .keuzehulp-section {
   padding-top: var(--space-lg);
 }
-
-/* Rounded panel that holds the embedded keuzehulp.
-   It sits in normal page flow, so it scrolls with the page. */
-.keuzehulp-embed {
-  max-width: 1000px;
-  margin-inline: auto;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--rule);
-  box-shadow: var(--shadow-lg);
-  background: var(--white);
-}
-
-.keuzehulp-frame {
-  display: block;
-  width: 100%;
-  height: 720px;
-  border: none;
-}
-
 .keuzehulp-note {
   text-align: center;
   margin-top: var(--space-md);
+  max-width: 760px;
+  margin-inline: auto;
 }
 .keuzehulp-note a {
   color: var(--teal-dark);
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
-  .keuzehulp-frame { height: 580px; }
+/* ============================================================
+   .kh-wizard — container component
+   ============================================================ */
+
+.kh-wizard {
+  container-type: inline-size;
+  container-name: kh;
+
+  max-width: 760px;
+  margin-inline: auto;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(20px, 5cqi, 40px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft accent gradient behind the wizard for a hint of warmth */
+.kh-wizard::before {
+  content: '';
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(50,172,152,0.06), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.kh-wizard__inner { position: relative; z-index: 1; }
+
+/* ---------- Progress bar ---------- */
+
+.kh-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: clamp(20px, 4cqi, 28px);
+}
+.kh-progress[hidden] { display: none; }
+
+.kh-progress__step {
+  flex: 1;
+  height: 6px;
+  background: var(--rule);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.kh-progress__step::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s var(--ease);
+}
+.kh-progress__step.is-done::after { transform: scaleX(1); }
+.kh-progress__step.is-current::after {
+  transform: scaleX(1);
+  background: linear-gradient(90deg, var(--teal) 60%, var(--teal-light));
+}
+
+.kh-progress__labels {
+  display: none;
+}
+@container kh (min-width: 560px) {
+  .kh-progress__labels {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+  }
+  .kh-progress__labels span {
+    flex: 1;
+    text-align: center;
+  }
+  .kh-progress__labels span.is-current { color: var(--teal-dark); font-weight: 600; }
+}
+
+/* ---------- Screens ---------- */
+
+.kh-screen {
+  display: none;
+}
+.kh-screen.is-active {
+  display: block;
+  animation: kh-screen-in 0.5s var(--ease-smooth);
+}
+
+@keyframes kh-screen-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Typography inside the wizard ---------- */
+
+.kh-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.kh-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(22px, 5.4cqi, 34px);
+  line-height: 1.2;
+  color: var(--charcoal);
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.01em;
+}
+/* Hide the default outline that appears when we programmatically focus
+   the title for screen-reader announcement on screen-change. Keyboard
+   users still see a clear focus state via :focus-visible. */
+.kh-title:focus { outline: none; }
+.kh-title:focus-visible {
+  outline: 3px solid rgba(50,172,152,0.35);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.kh-lead {
+  color: var(--mid);
+  font-size: clamp(14px, 2.4cqi, 16px);
+  line-height: 1.6;
+  margin: 0 0 var(--space-md);
+}
+.kh-helper {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 var(--space-sm);
+}
+
+/* ---------- Options grid ---------- */
+
+.kh-options {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+/* Container-query layouts — wide enough to sit two- or three-wide */
+@container kh (min-width: 460px) {
+  .kh-options--2 { grid-template-columns: 1fr 1fr; }
+}
+@container kh (min-width: 520px) {
+  .kh-options--3 { grid-template-columns: repeat(3, 1fr); }
+  .kh-options--4 { grid-template-columns: 1fr 1fr; }
+}
+@container kh (min-width: 640px) {
+  .kh-options--5 { grid-template-columns: repeat(3, 1fr); }
+  .kh-options--6 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Diploma niveau-grid — 6 small tiles */
+.kh-options--niveau {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+@container kh (min-width: 460px) {
+  .kh-options--niveau { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- The single keuzekaart component ---------- */
+
+.kh-option {
+  --kh-bg: var(--white);
+  --kh-border: var(--rule);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  background: var(--kh-bg);
+  border: 1.5px solid var(--kh-border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  color: var(--charcoal);
+  font: inherit;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  transition:
+    transform var(--duration) var(--ease-smooth),
+    border-color var(--duration) var(--ease-smooth),
+    background var(--duration) var(--ease-smooth),
+    box-shadow var(--duration) var(--ease-smooth);
+}
+.kh-option:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal-light);
+  box-shadow: var(--shadow-sm);
+}
+.kh-option:active { transform: translateY(-1px) scale(0.98); }
+.kh-option:focus-visible {
+  outline: 3px solid rgba(50,172,152,0.35);
+  outline-offset: 2px;
+}
+
+.kh-option.is-selected,
+.kh-option[aria-pressed="true"] {
+  --kh-bg: var(--teal-bg);
+  --kh-border: var(--teal);
+  box-shadow: 0 0 0 1px var(--teal), var(--shadow-sm);
+}
+
+.kh-option__indicator {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--rule);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  transition: border-color var(--duration), background var(--duration);
+}
+.kh-options[data-multi="true"] .kh-option__indicator { border-radius: 6px; }
+
+.kh-option.is-selected .kh-option__indicator {
+  border-color: var(--teal);
+  background: var(--teal);
+}
+
+.kh-option__check {
+  width: 12px;
+  height: 12px;
+  color: var(--white);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: transform var(--duration) var(--ease), opacity var(--duration);
+}
+.kh-option.is-selected .kh-option__check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.kh-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.kh-option__title {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.kh-option__desc {
+  color: var(--mid);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Tile-style (smaller, no description) for niveau-options */
+.kh-option--tile {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 14px 10px;
+  gap: 6px;
+}
+.kh-option--tile .kh-option__indicator {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+.kh-option--tile .kh-option__title { font-size: 14px; }
+
+/* ---------- Info note (teal-bg infoblok) ---------- */
+
+.kh-note {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  color: var(--charcoal);
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: var(--space-sm);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.kh-note__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--teal-dark);
+  margin-top: 1px;
+}
+.kh-note__text strong { color: var(--teal-dark); }
+.kh-note__text { margin: 0; }
+
+.kh-note--soft {
+  background: var(--warm);
+  border-color: var(--rule);
+}
+
+/* ---------- Conditional reveal (postcode, niveau, etc.) ---------- */
+
+.kh-conditional {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
+  transition:
+    grid-template-rows 0.45s var(--ease-smooth),
+    opacity 0.3s var(--ease-smooth),
+    margin-top 0.45s var(--ease-smooth);
+}
+.kh-conditional > * {
+  overflow: hidden;
+  min-height: 0;
+}
+.kh-conditional.is-visible {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: var(--space-sm);
+}
+
+/* ---------- Input fields ---------- */
+
+.kh-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-sm);
+}
+.kh-field__label {
+  font-size: 13px;
+  color: var(--charcoal);
+  font-weight: 600;
+}
+.kh-field__hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: -2px;
+}
+.kh-field__optional {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.kh-input {
+  font: inherit;
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--charcoal);
+  transition: border-color var(--duration), box-shadow var(--duration);
+  width: 100%;
+}
+.kh-input::placeholder { color: var(--muted); }
+.kh-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(50,172,152,0.18);
+}
+
+.kh-input--postcode {
+  max-width: 180px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- Contact panel (soft teal rustpunt) ---------- */
+
+.kh-contact-panel {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.kh-contact-panel__why {
+  color: var(--mid);
+  font-size: 13px;
+  margin-top: 4px;
+  margin-bottom: var(--space-sm);
+}
+
+/* ---------- Wizard actions row ---------- */
+
+.kh-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--rule);
+}
+.kh-actions--end { justify-content: flex-end; }
+.kh-actions--start { justify-content: flex-start; }
+
+.kh-actions__spacer { flex: 1; }
+
+.kh-actions .btn { min-width: 96px; }
+
+/* The start screen has very little content above the action row, so
+   the separator border feels arbitrary there. Drop it on start only —
+   every other screen keeps the rule as a clear actions-divider. */
+.kh-screen[data-screen="start"] .kh-actions {
+  border-top: none;
+  padding-top: 0;
+  margin-top: var(--space-sm);
+}
+
+/* Disabled / inactive state on action buttons — used while the
+   current screen's validator is not satisfied. Pure presentation;
+   the JS toggles .is-disabled + the native [disabled] attribute. */
+.btn:disabled,
+.btn.is-disabled,
+.kh-prev:disabled,
+.kh-prev.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+  filter: saturate(0.6);
+}
+
+/* The .btn--ghost-style "Vorige" link */
+.kh-prev {
+  background: transparent;
+  border: none;
+  color: var(--mid);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background var(--duration), color var(--duration);
+}
+.kh-prev:hover { background: var(--warm); color: var(--charcoal); }
+.kh-prev svg { width: 16px; height: 16px; }
+.kh-prev[hidden] { display: none; }
+
+/* ---------- Loading screen ---------- */
+
+.kh-loading {
+  text-align: center;
+  padding: clamp(40px, 8cqi, 80px) var(--space-md);
+}
+.kh-spinner {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    var(--teal-light) 0%,
+    var(--teal) 40%,
+    var(--teal-dark) 60%,
+    var(--teal) 80%,
+    var(--teal-light) 100%);
+  position: relative;
+  animation: kh-spin 1.4s linear infinite;
+}
+.kh-spinner::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--white);
+}
+@keyframes kh-spin { to { transform: rotate(360deg); } }
+
+.kh-loading__title {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--charcoal);
+  margin: 0 0 8px;
+}
+.kh-loading__sub {
+  color: var(--mid);
+  font-size: 14px;
+  margin: 0;
+}
+
+.kh-loading__dots {
+  display: inline-block;
+  width: 24px;
+  text-align: left;
+}
+.kh-loading__dots::after {
+  content: '';
+  animation: kh-dots 1.4s steps(4, end) infinite;
+}
+@keyframes kh-dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: ''; }
+}
+
+/* ---------- Result screen ---------- */
+
+.kh-result__intro {
+  margin-bottom: var(--space-md);
+}
+
+.kh-rcards {
+  display: grid;
+  gap: 14px;
+  margin-bottom: var(--space-lg);
+}
+
+@container kh (min-width: 600px) {
+  /* Reserved: result cards stay stacked, intentionally. */
+}
+
+.kh-rcard {
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px 16px;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: kh-card-in 0.6s var(--ease) forwards;
+}
+.kh-rcard:nth-of-type(1) { animation-delay: 0.05s; }
+.kh-rcard:nth-of-type(2) { animation-delay: 0.20s; }
+.kh-rcard:nth-of-type(3) { animation-delay: 0.35s; }
+
+@keyframes kh-card-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.kh-rcard--best {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-teal);
+}
+
+.kh-rcard__rank {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-bg);
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  width: max-content;
+}
+.kh-rcard--best .kh-rcard__rank {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.kh-rcard__logo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background: var(--warm);
+  border: 1px dashed var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.kh-rcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.kh-rcard__name {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--charcoal);
+  margin: 0;
+  font-weight: 400;
+}
+.kh-rcard__size {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 600;
+}
+.kh-rcard__tagline {
+  color: var(--mid);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 2px 0 0;
+}
+
+.kh-rcard__tags {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.kh-rcard__tag {
+  background: var(--teal-bg);
+  color: var(--teal-dark);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.kh-rcard__ctas {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Overige zorgorganisaties */
+.kh-result__subtitle {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin: 0 0 var(--space-sm);
+}
+.kh-overige {
+  display: grid;
+  gap: 10px;
+  margin-bottom: var(--space-md);
+}
+@container kh (min-width: 520px) {
+  .kh-overige { grid-template-columns: repeat(3, 1fr); }
+}
+.kh-overige__card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: border-color var(--duration), transform var(--duration);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: kh-card-in 0.6s var(--ease) forwards;
+  animation-delay: 0.45s;
+}
+.kh-overige__card:nth-of-type(2) { animation-delay: 0.55s; }
+.kh-overige__card:nth-of-type(3) { animation-delay: 0.65s; }
+.kh-overige__card:hover {
+  border-color: var(--teal-light);
+  transform: translateY(-2px);
+}
+.kh-overige__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--warm);
+  border: 1px dashed var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.kh-overige__name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.kh-result__multi-note {
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--mid);
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+/* ---------- Bedankt screen ---------- */
+
+.kh-thanks {
+  text-align: center;
+  padding: clamp(20px, 4cqi, 40px) 0;
+}
+.kh-thanks__icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal-dark);
+  animation: kh-pop-in 0.6s var(--ease);
+}
+@keyframes kh-pop-in {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.kh-thanks__icon svg { width: 34px; height: 34px; }
+.kh-thanks__next {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0;
+  text-align: left;
+}
+.kh-thanks__next h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--charcoal);
+  margin: 0 0 8px;
+}
+.kh-thanks__next ol {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--mid);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.kh-thanks__cta {
+  margin-top: var(--space-md);
+}
+
+/* ============================================================
+   Solliciteren — modal triggered from a result card
+   ============================================================ */
+
+.kh-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.kh-modal[aria-hidden="false"] { display: flex; }
+
+.kh-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(28,43,58,0.55);
+  backdrop-filter: blur(2px);
+  animation: kh-fade-in 0.3s var(--ease-smooth);
+}
+.kh-modal__panel {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: var(--space-md);
+  animation: kh-modal-in 0.4s var(--ease);
+}
+@keyframes kh-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kh-modal-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.kh-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--mid);
+  transition: background var(--duration);
+}
+.kh-modal__close:hover { background: var(--rule); color: var(--charcoal); }
+.kh-modal__close svg { width: 16px; height: 16px; }
+
+.kh-modal__title {
+  font-family: var(--serif);
+  font-size: 24px;
+  margin: 0 0 6px;
+  color: var(--charcoal);
+}
+.kh-modal__intro {
+  color: var(--mid);
+  font-size: 14px;
+  margin: 0 0 var(--space-md);
+}
+
+.kh-modal__orgs {
+  margin: var(--space-sm) 0;
+  display: grid;
+  gap: 6px;
+}
+.kh-modal__org {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--duration);
+}
+.kh-modal__org:hover { background: var(--warm); }
+.kh-modal__org input { accent-color: var(--teal); width: 18px; height: 18px; }
+
+.kh-modal__warning {
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.5;
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+/* ============================================================
+   Small screens — viewport fallback for browsers without container queries
+   ============================================================ */
+
+@media (max-width: 500px) {
+  .kh-wizard { padding: 20px 18px; }
+  .kh-progress { gap: 4px; }
+  .kh-actions { flex-direction: row; }
+  .kh-rcard {
+    grid-template-columns: 48px 1fr;
+  }
+  .kh-rcard__logo { width: 48px; height: 48px; }
+  .kh-rcard__name { font-size: 18px; }
+  .kh-rcard__ctas .btn { flex: 1; text-align: center; }
+}
+
+/* ============================================================
+   Embedded mode — when the wizard sits inside the floating widget,
+   add data-embed="widget" to the .kh-wizard root. Compacts the
+   styling: removes the outer card chrome and tightens spacing.
+   ============================================================ */
+
+.kh-wizard[data-embed="widget"] {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: var(--space-sm);
+  max-width: none;
+}
+.kh-wizard[data-embed="widget"]::before { display: none; }
+
+/* Scroll wrapper around the wizard inside the float panel.
+   The widget panel's .widget__body already scrolls vertically; this
+   inner wrapper grows to fill the available space, keeps a warm
+   page-like background tone, and gives the wizard room to breathe. */
+.widget__keuzehulp-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--warm);
+}
+
+/* ============================================================
+   Narrow container — covers both the float panel (~340-400px wide)
+   and tight viewport widths via the same container query.
+   ============================================================ */
+
+@container kh (max-width: 420px) {
+  .kh-title { font-size: clamp(18px, 5.8cqi, 22px); }
+  .kh-lead { font-size: 13.5px; line-height: 1.5; margin-bottom: var(--space-sm); }
+  .kh-eyebrow { font-size: 10.5px; letter-spacing: 1.2px; }
+
+  .kh-progress { gap: 3px; margin-bottom: var(--space-sm); }
+  .kh-progress__step { height: 4px; }
+  .kh-progress__labels { display: none !important; }
+
+  .kh-option { padding: 12px 14px; gap: 10px; }
+  .kh-option__title { font-size: 14px; }
+  .kh-option__desc { font-size: 12.5px; }
+
+  .kh-option--tile { padding: 10px 6px; }
+  .kh-option--tile .kh-option__title { font-size: 12.5px; }
+
+  .kh-note { padding: 12px; font-size: 13px; gap: 10px; }
+  .kh-note__icon { width: 18px; height: 18px; }
+
+  .kh-contact-panel { padding: var(--space-sm); }
+
+  .kh-actions { gap: 8px; padding-top: var(--space-sm); margin-top: var(--space-sm); }
+  .kh-actions .btn { min-width: 0; padding: 10px 14px; font-size: 14px; }
+  .kh-prev { padding: 6px 10px; font-size: 13px; }
+  .kh-prev svg { width: 14px; height: 14px; }
+
+  .kh-rcard { padding: 14px; grid-template-columns: 44px 1fr; gap: 10px 12px; }
+  .kh-rcard__logo { width: 44px; height: 44px; font-size: 10px; }
+  .kh-rcard__name { font-size: 17px; }
+  .kh-rcard__tagline { font-size: 13px; }
+  .kh-rcard__size { font-size: 11px; }
+  .kh-rcard__rank { font-size: 11px; padding: 5px 10px; letter-spacing: 0.6px; }
+  .kh-rcard__tags { gap: 4px; }
+  .kh-rcard__tag { font-size: 11px; padding: 3px 8px; }
+  .kh-rcard__ctas { gap: 8px; }
+  .kh-rcard__ctas .btn { flex: 1; text-align: center; font-size: 13px; padding: 9px 10px; }
+
+  .kh-result__subtitle { font-size: 17px; }
+  .kh-overige__card { padding: 10px; gap: 8px; }
+  .kh-overige__logo { width: 32px; height: 32px; }
+  .kh-overige__name { font-size: 13px; }
+
+  .kh-spinner { width: 52px; height: 52px; }
+  .kh-loading__title { font-size: 18px; }
+
+  .kh-thanks__icon { width: 56px; height: 56px; }
+  .kh-thanks__icon svg { width: 26px; height: 26px; }
+  .kh-thanks__next { padding: var(--space-sm); }
+  .kh-thanks__next h3 { font-size: 15px; }
+  .kh-thanks__next ol { font-size: 13px; }
+}
+
+/* Modal compaction inside the narrow float panel — the modal
+   itself is viewport-fixed, but in the float context we want a
+   tighter feel that matches the surrounding wizard scale. */
+.kh-wizard[data-embed="widget"] .kh-modal__panel {
+  padding: var(--space-sm);
+}
+.kh-wizard[data-embed="widget"] .kh-modal__title { font-size: 20px; }
+
+/* ============================================================
+   Reduced motion — respect user preference
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-screen.is-active,
+  .kh-rcard,
+  .kh-overige__card,
+  .kh-thanks__icon,
+  .kh-modal__panel,
+  .kh-modal__backdrop {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .kh-spinner { animation-duration: 2.4s; }
+  .kh-conditional,
+  .kh-option,
+  .kh-progress__step::after,
+  .kh-option__check {
+    transition: none !important;
+  }
 }
