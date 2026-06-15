@@ -437,6 +437,30 @@
 
 .kh-actions .btn { min-width: 96px; }
 
+/* The start screen has very little content above the action row, so
+   the separator border feels arbitrary there. Drop it on start only —
+   every other screen keeps the rule as a clear actions-divider. */
+.kh-screen[data-screen="start"] .kh-actions {
+  border-top: none;
+  padding-top: 0;
+  margin-top: var(--space-sm);
+}
+
+/* Disabled / inactive state on action buttons — used while the
+   current screen's validator is not satisfied. Pure presentation;
+   the JS toggles .is-disabled + the native [disabled] attribute. */
+.btn:disabled,
+.btn.is-disabled,
+.kh-prev:disabled,
+.kh-prev.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+  filter: saturate(0.6);
+}
+
 /* The .btn--ghost-style "Vorige" link */
 .kh-prev {
   background: transparent;

@@ -50,11 +50,66 @@
       currentIndex = idx;
       activateScreen(id);
       updateProgress(id);
+      refreshValidation();
 
       if (id === 'loading') {
         setTimeout(() => goTo('result'), 1800);
       }
     }
+
+    // ---------- Per-screen validators (presentation only) ----------
+    // Each validator returns true when the current screen's Next/Start
+    // CTA should be active. The external developer can replace these
+    // with the real engine; the contract is only "toggle btn.disabled".
+    const VALIDATORS = {
+      start: () => true,
+      naam: () => {
+        const inp = root.querySelector('[data-field="voornaam"]');
+        return !!(inp && inp.value.trim().length > 0);
+      },
+      '1': () => {
+        const v = state.answers['1'];
+        if (!v) return false;
+        if (v === 'ja') {
+          const screen = screenEl('1');
+          const pcInput = screen && screen.querySelector('.kh-input--postcode');
+          const pc = (pcInput ? pcInput.value : '').replace(/\s/g, '').toUpperCase();
+          return /^[1-9]\d{3}[A-Z]{2}$/.test(pc);
+        }
+        return true;
+      },
+      '2': () => !!state.answers['2'],
+      '3': () => Array.isArray(state.answers['3']) && state.answers['3'].length > 0,
+      contact: () => {
+        const screen = screenEl('contact');
+        const emailInput = screen && screen.querySelector('input[type="email"]');
+        const email = (emailInput ? emailInput.value : '').trim();
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      },
+      '4': () => {
+        const v = state.answers['4'];
+        if (!v) return false;
+        if (v === 'ja') return !!state.answers['4-niveau'];
+        return true;
+      },
+      '5': () => !!state.answers['5'],
+      '6': () => Array.isArray(state.answers['6']) && state.answers['6'].length > 0,
+    };
+
+    function refreshValidation() {
+      const id = FLOW[currentIndex];
+      const screen = screenEl(id);
+      if (!screen) return;
+      const btn = screen.querySelector('[data-action="next"], [data-action="start"]');
+      if (!btn) return;
+      const validator = VALIDATORS[id];
+      const ok = !validator || validator();
+      btn.disabled = !ok;
+      btn.classList.toggle('is-disabled', !ok);
+    }
+
+    // Re-validate on any input change inside the wizard.
+    root.addEventListener('input', refreshValidation);
 
     function next() {
       const id = FLOW[currentIndex];
@@ -158,6 +213,7 @@
         state.answers[groupKey] = value;
         handleConditionals(screenId, value);
       }
+      refreshValidation();
     });
 
     // ---------- Conditional reveals ----------
