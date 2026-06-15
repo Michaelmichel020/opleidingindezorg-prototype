@@ -141,6 +141,15 @@
   margin: 0 0 var(--space-sm);
   letter-spacing: -0.01em;
 }
+/* Hide the default outline that appears when we programmatically focus
+   the title for screen-reader announcement on screen-change. Keyboard
+   users still see a clear focus state via :focus-visible. */
+.kh-title:focus { outline: none; }
+.kh-title:focus-visible {
+  outline: 3px solid rgba(50,172,152,0.35);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
 .kh-lead {
   color: var(--mid);
   font-size: clamp(14px, 2.4cqi, 16px);
