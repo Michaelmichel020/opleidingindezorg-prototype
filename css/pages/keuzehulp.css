@@ -526,6 +526,10 @@
   margin-bottom: var(--space-lg);
 }
 
+@container kh (min-width: 600px) {
+  /* Reserved: result cards stay stacked, intentionally. */
+}
+
 .kh-rcard {
   background: var(--white);
   border: 1.5px solid var(--rule);
@@ -874,20 +878,94 @@
 
 /* ============================================================
    Embedded mode — when the wizard sits inside the floating widget,
-   the developer can add data-embed="widget" to the .kh-wizard root.
-   This compacts the styling further.
+   add data-embed="widget" to the .kh-wizard root. Compacts the
+   styling: removes the outer card chrome and tightens spacing.
    ============================================================ */
 
 .kh-wizard[data-embed="widget"] {
   border: none;
   box-shadow: none;
   border-radius: 0;
-  padding: 18px;
+  padding: var(--space-sm);
   max-width: none;
 }
 .kh-wizard[data-embed="widget"]::before { display: none; }
-.kh-wizard[data-embed="widget"] .kh-title { font-size: 20px; }
-.kh-wizard[data-embed="widget"] .kh-rcard__name { font-size: 17px; }
+
+/* Scroll wrapper around the wizard inside the float panel.
+   The widget panel's .widget__body already scrolls vertically; this
+   inner wrapper grows to fill the available space, keeps a warm
+   page-like background tone, and gives the wizard room to breathe. */
+.widget__keuzehulp-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--warm);
+}
+
+/* ============================================================
+   Narrow container — covers both the float panel (~340-400px wide)
+   and tight viewport widths via the same container query.
+   ============================================================ */
+
+@container kh (max-width: 420px) {
+  .kh-title { font-size: clamp(18px, 5.8cqi, 22px); }
+  .kh-lead { font-size: 13.5px; line-height: 1.5; margin-bottom: var(--space-sm); }
+  .kh-eyebrow { font-size: 10.5px; letter-spacing: 1.2px; }
+
+  .kh-progress { gap: 3px; margin-bottom: var(--space-sm); }
+  .kh-progress__step { height: 4px; }
+  .kh-progress__labels { display: none !important; }
+
+  .kh-option { padding: 12px 14px; gap: 10px; }
+  .kh-option__title { font-size: 14px; }
+  .kh-option__desc { font-size: 12.5px; }
+
+  .kh-option--tile { padding: 10px 6px; }
+  .kh-option--tile .kh-option__title { font-size: 12.5px; }
+
+  .kh-note { padding: 12px; font-size: 13px; gap: 10px; }
+  .kh-note__icon { width: 18px; height: 18px; }
+
+  .kh-contact-panel { padding: var(--space-sm); }
+
+  .kh-actions { gap: 8px; padding-top: var(--space-sm); margin-top: var(--space-sm); }
+  .kh-actions .btn { min-width: 0; padding: 10px 14px; font-size: 14px; }
+  .kh-prev { padding: 6px 10px; font-size: 13px; }
+  .kh-prev svg { width: 14px; height: 14px; }
+
+  .kh-rcard { padding: 14px; grid-template-columns: 44px 1fr; gap: 10px 12px; }
+  .kh-rcard__logo { width: 44px; height: 44px; font-size: 10px; }
+  .kh-rcard__name { font-size: 17px; }
+  .kh-rcard__tagline { font-size: 13px; }
+  .kh-rcard__size { font-size: 11px; }
+  .kh-rcard__rank { font-size: 11px; padding: 5px 10px; letter-spacing: 0.6px; }
+  .kh-rcard__tags { gap: 4px; }
+  .kh-rcard__tag { font-size: 11px; padding: 3px 8px; }
+  .kh-rcard__ctas { gap: 8px; }
+  .kh-rcard__ctas .btn { flex: 1; text-align: center; font-size: 13px; padding: 9px 10px; }
+
+  .kh-result__subtitle { font-size: 17px; }
+  .kh-overige__card { padding: 10px; gap: 8px; }
+  .kh-overige__logo { width: 32px; height: 32px; }
+  .kh-overige__name { font-size: 13px; }
+
+  .kh-spinner { width: 52px; height: 52px; }
+  .kh-loading__title { font-size: 18px; }
+
+  .kh-thanks__icon { width: 56px; height: 56px; }
+  .kh-thanks__icon svg { width: 26px; height: 26px; }
+  .kh-thanks__next { padding: var(--space-sm); }
+  .kh-thanks__next h3 { font-size: 15px; }
+  .kh-thanks__next ol { font-size: 13px; }
+}
+
+/* Modal compaction inside the narrow float panel — the modal
+   itself is viewport-fixed, but in the float context we want a
+   tighter feel that matches the surrounding wizard scale. */
+.kh-wizard[data-embed="widget"] .kh-modal__panel {
+  padding: var(--space-sm);
+}
+.kh-wizard[data-embed="widget"] .kh-modal__title { font-size: 20px; }
 
 /* ============================================================
    Reduced motion — respect user preference
