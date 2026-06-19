@@ -35,7 +35,10 @@ een statische server (zie `/README.md`), niet via dubbelklik.
   <link rel="stylesheet" href="/css/animations.css">
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/widget.css">
+  <link rel="stylesheet" href="/css/cookie.css">
   <link rel="stylesheet" href="/css/pages/[PAGINA].css">
+  <!-- ALLEEN op /keuzehulp/: <link rel="stylesheet" href="/css/pages/keuzehulp.css"> -->
 </head>
 <body data-page="[slug]">
 
@@ -47,6 +50,10 @@ een statische server (zie `/README.md`), niet via dubbelklik.
 
   <!-- >>> KOPIEER HIER DE VOLLEDIGE INHOUD VAN _partials/footer.html <<< -->
 
+  <!-- >>> KOPIEER HIER DE VOLLEDIGE INHOUD VAN _partials/widget.html <<< -->
+  <!-- >>> KOPIEER HIER DE VOLLEDIGE INHOUD VAN _partials/cookie.html <<< -->
+  <!-- >>> KOPIEER HIER DE VOLLEDIGE INHOUD VAN _partials/rotate-notice.html <<< -->
+
   <!-- Scripts: alle pagina's laden dezelfde set. Elk script doet
        niets als de bijbehorende elementen ontbreken (veilige guards). -->
   <script src="/js/nav.js"></script>
@@ -55,6 +62,9 @@ een statische server (zie `/README.md`), niet via dubbelklik.
   <script src="/js/faq.js"></script>
   <script src="/js/filter.js"></script>
   <script src="/js/forms.js"></script>
+  <script src="/js/widget.js"></script>
+  <script src="/js/cookie.js"></script>
+  <!-- ALLEEN op /keuzehulp/: <script src="/js/keuzehulp-ui.js"></script> -->
 </body>
 </html>
 ```
