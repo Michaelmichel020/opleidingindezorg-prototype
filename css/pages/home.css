@@ -6,47 +6,120 @@
 /* Hero title breaks onto two lines via the <br> in the markup */
 .hero--home .hero__title { max-width: 20ch; }
 
-/* Region indicator — sits directly below the hero, highlights Amstelland & Meerlanden */
+/* ============================================================
+   Region band — directly below the hero, brings Amstelland &
+   Meerlanden visually to the foreground. Centered head with serif
+   title, plus a row of pill-chips for the eight municipalities.
+   ============================================================ */
+
 .region-band {
-  background: linear-gradient(90deg, var(--teal-bg) 0%, #F1FAF7 100%);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(50, 172, 152, 0.10), transparent 55%),
+    radial-gradient(circle at 80% 100%, rgba(50, 172, 152, 0.08), transparent 50%),
+    linear-gradient(180deg, var(--teal-bg) 0%, #F1FAF7 70%, var(--warm) 100%);
   border-block: 1px solid var(--teal-border);
-  padding-block: 22px;
+  padding-block: clamp(40px, 7vw, 64px);
+  position: relative;
+  overflow: hidden;
 }
-.region-band__row {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  max-width: 920px;
+
+.region-band__head {
+  text-align: center;
+  max-width: 720px;
   margin-inline: auto;
+  position: relative;
+  z-index: 1;
 }
+
 .region-band__icon {
-  width: 52px; height: 52px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: var(--white);
   color: var(--teal-dark);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-teal);
+  margin-bottom: 14px;
 }
-.region-band__icon svg { width: 26px; height: 26px; }
+.region-band__icon svg { width: 32px; height: 32px; }
+
 .region-band__eyebrow {
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--teal-dark);
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 }
+
 .region-band__title {
   font-family: var(--serif);
-  font-size: 26px;
+  font-weight: 400;
+  font-size: clamp(28px, 4.5vw, 40px);
   line-height: 1.15;
-  margin-bottom: 4px;
+  color: var(--charcoal);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
 }
-.region-band__towns { font-size: 14px; color: var(--mid); }
-.region-band__towns em { font-style: italic; color: var(--mid); }
+
+.region-band__sub {
+  font-size: 15px;
+  color: var(--mid);
+  margin: 0;
+}
+
+/* Pill-chip grid — wraps fluidly, centered */
+.region-band__chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: var(--space-md) auto 0;
+  max-width: 780px;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+.region-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px 9px 13px;
+  background: var(--white);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-pill);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--charcoal);
+  box-shadow: 0 1px 3px rgba(50, 172, 152, 0.08);
+  transition:
+    transform var(--duration) var(--ease-smooth),
+    border-color var(--duration) var(--ease-smooth),
+    box-shadow var(--duration) var(--ease-smooth);
+}
+.region-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal);
+  box-shadow: 0 6px 16px rgba(50, 172, 152, 0.18);
+}
+
+.region-chip__pin {
+  width: 16px;
+  height: 16px;
+  color: var(--teal);
+  flex-shrink: 0;
+}
 
 @media (max-width: 560px) {
-  .region-band__row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .region-band__icon { width: 54px; height: 54px; }
+  .region-band__icon svg { width: 26px; height: 26px; }
+  .region-band__title { font-size: 26px; }
+  .region-band__chips { gap: 7px; }
+  .region-chip { padding: 7px 13px 7px 11px; font-size: 13.5px; }
+  .region-chip__pin { width: 14px; height: 14px; }
 }
 
 /* Org logo grid */
