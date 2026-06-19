@@ -108,7 +108,7 @@ een statische server (zie `/README.md`), niet via dubbelklik.
 <!-- play -->
 <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 <!-- euro -->
-<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 7a5 5 0 100 10M5 10h7M5 14h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 8a6 6 0 1 0 0 8M5 11h10M5 14h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 <!-- gebouw / werk -->
 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 21V5l8-3v19M12 21h8V9l-8-2M8 8v.01M8 12v.01M8 16v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <!-- school / boek -->
