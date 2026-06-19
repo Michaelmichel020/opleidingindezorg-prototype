@@ -23,14 +23,14 @@ scroll-animaties.
 
 ## Wat zit erin
 
-33 pagina's, volledig onderling gelinkt:
+32 pagina's, volledig onderling gelinkt:
 
 - **Home** (`index.html`)
-- **Werken & Leren** — overzicht + 3 BBL-niveaus + 4 informatiepagina's
+- **Werken & Leren** — overzicht + 3 BBL-niveaus + 3 informatiepagina's (toelatingseisen, salaris, FAQ)
 - **Zorgorganisaties** — overzicht met filterbar + organisatie-detailpagina's
 - **Scholen** — overzicht + proces + open dagen
 - **Over ons** — overzicht + samenwerking + deelnemers + contact
-- **Keuzehulp** — wizard via iframe-embed
+- **Keuzehulp** — wizard inline op de pagina (geen iframe); de float-widget linkt ernaartoe
 - **Solliciteren** — formulier + bevestigingspagina
 - **Legal** — privacy, cookies, disclaimer, toegankelijkheid
 
@@ -39,9 +39,9 @@ scroll-animaties.
 ```
 03-prototype/
 ├── index.html              Home
-├── css/                    tokens, global, components, animations, nav, footer
-│   └── pages/              pagina-specifieke stylesheets
-├── js/                     nav, animations, footer, faq, filter, forms (vanilla)
+├── css/                    tokens, global, components, animations, nav, footer, widget, cookie
+│   └── pages/              pagina-specifieke stylesheets (incl. keuzehulp.css, alleen op /keuzehulp/)
+├── js/                     nav, animations, footer, faq, filter, forms, widget, cookie, keuzehulp-ui (vanilla)
 ├── assets/logo/            logo-SVG's
 ├── _partials/              canonieke header + footer + bouwinstructie (geen pagina's)
 └── [secties]/              alle pagina's als map met index.html
@@ -54,7 +54,8 @@ en `footer.php` plus de bouwinstructie.
 
 Pure HTML5 / CSS3 / vanilla JavaScript. Geen frameworks, geen build-tools.
 Enige externe afhankelijkheid: Google Fonts (DM Sans + DM Serif Display) via CDN.
-De Keuzehulp draait als iframe vanaf de bestaande wizard-app.
+De Keuzehulp staat inline op `/keuzehulp/` (12 schermen + sollicitatie-modaal); een
+externe wizard-developer koppelt later zijn engine aan deze markup.
 
 ## WordPress-omzetting
 
@@ -78,11 +79,10 @@ Doorzoekbaar met `grep -rn "TODO" .` Samengevat:
 - **Organisatieteksten** — de "Wie zijn wij?"-teksten zijn geschreven op basis
   van de officiële sites van de organisaties, laten bevestigen door de
   organisaties zelf. Arbeidsvoorwaarden en locaties zijn nog voorbeeldcopy.
-- **Sigra** — Sigra is de 8e organisatie maar een regionaal samenwerkingsverband,
-  geen zorgwerkgever. De niet-kloppende secties op de Sigra-pagina zijn in de
-  code gemarkeerd. Beslis voor livegang hoe Sigra wordt gepresenteerd.
-- **Cordaan** — mogelijk verborgen bij livegang, zie DEVELOPER-HANDOVER.md.
-- **Niveau 4** — organisatie-selectie laten bevestigen.
+- **Sigra** — geen zorgwerkgever maar regionaal samenwerkingsverband. Geen
+  detailpagina; staat alleen als logo + korte vermelding op `/over-ons/deelnemers/`.
+- **Cordaan** — niet op de site (geen detailpagina, geen mega menu, geen footer).
+  Als Cordaan later toetreedt: nieuwe `organisaties`-post toevoegen.
 - **Filterbar** — in het prototype visueel; in WordPress koppelen aan `WP_Query`
   met `tax_query` (org_type / bbl_niveau / werkplek).
 - **Open dagen** — voorbeelddata en -locaties, definitieve agenda aanleveren.
@@ -92,6 +92,8 @@ Doorzoekbaar met `grep -rn "TODO" .` Samengevat:
 
 ## Kwaliteitscheck
 
-Geverifieerd: 33 pagina's geven HTTP 200, geen kapotte interne links, identieke
-header/footer overal, mega menu's compleet, sollicitatieformulier met validatie
-en `?org=`-pre-fill, FAQ-accordion, geen externe dependencies buiten Google Fonts.
+Geverifieerd: 32 pagina's geven HTTP 200, geen kapotte interne links, identieke
+header overal (footer in twee bewuste varianten: standaard + lichter op
+`/keuzehulp/` en `/solliciteren/`), mega menu's compleet, sollicitatieformulier
+met validatie en `?org=`-pre-fill, FAQ-accordion, geen externe dependencies
+buiten Google Fonts.
