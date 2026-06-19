@@ -414,6 +414,12 @@ from this WordPress theme. That developer overlays this frontend: they take
 over the markup as a presentation contract and hang their own state engine
 on it.
 
+> **Looking for the full wizard reference?** A separate `WIZARD-HANDOVER.md`
+> in the repo root spells out every screen ID, option key, conditional
+> hook, and modal contract. Use this section for the integration overview;
+> use that document when porting the markup or talking to the wizard
+> developer.
+
 ### 7.3 The markup contract (do not touch)
 
 These markup hooks are an agreement with the external wizard developer. They
