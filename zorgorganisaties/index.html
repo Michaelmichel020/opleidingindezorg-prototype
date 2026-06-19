@@ -173,14 +173,13 @@
           <li><a href="/werken-en-leren/niveau-2/" class="mega__link">BBL Niveau 2 - Helpende</a></li>
           <li><a href="/werken-en-leren/niveau-3/" class="mega__link">BBL Niveau 3 - Verzorgende IG</a></li>
           <li><a href="/werken-en-leren/niveau-4/" class="mega__link">
-            BBL Niveau 4 - Verpleegkundige
+            BBL Niveau 4 - mbo-Verpleegkundige
           </a></li>
         </ul>
       </div>
       <div class="mega__col">
         <p class="mega__eyebrow">Informatie</p>
         <ul class="mega__links" role="list">
-          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
           <li><a href="/werken-en-leren/toelatingseisen/" class="mega__link">Toelatingseisen</a></li>
           <li><a href="/werken-en-leren/salaris/" class="mega__link">Salaris en vergoedingen</a></li>
           <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
@@ -240,7 +239,6 @@
         <p class="mega__eyebrow">Goed om te weten</p>
         <ul class="mega__links" role="list">
           <li><a href="/werken-en-leren/" class="mega__link">Wat is BBL?</a></li>
-          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
         </ul>
       </div>
       <div class="mega__col mega__col--featured">
@@ -265,13 +263,6 @@
           <li><a href="/over-ons/deelnemers/" class="mega__link">Deelnemende organisaties</a></li>
           <li><a href="/over-ons/contact/" class="mega__link">Contact</a></li>
           <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
-        </ul>
-      </div>
-      <div class="mega__col">
-        <p class="mega__eyebrow">Voor professionals</p>
-        <ul class="mega__links" role="list">
-          <li><a href="/over-ons/" class="mega__link">Voor zorgorganisaties</a></li>
-          <li><a href="/scholen/" class="mega__link">Voor opleidingsinstituten</a></li>
         </ul>
       </div>
       <div class="mega__col mega__col--featured">
@@ -349,9 +340,9 @@
           <!-- WP_QUERY_FILTER: taxonomy org_type -->
           <select class="filterbar__select" id="filter-type" data-filter="type" aria-label="Filter op type organisatie">
             <option value="">Type organisatie</option>
-            <option value="klein">Klein</option>
-            <option value="middelgroot">Middelgroot</option>
-            <option value="groot">Groot</option>
+            <option value="klein">Klein (minder dan 500 medewerkers)</option>
+            <option value="middelgroot">Middelgroot (500 - 1.000 medewerkers)</option>
+            <option value="groot">Groot (meer dan 1.000 medewerkers)</option>
           </select>
 
           <!-- WP_QUERY_FILTER: taxonomy bbl_niveau -->
@@ -359,7 +350,7 @@
             <option value="">BBL-niveau</option>
             <option value="niveau-2">Niveau 2 - Helpende</option>
             <option value="niveau-3">Niveau 3 - Verzorgende IG</option>
-            <option value="niveau-4">Niveau 4 - Verpleegkundige</option>
+            <option value="niveau-4">Niveau 4 - mbo-Verpleegkundige</option>
           </select>
 
           <!-- WP_QUERY_FILTER: taxonomy werkplek -->
@@ -382,6 +373,11 @@
         </div>
 
       </div>
+
+      <!-- Schaalgrootte-toelichting bij de filter -->
+      <p class="text-small org-toolbar__help" style="color: var(--mid); margin: 8px 0 0">
+        <strong>Over de schaalgrootte:</strong> de indeling klein/middelgroot/groot is gebaseerd op het aantal medewerkers. Voor een vollediger beeld kun je op de detailpagina van elke zorgorganisatie ook het aantal locaties en vrijwilligers terugvinden bij Cijfers en feiten.
+      </p>
 
       <!-- Result counter -->
       <p class="org-count" id="org-count" aria-live="polite"><!-- WP: echo $org_query->found_posts . ' organisaties' --></p>
@@ -429,7 +425,7 @@
           </a>
         </article>
 
-        <article class="org-card reveal" data-org-type="middelgroot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="thuiszorg verpleeghuis">
+        <article class="org-card reveal" data-org-type="middelgroot" data-org-niveaus="niveau-2 niveau-3 niveau-4" data-org-werkplek="verpleeghuis">
           <a href="/zorgorganisaties/pcsoh/" class="org-card__link">
             <div class="org-card__logo logo-placeholder">PCSOH</div>
             <h3 class="org-card__name">PCSOH</h3>
@@ -531,7 +527,7 @@
           <li><a href="/werken-en-leren/" class="footer__link">Werken &amp; Leren (Wat is BBL?)</a></li>
           <li><a href="/werken-en-leren/niveau-2/" class="footer__link">BBL Niveau 2 - Helpende</a></li>
           <li><a href="/werken-en-leren/niveau-3/" class="footer__link">BBL Niveau 3 - Verzorgende IG</a></li>
-          <li><a href="/werken-en-leren/niveau-4/" class="footer__link">BBL Niveau 4 - Verpleegkundige</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="footer__link">BBL Niveau 4 - mbo-Verpleegkundige</a></li>
           <li><a href="/werken-en-leren/toelatingseisen/" class="footer__link">Toelatingseisen</a></li>
           <li><a href="/werken-en-leren/salaris/" class="footer__link">Salaris en vergoedingen</a></li>
           <li><a href="/werken-en-leren/faq/" class="footer__link">Veelgestelde vragen</a></li>
