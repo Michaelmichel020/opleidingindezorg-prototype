@@ -18,7 +18,11 @@ without touching a specific post.
 | Field name | Type | Description |
 |---|---|---|
 | `site_logo` | Image | Site logo, shown in the header. Falls back to the inline SVG logo if empty. Used in `header.php` / `nav.php`. |
-| `keuzehulp_wizard_url` | URL | Source URL of the embedded Keuzehulp wizard iframe on `/keuzehulp/`. Currently hardcoded; see TODO. Recommended as an option so the URL can change without a code edit. |
+
+The wizard was previously fed by an iframe URL (`keuzehulp_wizard_url`).
+That is no longer the case: the Keuzehulp wizard is now inline markup on
+`/keuzehulp/` (see `DEVELOPER-HANDOVER.md` section 7). No ACF field is
+needed for the wizard.
 
 ---
 
@@ -120,7 +124,7 @@ through the dedicated "Open dagen" admin screen (see DEVELOPER-HANDOVER 3.2).
 | `single-organisaties.php` | all `org_*` fields |
 | `page.php` template `solliciteren` | `hero_title`, `hero_subtitle` (the form itself: Gravity Forms, not ACF) |
 | `page.php` template `contact` | `hero_title`, `hero_subtitle` (the form itself: Gravity Forms) |
-| `page.php` template `keuzehulp-full` | `keuzehulp_wizard_url` (Options) |
+| `page.php` template `keuzehulp-full` | none — the wizard is inline markup (see DEVELOPER-HANDOVER §7) |
 | `page.php` (scholen/open-dagen) | `hero_title`, `hero_subtitle`; `open_dagen` loop (`datum`, `tijd`, `locatie`, `organisatie`, `beschrijving`, `meer_info_url`) |
 
 ---
