@@ -23,7 +23,7 @@ same time). Candidates are matched to the right organisation through the site.
 - **Conversion goals:** the Keuzehulp (a guidance wizard) and the Direct
   Solliciteren (direct application) form.
 
-The prototype is 33 fully linked pages. It is meant to be converted 1:1 into a
+The prototype is 32 fully linked pages. It is meant to be converted 1:1 into a
 WordPress custom theme by a PHP developer.
 
 ### Tech stack
@@ -31,10 +31,13 @@ WordPress custom theme by a PHP developer.
 - Pure HTML5 / CSS3 / vanilla JavaScript. No frameworks, no build tools.
 - One CSS file per concern + `tokens.css` + `global.css`.
 - Vanilla JS for the mega menu, scroll animations, FAQ accordion, footer
-  toggle, and form behaviour.
+  toggle, form behaviour, floating help widget, cookie notice, and the
+  Keuzehulp wizard demo.
 - Google Fonts via a CDN `<link>` in `<head>`.
-- The only third-party runtime dependency is Google Fonts. The Keuzehulp runs
-  as an embedded iframe (see section 7).
+- The only third-party runtime dependency is Google Fonts. The Keuzehulp
+  wizard is built inline as a self-contained HTML/CSS/JS component (see
+  section 7); the wizard-engine that drives the matching is delivered by
+  an external developer and overlays this markup.
 
 ### Viewing the prototype
 
@@ -61,7 +64,7 @@ python3 -m http.server 8000
 ├── werken-en-leren/                Werken & Leren section
 │   ├── index.html                 page.php (template: werken-leren)
 │   ├── niveau-2|3|4/index.html     page.php (template: bbl-niveau)
-│   └── bbl-vs-bol|toelatingseisen|salaris|faq/index.html   page.php
+│   └── toelatingseisen|salaris|faq/index.html   page.php
 ├── zorgorganisaties/
 │   ├── index.html                 archive.php (post type: organisaties)
 │   └── <org-slug>/index.html       single-organisaties.php
@@ -79,14 +82,20 @@ python3 -m http.server 8000
 │   ├── animations.css              scroll-reveal classes, parallax, counter
 │   ├── nav.css                     navigation + mega menu + mobile drawer
 │   ├── footer.css                  footer
+│   ├── widget.css                  floating help widget
+│   ├── cookie.css                  cookie notice
 │   └── pages/                      one stylesheet per page type
+│       └── keuzehulp.css           wizard component (loaded only on /keuzehulp/)
 ├── js/
 │   ├── nav.js                      mega menu, hamburger, sticky header
 │   ├── animations.js               IntersectionObserver reveals, parallax, counter
 │   ├── footer.js                   footer expand/collapse
 │   ├── faq.js                      accordion
 │   ├── filter.js                   org filters + view-toggle, result count
-│   └── forms.js                    validation, character counter, URL pre-fill
+│   ├── forms.js                    validation, character counter, URL pre-fill
+│   ├── widget.js                   floating help widget (open/close, view-switch, intro bubble)
+│   ├── cookie.js                   cookie notice (consent state, customise view)
+│   └── keuzehulp-ui.js             wizard presentation interactivity (only loaded on /keuzehulp/)
 ├── assets/logo/                    logo SVGs (teal, white, icon)
 ├── _partials/                      build sources, NOT part of the WP theme
 │   ├── header.html                 canonical header markup -> header.php / nav.php
@@ -167,8 +176,11 @@ sidebar. The whole lifecycle happens there:
 
 - **Add** an organisation — "Nieuwe organisatie", fill in the ACF fields, Publish.
 - **Edit** — open the organisation, change fields, Update.
-- **Remove / hide** — set the post to Draft or Trash (see section 10 for the
-  Cordaan launch case).
+- **Remove / hide** — set the post to Draft or Trash. The loop-driven
+  listings (archive, home grid, "Andere zorgorganisaties" block, deelnemers
+  grid) then drop the organisation automatically. The hand-built lists
+  (mega menu, footer column, application-form checkboxes) need a manual
+  edit. See section 10 for the current participant set.
 
 The admin never touches the WordPress **page editor** or the Gutenberg block
 canvas for an organisation. To make that explicit and prevent mistakes:
@@ -244,8 +256,9 @@ Create these ACF field groups (full field list with types in `ACF-FIELDS.md`):
   (`org_locaties`, `org_arbeidsvoorwaarden`).
 - **Open dag fields** — `datum`, `tijd`, `locatie`, `organisatie`,
   `beschrijving`, `meer_info_url`. Attach to the `open_dagen` post type.
-- **Site options** — `site_logo` and the Keuzehulp wizard URL, best placed on
-  an ACF Options page so they are editable site-wide.
+- **Site options** — `site_logo`, best placed on an ACF Options page so it
+  is editable site-wide. (The wizard no longer needs a `keuzehulp_wizard_url`
+  option: it is inline markup — see section 7.)
 
 ### 3.4 Menu locations
 
@@ -285,7 +298,7 @@ Summary:
 | `single-organisaties.php` | all `org_*` fields (see ACF-FIELDS.md) |
 | `solliciteren` / `contact` templates | `hero_title`, `hero_subtitle` |
 | `page.php` (scholen/open-dagen) | `hero_title`, `hero_subtitle` + `open_dagen` loop |
-| `keuzehulp-full` template | wizard URL (recommended as an ACF option) |
+| `keuzehulp-full` template | none — the wizard is inline markup, see section 7 |
 
 ---
 
@@ -299,7 +312,10 @@ Load order matters. Enqueue in `functions.php` in this order:
 3. `components.css` — all reusable components.
 4. `animations.css` — scroll-reveal classes + reduced-motion handling.
 5. `nav.css`, `footer.css`.
-6. The matching `css/pages/*.css` for the current template.
+6. `widget.css` — floating help widget (every page).
+7. `cookie.css` — cookie notice (every page).
+8. The matching `css/pages/*.css` for the current template.
+   `css/pages/keuzehulp.css` is loaded **only** on the keuzehulp template.
 
 Class naming is BEM-like (`block__element--modifier`). Class names are in a
 mix of English and Dutch; **do not rename them** — the JS depends on several of
@@ -338,21 +354,26 @@ the intended values. Two things still need a real value: the
 
 ## 6. JavaScript
 
-Six small vanilla scripts, all loaded on every page. Each script guards itself:
-if its target elements are not on the page, it does nothing. Load all six
-before `</body>`:
+Nine small vanilla scripts. Eight are loaded on every page; `keuzehulp-ui.js`
+is loaded **only** on the `/keuzehulp/` page. Each script guards itself: if
+its target elements are not on the page, it does nothing. Load before
+`</body>`:
 
-| Script | Responsibility |
-|---|---|
-| `nav.js` | mega menu (hover intent + click), hamburger drawer, sticky header, active-section state |
-| `animations.js` | IntersectionObserver scroll reveals, stagger, number counter, parallax |
-| `footer.js` | footer expand/collapse |
-| `faq.js` | accordion (one panel open at a time, animated max-height) |
-| `filter.js` | grid/list view toggle (org overview `#org-grid` + open-dagen `#agenda-grid`); client-side organisation filters (type / niveau / werkplek) on the overview and the "Andere zorgorganisaties" block, with live result count and empty state |
-| `forms.js` | form validation, textarea character counter, `?org=` pre-fill, hidden source field |
+| Script | Loaded on | Responsibility |
+|---|---|---|
+| `nav.js` | every page | mega menu (hover intent + click), hamburger drawer, sticky header, active-section state |
+| `animations.js` | every page | IntersectionObserver scroll reveals, stagger, number counter, parallax |
+| `footer.js` | every page | footer expand/collapse |
+| `faq.js` | every page | accordion (one panel open at a time, animated max-height) |
+| `filter.js` | every page | grid/list view toggle (org overview `#org-grid` + open-dagen `#agenda-grid`); client-side organisation filters (type / niveau / werkplek) on the overview and the "Andere zorgorganisaties" block, with live result count and empty state |
+| `forms.js` | every page | form validation, textarea character counter, `?org=` pre-fill, hidden source field |
+| `widget.js` | every page | floating help widget: open/close, view-switching between the three choices, intro bubble |
+| `cookie.js` | every page | cookie notice: consent state, customise view, persistence in localStorage |
+| `keuzehulp-ui.js` | `/keuzehulp/` only | wizard presentation interactivity (see section 7); demo layer that the external wizard developer replaces or wraps |
 
 In WordPress, enqueue these with `wp_enqueue_script` in the footer. No
-dependencies, no jQuery.
+dependencies, no jQuery. Enqueue `keuzehulp-ui.js` conditionally on the
+keuzehulp template only.
 
 The form filter on the organisaties overview is intentionally **not
 functional** in the prototype. Wire it up to a `WP_Query` with a `tax_query`
@@ -362,26 +383,80 @@ on `org_type`, `bbl_niveau`, and `werkplek`.
 
 ## 7. Keuzehulp wizard integration
 
-`/keuzehulp/` embeds an external application via an iframe. The iframe sits in
-a contained, rounded panel (`.keuzehulp-embed`) in the normal page flow, so it
-scrolls with the page; a normal hero and CTA banner surround it.
+### 7.1 Where the wizard lives
 
-```html
-<iframe src="https://opleidingindezorg-wireframes.netlify.app/"
-        class="keuzehulp-frame" title="Keuzehulp"
-        loading="lazy"></iframe>
-```
+The Keuzehulp wizard is **inline HTML**, built directly into the template
+markup. There is **no iframe**.
 
-Notes:
-- The embedded app is separate and hosted separately. It is not part of this
-  theme.
-- Make the iframe `src` editable in WordPress (an ACF option, suggested name
-  `keuzehulp_wizard_url`, or a theme constant) so the URL can change without a
-  code edit.
-- The application form pre-fills the selected organisation from a URL
-  parameter: links such as `/solliciteren/?org=amstelring` tick the matching
-  checkbox. This is handled in `js/forms.js`; keep the `?org=` slug contract
-  intact when wiring up the real form.
+- **Standalone page:** `/keuzehulp/` renders the wizard inline in the page
+  flow (`<div class="kh-wizard">…12 screens + apply modal…</div>`). The hero
+  above it and the keuzehulp-note below it are normal page content.
+- **Floating widget:** the float (`_partials/widget.html`) **no longer
+  contains the wizard**. Its "Hulp bij het kiezen" entry is a simple
+  `<a href="/keuzehulp/">` link.
+
+So: one wizard, one canonical place (`/keuzehulp/`), reached from the float
+via a plain link.
+
+### 7.2 What lives in this repo (yours) vs. what an external developer adds
+
+This handover delivers the **frontend** of the wizard:
+
+| Part | File | Yours to keep |
+|---|---|---|
+| Inline markup (12 screens, options, apply modal) | the body of `keuzehulp/index.html` (a `.kh-wizard` block) | Yes — render the same markup from the template, do not "clean up" or restructure it. |
+| Styling | `css/pages/keuzehulp.css` | Yes — token-driven, no external assets. Enqueue on the keuzehulp template only. |
+| Presentation demo JS | `js/keuzehulp-ui.js` | Optional — the external wizard developer either replaces this with the real engine, or wraps it. Enqueue conditionally on the keuzehulp template. |
+
+The **wizard engine** (scoring, real matching, persistence, follow-up
+e-mail / system integration) is delivered by an external developer, separate
+from this WordPress theme. That developer overlays this frontend: they take
+over the markup as a presentation contract and hang their own state engine
+on it.
+
+### 7.3 The markup contract (do not touch)
+
+These markup hooks are an agreement with the external wizard developer. They
+must be preserved verbatim when the static HTML becomes the WordPress
+template:
+
+| Hook | Meaning |
+|---|---|
+| `class="kh-wizard"` | the wizard root element |
+| `<section class="kh-screen" data-screen="…">` | one of 12 screens; `data-screen` IDs are: `start`, `naam`, `1`, `2`, `3`, `contact`, `4`, `5`, `6`, `loading`, `result`, `bedankt` |
+| `<button class="kh-option" data-value="…" aria-pressed="…">` | a choice card; `data-value` is the option-key the engine reads |
+| `<div class="kh-options" data-multi="true">` | a multi-select group (vs. single-select when `data-multi` is absent) |
+| `[data-conditional="postcode"]`, `[data-conditional="niveau"]` | conditional blocks that appear after specific answers |
+| `[data-note="default"]`, `[data-note="nee"]` | the diploma info notes on screen 4 |
+| `class="kh-modal"` + `[data-action="apply"]` + `[data-modal-org]` | the apply modal triggered from a result card |
+| `[data-name-token]` | inline span where the entered first name is injected |
+| `[data-action="next" | "prev" | "start" | "apply"]` | the presentation action verbs |
+
+Rain (WordPress) should treat this markup as **read-only**. Do not rename
+classes, drop attributes, "clean up" duplicate-looking blocks, or refactor
+the structure. The external developer relies on it.
+
+### 7.4 What `keuzehulp-ui.js` does (and why it can be replaced)
+
+`js/keuzehulp-ui.js` is a presentation demo: it wires up screen transitions,
+single/multi-select highlighting, the conditional reveals, a progress bar,
+per-screen Next-button validation, the loading → result transition, and the
+apply modal. It does **no scoring, no matching, no data persistence**.
+
+The external wizard developer either:
+
+- replaces this script with the real engine (same DOM contract), or
+- loads on top of it and overrides the bits they need.
+
+Either way, Rain enqueues `keuzehulp-ui.js` on the keuzehulp template by
+default; the wizard developer can dequeue it or override it later.
+
+### 7.5 Direct sollicitatie pre-fill (unchanged)
+
+The application form pre-fills the selected organisation from a URL
+parameter: links such as `/solliciteren/?org=amstelring` tick the matching
+checkbox. Handled in `js/forms.js`; keep the `?org=` slug contract intact
+when wiring up the real form.
 
 ---
 
@@ -427,40 +502,39 @@ the client, not theme bugs.
 |---|---|
 | Salary figures | Indicative amounts used for BBL levels 2/3/4. Confirm against the current VVT collective labour agreement (cao VVT). Pages: werken-en-leren index, niveau-2/3/4, salaris. |
 | Organisation copy | The "Wie zijn wij?" intro texts on the organisation detail pages were written from each organisation's official website and should still be confirmed by the organisations. Employment benefits and locations are still placeholder. |
-| Sigra | Sigra is included as an organisation, but it is a regional collaboration network, not a care employer: you cannot apply or follow a BBL programme there. Its detail page keeps the standard layout, but the BBL-levels, employment-benefits and apply sections do not apply and are flagged with inline TODOs. Decide before launch how to present Sigra. |
-| Cordaan | May need to be hidden at launch, see "Hiding Cordaan at launch" below. |
-| Level 4 organisations | The set of organisations offering BBL level 4 needs confirmation. |
 | Filter bar | Works client-side in the prototype (`js/filter.js`, driven by `data-org-*` attributes on the cards). In WordPress replace it with a `WP_Query` `tax_query` (`org_type` / `bbl_niveau` / `werkplek`). |
 | Social image | `og:image` points to `/assets/og-image.jpg`; supply a real 1200x630 share image. |
 | Open days | Open days are a custom post type (`open_dagen`); the admin adds them via the "Open dagen" admin screen. Example dates/locations used, final agenda to be supplied. The "Meer informatie" button stays inert until each event's `meer_info_url` field is filled (it opens in a new tab). |
 | Organisation count | The organisation total is shown as a count in two places: the overview result count (`#org-count`) and the over-ons "In cijfers" stat. Neither is hardcoded copy; each must be wired to the live `organisaties` post count (`$query->found_posts` / `wp_count_posts('organisaties')->publish`) so it updates by itself when an organisation is added or removed. |
 | Contact details | The contact details on the contact page are placeholder. |
 | Legal pages | privacy, cookies, disclaimer, toegankelijkheid contain plausible but not legally reviewed text. |
-| Keuzehulp URL | Make the wizard iframe URL manageable in WordPress (ACF option or constant). |
 | Org work locations | Detail pages show work locations as a plain list (name + address), rendered only when an organisation has more than one location. No map. Provide the real location data per organisation. |
 | Org hero media | Each detail page hero shows either a photo or a video, the admin's choice per organisation. Prototype uses a placeholder. Supply the real photo or video per organisation. |
 | Forms | There are two forms: Direct Solliciteren and Contact. Build them in WordPress with Gravity Forms. Each form redirects to a dedicated thank-you page so submissions can be tracked as conversions: solliciteren goes to /solliciteren/bevestiging/, contact goes to /over-ons/contact/bedankt/. |
 
 ---
 
-## 10. Hiding Cordaan at launch
+## 10. Participating organisations — what is and is not on the site
 
-Cordaan may not have its BBL programme ready when the site goes live. The site
-is built with Cordaan fully included; if it must be hidden at launch, here is
-every place Cordaan appears:
+Six care organisations are first-class on the site, each as an
+`organisaties` post with a full detail page:
 
-1. **Detail page** `zorgorganisaties/cordaan/index.html` — in WordPress, set the
-   `organisaties` post for Cordaan to **Draft** or **Private**. Loop-driven
-   listings (the organisaties archive, the home page grid, the
-   `over-ons/deelnemers` grid) then drop Cordaan automatically.
-2. **Hand-built lists** that are not loop-driven and must be edited by hand to
-   remove Cordaan:
-   - the "Zorgorganisaties" mega menu in `nav.php` (header)
-   - the organisations column in `footer.php`
-   - the organisation checkboxes on the application form (`/solliciteren/`)
+- Amstelring
+- Brentano
+- PCSOH
+- Zonnehuisgroep Amstelland
+- Zorgcentra Meerlanden
+- Zorggroep Aelsmeer
 
-When Cordaan's programme is ready, set the post back to Published and restore
-the hand-built references.
+Two organisations that appear in the regional collaboration but **not** as
+employers / BBL providers on this site:
+
+- **Sigra** — a regional collaboration network, not a care employer. No
+  detail page. Sigra appears only as a logo + short partner blurb on
+  `/over-ons/deelnemers/`.
+- **Cordaan** — fully removed from the prototype (no detail page, no mega
+  menu entry, no footer link, no sitemap). If Cordaan joins later, add a
+  new `organisaties` post; loop-driven listings pick it up automatically.
 
 ---
 
@@ -468,7 +542,7 @@ the hand-built references.
 
 Verified before handover:
 
-- All 33 pages return HTTP 200; no broken internal links.
+- All 32 pages return HTTP 200; no broken internal links.
 - Header and footer are functionally identical on every page.
 - All four mega menus present and consistent on every page.
 - Application form: validation, `?org=` pre-fill, and redirect to the
@@ -476,5 +550,81 @@ Verified before handover:
 - FAQ accordion, footer toggle, mobile drawer, sticky header, scroll
   animations all work.
 - `prefers-reduced-motion` is respected.
-- No external runtime dependencies beyond Google Fonts and the Keuzehulp
-  iframe.
+- No external runtime dependencies beyond Google Fonts.
+
+---
+
+## 12. Site-wide layout decisions to preserve
+
+These are deliberate choices the client signed off on. They look like
+inconsistencies at a glance; do not "normalise" them.
+
+### 12.1 Footer has two variants
+
+The standard footer carries a CTA row above the link grid
+(`<div class="footer__cta">…Klaar om te starten in de zorg?…</div>`).
+Two pages drop that CTA row deliberately: **`/keuzehulp/`** and
+**`/solliciteren/`**. Both pages already are the conversion; the CTA row
+would push the visitor back to the same conversion, on the same page.
+
+When you lift the footer into `footer.php`, render the CTA row
+conditionally — hide it on `is_page('keuzehulp')` and `is_page('solliciteren')`
+(and on the bevestiging confirmation page, also a conversion target).
+
+### 12.2 "Voor professionals" lives in the footer only, not the mega menu
+
+The mega menu Over ons only carries the candidate-facing links (Over ons,
+Waarom samenwerken, Deelnemende organisaties, Contact, FAQ). The
+"Voor professionals" links (Voor zorgorganisaties / Voor opleidingsinstituten)
+sit only in the footer.
+
+Reason from the client: the site is a candidate-facing recruitment site;
+mixing a professionals path into the main navigation confused candidates.
+The footer is the discreet place where stakeholders find their way in.
+
+### 12.3 Home region-band — pill-chip component
+
+The region band directly under the hero on the home page is a
+self-contained markup component, not ACF-driven. It renders the eight
+municipalities (Aalsmeer, Amstelveen, Badhoevedorp, Hoofddorp,
+Nieuw-Vennep, Ouderkerk aan de Amstel, Uithoorn, Zwanenburg) as pill-chips
+with a small pin icon each, under a centred serif title.
+
+If the client wants the list of municipalities editable later, model it as
+a repeater (`region_plaats` — Text) on an ACF Options page and loop the
+chips. Markup and CSS hooks already in place: `.region-band__chips > li.region-chip`.
+
+---
+
+## 13. Editorial decisions from the review rounds
+
+The visible copy on several pages was reworked through two review rounds
+with the project group (May - June 2026). A few of these are
+counter-intuitive enough that they tend to get "fixed" back. Do not undo:
+
+- **Niveau 2 helpende copy** — rewritten from the previous "eerste gezicht"
+  framing to a daily-care / observe-and-signal / collaborate framing.
+- **Niveau 4 — mbo-Verpleegkundige** — the term `mbo-Verpleegkundige` is
+  used consistently (mega menu, footer, h1, body, salaris card). It is not
+  called "Verpleegkundige" without the prefix; it is not "the highest BBL
+  level"; the word "specialist" is avoided (a separate registered title).
+- **Diploma niveau 2 nuance** — diploma is required to enter the *opleiding*
+  (Nova as basis: mbo 1, vmbo basis, or another accredited proof). Without
+  a diploma the candidate is welcome for a *gesprek*; the route is decided
+  together with the organisation and the school. Copy is phrased that way
+  everywhere; do not regress to "no diploma needed".
+- **Fulltime, not parttime** — the FAQ asks *Kan ik fulltime werken en
+  leren?* (was: parttime). Answer: "Dat kan. Fulltime is 36 uur.
+  Gebruikelijk bij BBL is 3 dagen praktijk en 1 dag school. Dit geldt bij
+  alle deelnemende organisaties."
+- **Voorwerktraject** — both the FAQ and the `/scholen/hoe-werkt-het/`
+  process page mention that candidates can start earlier via a
+  voorwerktraject. Keep the callout under the four steps.
+- **Workplace types** — "verpleeghuis or thuiszorg" everywhere;
+  "woonzorgcentrum" is deliberately not used.
+- **BBL vs BOL** — there is no `/werken-en-leren/bbl-vs-bol/` page anymore.
+  The difference is briefly mentioned in the FAQ. Do not reintroduce a
+  comparison section on the Werken & Leren overview.
+
+If any of these surface as questions during the build, route them through
+OMA, not back-channel through the project group.
