@@ -915,17 +915,6 @@
 }
 .kh-wizard[data-embed="widget"]::before { display: none; }
 
-/* Scroll wrapper around the wizard inside the float panel.
-   The widget panel's .widget__body already scrolls vertically; this
-   inner wrapper grows to fill the available space, keeps a warm
-   page-like background tone, and gives the wizard room to breathe. */
-.widget__keuzehulp-body {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  background: var(--warm);
-}
-
 /* ============================================================
    Narrow container — covers both the float panel (~340-400px wide)
    and tight viewport widths via the same container query.

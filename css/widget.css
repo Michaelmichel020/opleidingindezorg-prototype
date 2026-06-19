@@ -193,6 +193,9 @@
   border: 1px solid var(--rule);
   border-radius: var(--radius-md);
   cursor: pointer;
+  color: var(--charcoal);
+  text-decoration: none;
+  font: inherit;
   transition: border-color var(--duration) var(--ease-smooth),
               background var(--duration) var(--ease-smooth);
 }
