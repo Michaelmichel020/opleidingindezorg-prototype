@@ -71,11 +71,13 @@
   <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
     <div class="nav__inner">
 
+      <!-- Logo -->
       <!-- ACF: site_logo (image) — otherwise the default logo file below -->
       <a href="/" class="nav__logo" aria-label="Opleiding in de Zorg - naar de homepagina">
         <img src="/assets/logo/logo.svg" alt="Opleiding in de Zorg" width="193" height="85">
       </a>
 
+      <!-- Desktop nav -->
       <!-- WP_MENU: primary | register as the 'Primary navigation' menu location in functions.php -->
       <ul class="nav__list" role="list">
         <li class="nav__item" data-menu="werken-leren">
@@ -104,11 +106,13 @@
         </li>
       </ul>
 
+      <!-- CTA buttons -->
       <div class="nav__ctas">
         <a href="/keuzehulp/" class="btn btn--primary btn--sm">Keuzehulp</a>
         <a href="/solliciteren/" class="btn btn--dark btn--sm">Direct Solliciteren</a>
       </div>
 
+      <!-- Hamburger (mobile) -->
       <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
@@ -132,14 +136,13 @@
           <li><a href="/werken-en-leren/niveau-2/" class="mega__link">BBL Niveau 2 - Helpende</a></li>
           <li><a href="/werken-en-leren/niveau-3/" class="mega__link">BBL Niveau 3 - Verzorgende IG</a></li>
           <li><a href="/werken-en-leren/niveau-4/" class="mega__link">
-            BBL Niveau 4 - Verpleegkundige
+            BBL Niveau 4 - mbo-Verpleegkundige
           </a></li>
         </ul>
       </div>
       <div class="mega__col">
         <p class="mega__eyebrow">Informatie</p>
         <ul class="mega__links" role="list">
-          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
           <li><a href="/werken-en-leren/toelatingseisen/" class="mega__link">Toelatingseisen</a></li>
           <li><a href="/werken-en-leren/salaris/" class="mega__link">Salaris en vergoedingen</a></li>
           <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
@@ -199,7 +202,6 @@
         <p class="mega__eyebrow">Goed om te weten</p>
         <ul class="mega__links" role="list">
           <li><a href="/werken-en-leren/" class="mega__link">Wat is BBL?</a></li>
-          <li><a href="/werken-en-leren/bbl-vs-bol/" class="mega__link">Verschil BBL en BOL</a></li>
         </ul>
       </div>
       <div class="mega__col mega__col--featured">
@@ -226,13 +228,6 @@
           <li><a href="/werken-en-leren/faq/" class="mega__link">Veelgestelde vragen</a></li>
         </ul>
       </div>
-      <div class="mega__col">
-        <p class="mega__eyebrow">Voor professionals</p>
-        <ul class="mega__links" role="list">
-          <li><a href="/over-ons/" class="mega__link">Voor zorgorganisaties</a></li>
-          <li><a href="/scholen/" class="mega__link">Voor opleidingsinstituten</a></li>
-        </ul>
-      </div>
       <div class="mega__col mega__col--featured">
         <p class="mega__featured-label">Eén regio, één platform</p>
         <p class="mega__featured-title">Alle organisaties.<br>Eén platform.</p>
@@ -244,10 +239,12 @@
     </div>
   </div>
 
+  <!-- Overlay behind mega menu -->
   <div class="mega-overlay" id="mega-overlay"></div>
 
 </header>
 
+<!-- Mobile nav drawer -->
 <div class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobiele navigatie">
   <nav class="mobile-nav__inner" aria-label="Mobiele hoofdnavigatie">
     <a href="/" class="mobile-nav__item">Home</a>
@@ -303,7 +300,7 @@
           </span>
           <span class="hero__trust-item">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 2.5C21 12 19 16 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-            Ook zonder diploma welkom
+            Ook zonder diploma welkom voor een gesprek
           </span>
         </div>
       </div>
@@ -331,9 +328,8 @@
         <div>
           <p class="region-band__eyebrow">Werkzaam in onze regio</p>
           <p class="region-band__title">Amstelland &amp; Meerlanden</p>
-          <!-- TODO: definitieve lijst steden/dorpen of een regiokaartje aanvullen na bevestiging projectgroep -->
           <p class="region-band__towns">
-            Amstelveen &middot; Aalsmeer &middot; Hoofddorp &middot; Uithoorn &middot; Ouder-Amstel &middot; en omliggende gemeenten <em>(definitieve lijst volgt)</em>
+            Aalsmeer &middot; Amstelveen &middot; Badhoevedorp &middot; Hoofddorp &middot; Nieuw-Vennep &middot; Ouderkerk aan de Amstel &middot; Uithoorn &middot; Zwanenburg
           </p>
         </div>
       </div>
@@ -514,7 +510,7 @@
           <li><a href="/werken-en-leren/" class="footer__link">Werken &amp; Leren (Wat is BBL?)</a></li>
           <li><a href="/werken-en-leren/niveau-2/" class="footer__link">BBL Niveau 2 - Helpende</a></li>
           <li><a href="/werken-en-leren/niveau-3/" class="footer__link">BBL Niveau 3 - Verzorgende IG</a></li>
-          <li><a href="/werken-en-leren/niveau-4/" class="footer__link">BBL Niveau 4 - Verpleegkundige</a></li>
+          <li><a href="/werken-en-leren/niveau-4/" class="footer__link">BBL Niveau 4 - mbo-Verpleegkundige</a></li>
           <li><a href="/werken-en-leren/toelatingseisen/" class="footer__link">Toelatingseisen</a></li>
           <li><a href="/werken-en-leren/salaris/" class="footer__link">Salaris en vergoedingen</a></li>
           <li><a href="/werken-en-leren/faq/" class="footer__link">Veelgestelde vragen</a></li>
