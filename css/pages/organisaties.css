@@ -20,13 +20,17 @@
   }
 }
 
-/* Filterbar at the top, with spacing from the grid */
-.org-toolbar { margin-bottom: var(--space-md); }
+/* Filterbar at the top, with spacing from the grid.
+   The grid sits a noticeable gap (--space-lg) below the toolbar +
+   help-line + count so the filter visually groups together, separate
+   from the cards. */
+.org-toolbar { margin-bottom: var(--space-sm); }
 .org-toolbar .dark-strip { margin-bottom: var(--space-sm); }
+.org-toolbar__help { margin-bottom: var(--space-sm); }
 
-/* Result counter */
+/* Result counter — pushed off from the grid with a generous gap */
 .org-count {
   font-size: 14px;
   color: var(--muted);
-  margin-bottom: var(--space-sm);
+  margin: 8px 0 var(--space-lg);
 }

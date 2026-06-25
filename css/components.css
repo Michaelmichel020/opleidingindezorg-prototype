@@ -655,6 +655,13 @@
 .org-grid { display: grid; gap: var(--space-lg); }
 .org-grid--list { grid-template-columns: 1fr; }
 
+/* Filter + grid spacing: when a filterbar sits directly above an org-grid
+   (as on the 'Andere zorgorganisaties' block on org-detail pages), push
+   the grid down so the filter clearly belongs to its own group. The
+   overview page uses .org-count as a buffer below the toolbar; that
+   gets its own margin in pages/organisaties.css. */
+.filterbar + .org-grid { margin-top: var(--space-lg); }
+
 .org-card {
   background: var(--white);
   border: 1px solid var(--rule);
@@ -668,10 +675,14 @@
   box-shadow: var(--shadow-md);
   border-color: var(--teal-border);
 }
-.org-card__link { display: block; padding: var(--space-md); height: 100%; }
-.org-card__logo { width: 120px; min-height: 60px; margin-bottom: 16px; }
-.org-card__name { font-family: var(--serif); font-size: 22px; margin-bottom: 4px; }
-.org-card__type { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+.org-card__link {
+  display: block;
+  padding: var(--space-md) var(--space-md) calc(var(--space-md) + 4px);
+  height: 100%;
+}
+.org-card__logo { width: 140px; min-height: 68px; margin-bottom: 20px; }
+.org-card__name { font-family: var(--serif); font-size: 24px; margin-bottom: 6px; }
+.org-card__type { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
 .org-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .org-card__tags .tag { font-size: 11px; padding: 4px 10px; }
 .org-card__cta { font-weight: 600; font-size: 14px; color: var(--teal-dark); }
@@ -932,7 +943,7 @@
   .bbl-pillars { grid-template-columns: repeat(3, 1fr); }
   .steps { grid-template-columns: repeat(4, 1fr); }
   .niveau-grid { grid-template-columns: repeat(3, 1fr); }
-  .org-logo-grid { grid-template-columns: repeat(4, 1fr); }
+  .org-logo-grid { grid-template-columns: repeat(3, 1fr); }
   .org-grid { grid-template-columns: repeat(2, 1fr); }
   .salaris-grid { grid-template-columns: repeat(3, 1fr); }
   .form__row--2col { grid-template-columns: 1fr 1fr; }
@@ -949,7 +960,7 @@
   }
 }
 @media (min-width: 1024px) {
-  .org-grid { grid-template-columns: repeat(4, 1fr); }
+  .org-grid { grid-template-columns: repeat(3, 1fr); }
   .org-grid--list { grid-template-columns: 1fr; }
-  .org-logo-grid { grid-template-columns: repeat(4, 1fr); }
+  .org-logo-grid { grid-template-columns: repeat(3, 1fr); }
 }
