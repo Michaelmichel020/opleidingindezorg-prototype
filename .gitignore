@@ -3,3 +3,6 @@
 *.tmp
 .env
 .env.local
+
+# Internal OMA briefings — never commit, never deliver
+_OMA-BRIEFING-*.md
