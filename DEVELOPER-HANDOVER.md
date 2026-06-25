@@ -1,6 +1,6 @@
 # Developer Handover — opleidingindezorg.nl
 
-Prepared for the WordPress developer (Rain).
+Prepared for the WordPress developer.
 
 This document explains how to turn the static prototype in this folder into a
 WordPress custom theme. The prototype is a complete, clickable HTML/CSS/JS
@@ -438,9 +438,9 @@ template:
 | `[data-name-token]` | inline span where the entered first name is injected |
 | `[data-action="next" | "prev" | "start" | "apply"]` | the presentation action verbs |
 
-Rain (WordPress) should treat this markup as **read-only**. Do not rename
-classes, drop attributes, "clean up" duplicate-looking blocks, or refactor
-the structure. The external developer relies on it.
+The WordPress developer should treat this markup as **read-only**. Do not
+rename classes, drop attributes, "clean up" duplicate-looking blocks, or
+refactor the structure. The external developer relies on it.
 
 ### 7.4 What `keuzehulp-ui.js` does (and why it can be replaced)
 
@@ -454,8 +454,9 @@ The external wizard developer either:
 - replaces this script with the real engine (same DOM contract), or
 - loads on top of it and overrides the bits they need.
 
-Either way, Rain enqueues `keuzehulp-ui.js` on the keuzehulp template by
-default; the wizard developer can dequeue it or override it later.
+Either way, the WordPress developer enqueues `keuzehulp-ui.js` on the
+keuzehulp template by default; the wizard developer can dequeue it or
+override it later.
 
 ### 7.5 Direct sollicitatie pre-fill (unchanged)
 

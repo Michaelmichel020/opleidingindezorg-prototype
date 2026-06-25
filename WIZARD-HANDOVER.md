@@ -32,7 +32,7 @@ There is exactly **one** wizard instance, on `/keuzehulp/`.
 ## 3. The markup contract
 
 These hooks are the agreement between the frontend and the wizard developer.
-They must not change without coordination. Rain in particular should treat
+They must not change without coordination. The WordPress developer should treat
 them as read-only when porting the markup to a WordPress template.
 
 ### 3.1 Screen IDs
