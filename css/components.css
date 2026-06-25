@@ -389,6 +389,13 @@
   border-radius: var(--radius-lg);
   padding: var(--space-md);
 }
+/* Variant: regional employment conditions group — teal tint so it
+   reads as a distinct visual family from the white financial pillars. */
+.pillar--soft {
+  background: var(--teal-bg);
+  border-color: var(--teal-border);
+}
+.pillar--soft .pillar__icon { background: var(--white); }
 .pillar__icon {
   width: 40px; height: 40px;
   border-radius: var(--radius-md);
