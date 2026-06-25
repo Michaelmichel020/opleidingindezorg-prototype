@@ -1,99 +1,126 @@
-# opleidingindezorg.nl — klikbaar prototype
+# opleidingindezorg.nl — clickable prototype
 
-Klikbaar HTML/CSS/JS-prototype voor het regionale BBL-zorgopleidingsplatform
-**opleidingindezorg.nl** (Amstelland & Meerlanden). Bedoeld als 1-op-1
-omzetbaar framework naar een WordPress custom theme.
+Clickable HTML/CSS/JS prototype for the regional BBL care-education
+platform **opleidingindezorg.nl** (Amstelland & Meerlanden). Built as a
+1-to-1 convertible framework for a WordPress custom theme.
 
-Gebouwd door Online Marketing Amsterdam, mei 2026.
+Built by Online Marketing Amsterdam (OMA), May 2026. This is OMA's
+project README; OMA maintains the prototype, the WordPress developer
+converts it.
 
-## Het prototype bekijken
+## Viewing the prototype
 
-De pagina's gebruiken **root-absolute paden** (`/css/...`, `/zorgorganisaties/...`),
-net als de uiteindelijke WordPress-site. Dubbelklikken op een `.html` werkt
-daarom niet, je serveert de map via een lokale webserver:
+Pages use **root-absolute paths** (`/css/...`, `/zorgorganisaties/...`),
+just like the final WordPress site. Double-clicking an `.html` file
+therefore does not resolve the links; serve the folder via a local
+static server:
 
 ```bash
 cd 03-prototype
 python3 -m http.server 8000
 ```
 
-Open daarna **http://localhost:8000** in je browser. Klik door, alles werkt:
-mega menu, mobiel menu, footer uitklappen, FAQ-accordion, formuliervalidatie,
-scroll-animaties.
+Then open **http://localhost:8000** in your browser. Click through;
+everything works: mega menu, mobile menu, footer toggle, FAQ accordion,
+form validation, scroll animations.
 
-## Wat zit erin
+## What is in here
 
-32 pagina's, volledig onderling gelinkt:
+32 pages, fully cross-linked:
 
 - **Home** (`index.html`)
-- **Werken & Leren** — overzicht + 3 BBL-niveaus + 3 informatiepagina's (toelatingseisen, salaris, FAQ)
-- **Zorgorganisaties** — overzicht met filterbar + organisatie-detailpagina's
-- **Scholen** — overzicht + proces + open dagen
-- **Over ons** — overzicht + samenwerking + deelnemers + contact
-- **Keuzehulp** — wizard inline op de pagina (geen iframe); de float-widget linkt ernaartoe
-- **Solliciteren** — formulier + bevestigingspagina
-- **Legal** — privacy, cookies, disclaimer, toegankelijkheid
+- **Werken & Leren** — overview + 3 BBL levels + 3 info pages
+  (toelatingseisen, salaris, FAQ)
+- **Zorgorganisaties** — overview with filter bar + 6 organisation
+  detail pages
+- **Scholen** — overview + how-it-works + open days
+- **Over ons** — overview + collaboration + participants + contact
+- **Keuzehulp** — wizard inline on the page (no iframe); the floating
+  widget links to it
+- **Solliciteren** — form + confirmation page
+- **Legal** — privacy, cookies, disclaimer, accessibility
 
-## Structuur
+## Structure
 
 ```
 03-prototype/
 ├── index.html              Home
 ├── css/                    tokens, global, components, animations, nav, footer, widget, cookie
-│   └── pages/              pagina-specifieke stylesheets (incl. keuzehulp.css, alleen op /keuzehulp/)
+│   └── pages/              per-page stylesheets (incl. keuzehulp.css, loaded only on /keuzehulp/)
 ├── js/                     nav, animations, footer, faq, filter, forms, widget, cookie, keuzehulp-ui (vanilla)
-├── assets/logo/            logo-SVG's
-├── _partials/              canonieke header + footer + bouwinstructie (geen pagina's)
-└── [secties]/              alle pagina's als map met index.html
+├── assets/                 logos and images (logos in /logos/, page images in /images/)
+├── _partials/              canonical header, footer, widget, cookie, rotate-notice + build reference (not pages)
+└── [sections]/             every page as a folder with index.html
 ```
 
-`_partials/` hoort niet in de WordPress-build, het is de bron voor `header.php`
-en `footer.php` plus de bouwinstructie.
+`_partials/` is **not** part of the WordPress build — it is the source
+for `header.php`, `footer.php` and the build reference document.
 
 ## Tech
 
-Pure HTML5 / CSS3 / vanilla JavaScript. Geen frameworks, geen build-tools.
-Enige externe afhankelijkheid: Google Fonts (DM Sans + DM Serif Display) via CDN.
-De Keuzehulp staat inline op `/keuzehulp/` (12 schermen + sollicitatie-modaal); een
-externe wizard-developer koppelt later zijn engine aan deze markup.
+Pure HTML5 / CSS3 / vanilla JavaScript. No frameworks, no build tools.
+The only external runtime dependency is Google Fonts (DM Sans + DM
+Serif Display) via CDN. The Keuzehulp wizard sits inline on
+`/keuzehulp/` (12 screens + apply modal); an external wizard developer
+later hooks their engine into the markup.
 
-## WordPress-omzetting
+## WordPress conversion
 
-Elke pagina bevat commentaarblokken die de WordPress-structuur aangeven:
+Every page carries machine-readable comment blocks that mark the
+WordPress structure:
 
-- `<!-- WP TEMPLATE: ...php -->` — welk template-bestand
+- `<!-- WP TEMPLATE: ...php -->` — which template file
 - `<!-- WP TEMPLATE PART: header.php / footer.php / nav.php -->`
-- `<!-- ACF: veldnaam (type) -->` — bewerkbare velden via Advanced Custom Fields
-- `<!-- WP_LOOP: start / end -->` — herhalende content
-- `<!-- CPT: organisaties -->` — het custom post type voor de organisaties
+- `<!-- ACF: fieldname (type) -->` — editable fields (one reference
+  implementation; see `ACF-FIELDS.md` for the full editability
+  inventory and the developer choice between ACF / native blocks /
+  patterns / `theme.json`)
+- `<!-- WP_LOOP: start / end -->` — repeating content
+- `<!-- CPT: organisaties -->` — the custom post type for organisations
 
-De header en footer zijn op alle pagina's identiek, klaar om `header.php` en
-`footer.php` van te maken. De organisatiepagina's volgen één template
-(`single-organisaties.php`), het overzicht wordt `archive.php`.
+The header and footer are identical on every page, ready to lift into
+`header.php` and `footer.php`. The 6 organisation pages share one
+template (`single-organisaties.php`); the overview becomes `archive.php`.
 
-## Openstaande punten (TODO's in de code)
+For the WordPress developer:
+- **`DEVELOPER-HANDOVER.md`** — full handover document, including the
+  roles-and-scope section.
+- **`WIZARD-HANDOVER.md`** — the Keuzehulp wizard markup contract.
+- **`ACF-FIELDS.md`** — complete editability inventory and ACF
+  reference implementation.
+- **`IMAGE-MANIFEST.md`** — the 19 photos OMA delivers separately,
+  plus the existing 7 organisation logos.
+- **`_partials/BUILD-INSTRUCTIONS.md`** — reference page skeleton and
+  conventions.
 
-Doorzoekbaar met `grep -rn "TODO" .` Samengevat:
+## Outstanding content items (TODOs in the code)
 
-- **Salarisbedragen** — indicatief ingevuld, laten bevestigen op de actuele cao VVT.
-- **Organisatieteksten** — de "Wie zijn wij?"-teksten zijn geschreven op basis
-  van de officiële sites van de organisaties, laten bevestigen door de
-  organisaties zelf. Arbeidsvoorwaarden en locaties zijn nog voorbeeldcopy.
-- **Sigra** — geen zorgwerkgever maar regionaal samenwerkingsverband. Geen
-  detailpagina; staat alleen als logo + korte vermelding op `/over-ons/deelnemers/`.
-- **Cordaan** — niet op de site (geen detailpagina, geen mega menu, geen footer).
-  Als Cordaan later toetreedt: nieuwe `organisaties`-post toevoegen.
-- **Filterbar** — in het prototype visueel; in WordPress koppelen aan `WP_Query`
-  met `tax_query` (org_type / bbl_niveau / werkplek).
-- **Open dagen** — voorbeelddata en -locaties, definitieve agenda aanleveren.
-- **Contactgegevens** — de contactgegevens op de contactpagina zijn voorbeeld.
-- **Legal-pagina's** — privacy, cookies, disclaimer en toegankelijkheid bevatten
-  plausibele maar niet-juridisch-gecontroleerde tekst.
+Searchable with `grep -rn "TODO" .` Summary:
 
-## Kwaliteitscheck
+- **Salary figures** — indicative; to be confirmed against the current
+  VVT collective labour agreement (cao VVT).
+- **Organisation texts** — the "Wie zijn wij?" intros are drafted from
+  each organisation's official website and need their confirmation.
+  Employment benefits and locations are still example copy.
+- **Sigra** — not a care employer, but a regional collaboration
+  network. No detail page; only a logo plus short partner note on
+  `/over-ons/deelnemers/`.
+- **Cordaan** — not present on the site (no detail page, no mega menu,
+  no footer). If Cordaan joins later: add a new `organisaties` post.
+- **Filter bar** — visual only in the prototype; wire to a `WP_Query`
+  with a `tax_query` (`org_type` / `bbl_niveau` / `werkplek`).
+- **Open dagen** — example dates and locations; final agenda to be
+  supplied via the `open_dagen` CPT.
+- **Contact details** — the contact-page details are placeholder.
+- **Legal pages** — privacy, cookies, disclaimer and toegankelijkheid
+  contain plausible but not legally reviewed copy.
 
-Geverifieerd: 32 pagina's geven HTTP 200, geen kapotte interne links, identieke
-header overal (footer in twee bewuste varianten: standaard + lichter op
-`/keuzehulp/` en `/solliciteren/`), mega menu's compleet, sollicitatieformulier
-met validatie en `?org=`-pre-fill, FAQ-accordion, geen externe dependencies
-buiten Google Fonts.
+## Quality status
+
+Verified: 32 pages return HTTP 200, no broken internal links, the
+header is byte-identical on every page (the footer has two intentional
+variants: standard, and a lighter version without the call-to-action
+row on `/keuzehulp/`, `/solliciteren/` and the bevestiging page), the
+mega menus are complete, the application form has validation and the
+`?org=` pre-fill, the FAQ accordion works, and there are no external
+runtime dependencies beyond Google Fonts.

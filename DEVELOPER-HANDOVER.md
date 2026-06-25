@@ -157,7 +157,7 @@ python3 -m http.server 8000
 │   ├── widget.html                 floating help widget -> widget.php
 │   ├── cookie.html                 cookie notice -> cookie.php
 │   ├── rotate-notice.html          mobile landscape notice -> rotate-notice.php
-│   └── BOUWINSTRUCTIE.md            page skeleton used during the build
+│   └── BUILD-INSTRUCTIONS.md        reference page skeleton used during the build
 ├── README.md                       Dutch project readme (for OMA)
 ├── DEVELOPER-HANDOVER.md            this file
 └── ACF-FIELDS.md                   full ACF field reference per template
