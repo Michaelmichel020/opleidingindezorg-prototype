@@ -1,12 +1,27 @@
-# ACF Fields Reference — opleidingindezorg.nl
+# Editability inventory — opleidingindezorg.nl
 
-Every Advanced Custom Fields (ACF) field used across the prototype, grouped by
-field group / template. Field **names** are kept exactly as they appear in the
-HTML comments (`<!-- ACF: ... -->`) so the markup and the field keys line up.
-Several field names are Dutch; keep them as-is, they are keys, not labels.
+This document is **two things at once**:
 
-Field types refer to standard ACF field types. Suggested admin labels are in
-English; set them as you like in the ACF UI.
+1. **A complete inventory of which content must be editable** by a
+   non-technical administrator from wp-admin, without touching theme files
+   (the client acceptance criterion).
+2. **One reference implementation** showing how that editability can be
+   delivered with Advanced Custom Fields. The WordPress developer may
+   achieve the same editability with native blocks, block patterns,
+   `theme.json`, custom blocks, or any combination they judge best for this
+   codebase. The field tables below remain as the reference; the inline
+   `<!-- ACF: ... -->` comments in the HTML serve the same role.
+
+So: the **list of what must be editable** (sections below + per-page
+inventory) is firm. The **mechanism** is the developer's call. ACF field
+**names** in this document are kept exactly as they appear in the HTML
+comments so the markup and the field keys line up if ACF is chosen; several
+names are Dutch and are keys, not labels.
+
+For the canonical name `hero_subtitle`, see §"Hero fields" — `hero_intro`
+in the inline HTML comments refers to the same field; it is normalised to
+`hero_subtitle` in this document. The HTML comments are being aligned
+gradually.
 
 ---
 

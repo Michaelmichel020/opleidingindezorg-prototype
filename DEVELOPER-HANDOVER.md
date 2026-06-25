@@ -9,6 +9,60 @@ developer-facing comments in the code are in English.
 
 ---
 
+## 0. Roles and scope
+
+This handover is **firm on the WHAT and WHY** and **open on the HOW**. The
+WordPress developer is trusted to choose the implementation that fits this
+codebase and their own toolkit best.
+
+### Fixed (not negotiable)
+
+- **Acceptance criterion (client contract).** A non-technical administrator
+  must be able to edit every visible text, every image, and the organisation
+  and open-day data from wp-admin, without touching theme files.
+- **The Keuzehulp wizard markup contract.** The `.kh-wizard` block, its
+  `data-screen` / `data-value` / `data-multi` / `data-conditional` /
+  `data-note` / `data-action` / `data-modal-*` / `data-name-token` hooks and
+  the `.kh-modal` markup are an agreement with an external wizard developer.
+  See `WIZARD-HANDOVER.md`. Do not rename classes, drop attributes, or
+  "clean up" the block.
+- **Form contracts.** Both site forms (Direct Solliciteren on
+  `/solliciteren/` and Contact on `/over-ons/contact/`) and both
+  widget-level forms (vraag + solliciteren views in `_partials/widget.html`)
+  are built with **Gravity Forms** in WordPress. The `?org=<slug>` URL
+  parameter on `/solliciteren/` selects an organisation checkbox; the slugs
+  must equal the `organisaties` post slugs. The success redirects to
+  `/solliciteren/bevestiging/` and `/over-ons/contact/bedankt/` must remain
+  so the analytics setup can count conversions.
+- **The signed copy and layout decisions** in sections 12 and 13 of this
+  document. Footer-CTA suppression on the two conversion pages,
+  "Voor professionals"-links footer-only, `mbo-Verpleegkundige` consistently,
+  the diploma-niveau 2 nuance, the fulltime FAQ wording, the voorwerktraject
+  callout, "verpleeghuis or thuiszorg" without "woonzorgcentrum", and no
+  BBL-vs-BOL page. Do not regress these.
+
+### Open to the WordPress developer's judgment
+
+- **The data model and editability implementation.** Advanced Custom Fields,
+  native blocks, block patterns, `theme.json`, custom blocks, or any
+  combination — whatever the developer judges best for this codebase.
+- **The reference implementation in this repo.** The inline `<!-- ACF: ... -->`
+  comments and the field tables in `ACF-FIELDS.md` are **one reference
+  implementation** that satisfies the fixed criteria. They are not the
+  required approach. The list of *what must be editable* is firm; the *how*
+  is the developer's call.
+- **Component shape.** Where the same "title + body" pattern repeats (home
+  process steps, niveau growth paths, vergoedingen pillars), the developer
+  may model these as repeaters, block patterns, or shared components. The
+  prototype shows the repeater shape as a reference.
+
+In short: treat `ACF-FIELDS.md` as the **inventory** of editable content,
+not as a build spec. The `IMAGE-MANIFEST.md` is firm on the image identities
+and dimensions; the storage and editing mechanism is again the developer's
+call.
+
+---
+
 ## 1. Project overview
 
 **opleidingindezorg.nl** is a regional BBL care-education platform for the
