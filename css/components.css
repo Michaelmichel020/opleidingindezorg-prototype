@@ -233,6 +233,50 @@
 }
 
 /* Generic logo placeholder */
+/* ============================================================
+   Logo mount — container that holds either a real logo image or
+   the org-name as a styled text fallback.
+
+   Markup:
+   <div class="org-card__logo logo-mount">
+     <img src="/assets/images/logos/SLUG.svg" alt="Name" onerror="this.remove()">
+     <span class="logo-mount__name">Name</span>
+   </div>
+
+   The img absolute-fills the box with object-fit: contain, and its
+   background covers the fallback text underneath. When the file does
+   not exist (yet), onerror removes the img and the text remains.
+   ============================================================ */
+.logo-mount {
+  position: relative;
+  background: var(--off-white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 8px;
+}
+.logo-mount__name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mid);
+  line-height: 1.25;
+  padding: 0 4px;
+}
+.logo-mount img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--off-white);
+  padding: 10px;
+}
+
 .logo-placeholder {
   display: flex;
   align-items: center;
