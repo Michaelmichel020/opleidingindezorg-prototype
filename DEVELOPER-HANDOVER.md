@@ -570,8 +570,8 @@ the client, not theme bugs.
 | Contact details | The contact details on the contact page are placeholder. |
 | Legal pages | privacy, cookies, disclaimer, toegankelijkheid contain plausible but not legally reviewed text. |
 | Org work locations | Detail pages show work locations as a plain list (name + address), rendered only when an organisation has more than one location. No map. Provide the real location data per organisation. |
-| Org hero media | Each detail page hero shows either a photo or a video, the admin's choice per organisation. Prototype uses a placeholder. Supply the real photo or video per organisation. |
-| Forms | There are two forms: Direct Solliciteren and Contact. Build them in WordPress with Gravity Forms. Each form redirects to a dedicated thank-you page so submissions can be tracked as conversions: solliciteren goes to /solliciteren/bevestiging/, contact goes to /over-ons/contact/bedankt/. |
+| Org hero media | Each detail page hero shows either a photo or a video, the admin's choice per organisation. Prototype uses a placeholder. Supply the real photo or video per organisation. See **`IMAGE-MANIFEST.md`** for the 19 atmosphere photos OMA delivers separately and where each one lands. |
+| Forms | There are two forms on the site: Direct Solliciteren and Contact. Plus two compact forms in the floating widget (vraag + solliciteren views in `_partials/widget.html`). All four are built in WordPress with Gravity Forms. Each form redirects to a dedicated thank-you page so submissions can be tracked as conversions: solliciteren and the widget solliciteren go to /solliciteren/bevestiging/, contact and the widget vraag go to /over-ons/contact/bedankt/. |
 
 ---
 
