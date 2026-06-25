@@ -396,6 +396,28 @@
   border-color: var(--teal-border);
 }
 .pillar--soft .pillar__icon { background: var(--white); }
+
+/* Compact 'meer dan salaris' callout op de niveau-pagina's,
+   direct onder de salaris-card. Verwijst door naar de salarispagina
+   voor het volledige overzicht. */
+.salaris-extras {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+}
+.salaris-extras p { margin: 0; }
+.salaris-extras__lead {
+  font-weight: 600;
+  color: var(--teal-dark);
+  font-size: 14.5px;
+  margin-bottom: 4px;
+}
+.salaris-extras__text {
+  font-size: 14px;
+  color: var(--charcoal);
+  line-height: 1.55;
+}
 .pillar__icon {
   width: 40px; height: 40px;
   border-radius: var(--radius-md);
